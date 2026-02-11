@@ -12,7 +12,7 @@ KYN delivers a mobile-first Brazilian finance PWA in 4 phases: foundation with a
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Security** - Auth, encryption, landing page, PWA basics
+- [x] **Phase 1: Foundation & Security** - Auth, encryption, landing page, PWA basics *(completed 2026-02-11)*
 - [ ] **Phase 2: Core Financial Data** - Transactions, accounts, cards, dashboard
 - [ ] **Phase 3: Analysis & Automation** - Budget, recurring transactions, reports
 - [ ] **Phase 4: Integrations & Activation** - WhatsApp, Stripe, onboarding, settings
@@ -34,10 +34,10 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project setup, Supabase clients, DB migrations, encryption lib
-- [ ] 01-02-PLAN.md — Auth system (signup, login, magic link, password reset, proxy.ts)
-- [ ] 01-03-PLAN.md — Landing page (hero, features, pricing, badges) + privacy policy
-- [ ] 01-04-PLAN.md — PWA config (manifest, service worker, offline) + app shell navigation
+- [x] 01-01-PLAN.md — Project setup, Supabase clients, DB migrations, encryption lib
+- [x] 01-02-PLAN.md — Auth system (signup, login, magic link, password reset, proxy.ts)
+- [x] 01-03-PLAN.md — Landing page (hero, features, pricing, badges) + privacy policy
+- [x] 01-04-PLAN.md — PWA config (manifest, service worker, offline) + app shell navigation
 
 ### Phase 2: Core Financial Data
 **Goal**: User can register and view transactions across accounts and cards
@@ -104,11 +104,11 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Security | 0/3 | Not started | - |
+| 1. Foundation & Security | 4/4 | ✓ Complete | 2026-02-11 |
 | 2. Core Financial Data | 0/2 | Not started | - |
 | 3. Analysis & Automation | 0/2 | Not started | - |
 | 4. Integrations & Activation | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-11*
-*Last updated: 2026-02-11*
+*Last updated: 2026-02-11 — Phase 1 complete*
