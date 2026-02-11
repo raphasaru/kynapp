@@ -10,28 +10,29 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 1 of 4 (Foundation & Security)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: Executing
-Last activity: 2026-02-11 — Completed 01-01-PLAN.md (Project Bootstrap)
+Last activity: 2026-02-11 — Completed 01-02-PLAN.md (Auth System)
 
-Progress: [██░░░░░░░░] 25%
+Progress: [██░░░░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 9 min
-- Total execution time: 0.15 hours
+- Total plans completed: 2
+- Average duration: 6 min
+- Total execution time: 0.20 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01 Foundation & Security | 1 | 9 min | 9 min |
+| 01 Foundation & Security | 2 | 12 min | 6 min |
 
 **Recent Trend:**
-- Last plan: 01-01 (9 min)
-- Trend: First plan completed
+- Last plan: 01-02 (3 min)
+- Previous: 01-01 (9 min)
+- Trend: Velocity increasing
 
 ## Accumulated Context
 
@@ -47,6 +48,9 @@ Recent decisions affecting current work:
 - Tailwind v4 CSS-based config (01-01: @theme inline instead of config file)
 - NEXT_PUBLIC_ENCRYPTION_KEY for client-side encryption (01-01: browser access needed)
 - Manual Database types creation (01-01: Supabase CLI auth issue, regenerate later)
+- proxy.ts uses getUser() not getSession() (01-02: proper JWT validation)
+- Magic link with emailRedirectTo callback (01-02: OTP verification via /auth/callback)
+- Client-side Supabase for auth forms (01-02: direct API calls from browser)
 
 ### Pending Todos
 
@@ -59,5 +63,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 01-01-PLAN.md (Project Bootstrap & Foundation)
-Resume file: .planning/phases/01-foundation-security/01-01-SUMMARY.md
+Stopped at: Completed 01-02-PLAN.md (Auth System)
+Resume file: .planning/phases/01-foundation-security/01-02-SUMMARY.md
