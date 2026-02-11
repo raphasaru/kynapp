@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# env
+.env
+.env.*
+!.env.example
+
+# mcp (contém API keys)
+.mcp.json
+
+# os
+.DS_Store
+Thumbs.db
+
+# ide
+.vscode/
+.idea/
+
+# debug
+npm-debug.log*
+
+# vercel
+.vercel

@@ -1,0 +1,146 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Primary - Emerald Green */
+  --primary: #10b77f;
+  --primary-light: #2cedac;
+  --primary-dark: #0d9668;
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b77f;
+  --primary-600: #0d9668;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+
+  /* Semantic Colors */
+  --success: #22c55e;
+  --success-light: #dcfce7;
+  --success-dark: #15803d;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --warning-dark: #b45309;
+  --error: hsl(0 72% 51%);
+  --error-light: #fee2e2;
+  --error-dark: #dc2626;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+  --info-dark: #2563eb;
+
+  /* Income/Expense */
+  --income: #22c55e;
+  --income-bg: #dcfce7;
+  --expense: #ef4444;
+  --expense-bg: #fee2e2;
+
+  /* Neutrals */
+  --background: hsl(220 20% 97%);
+  --foreground: hsl(220 25% 10%);
+  --card: #ffffff;
+  --card-foreground: hsl(220 25% 10%);
+  --muted: hsl(220 15% 94%);
+  --muted-foreground: hsl(220 10% 46%);
+  --border: hsl(220 13% 90%);
+  --input: hsl(220 13% 90%);
+  --ring: var(--primary);
+
+  /* Dark surfaces */
+  --dark-bg: hsl(220 25% 7%);
+  --dark-fg: hsl(0 0% 96%);
+  --dark-muted: hsl(220 15% 55%);
+  --dark-card: hsl(220 20% 12%);
+  --dark-card-fg: hsl(0 0% 94%);
+
+  /* Shadcn UI Variables */
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --accent: hsl(160 60% 94%);
+  --accent-foreground: hsl(160 84% 25%);
+  --destructive: var(--error);
+  --destructive-foreground: #ffffff;
+
+  /* Border Radius */
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  /* Colors */
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-*: var(--primary-*);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  --color-income: var(--income);
+  --color-expense: var(--expense);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-dark-bg: var(--dark-bg);
+  --color-dark-fg: var(--dark-fg);
+
+  /* Fonts */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+
+  /* Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Custom shadows */
+  --shadow-glow: 0 0 40px rgba(16, 183, 127, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--dark-bg);
+    --foreground: var(--dark-fg);
+    --card: var(--dark-card);
+    --card-foreground: var(--dark-card-fg);
+    --muted: hsl(220 20% 20%);
+    --muted-foreground: var(--dark-muted);
+    --border: hsl(220 20% 18%);
+    --input: hsl(220 20% 18%);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
