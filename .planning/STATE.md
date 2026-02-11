@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 1 of 4 (Foundation & Security)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: Executing
-Last activity: 2026-02-11 — Completed 01-02-PLAN.md (Auth System)
+Last activity: 2026-02-11 — Completed 01-03-PLAN.md (Landing Page & Privacy Policy)
 
-Progress: [██░░░░░░░░] 50%
+Progress: [███░░░░░░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 6 min
-- Total execution time: 0.20 hours
+- Total plans completed: 3
+- Average duration: 5 min
+- Total execution time: 0.23 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01 Foundation & Security | 2 | 12 min | 6 min |
+| 01 Foundation & Security | 3 | 14 min | 5 min |
 
 **Recent Trend:**
-- Last plan: 01-02 (3 min)
-- Previous: 01-01 (9 min)
-- Trend: Velocity increasing
+- Last plan: 01-03 (2 min)
+- Previous: 01-02 (3 min)
+- Trend: Velocity increasing (fast landing page build)
 
 ## Accumulated Context
 
@@ -51,6 +51,9 @@ Recent decisions affecting current work:
 - proxy.ts uses getUser() not getSession() (01-02: proper JWT validation)
 - Magic link with emailRedirectTo callback (01-02: OTP verification via /auth/callback)
 - Client-side Supabase for auth forms (01-02: direct API calls from browser)
+- Dark hero pattern (hsl(220,25%,7%)) with glow for landing sections (01-03)
+- Dual security badges (inline + section) for trust reinforcement (01-03)
+- Simplified pricing on landing (Free + Pro monthly only) (01-03)
 
 ### Pending Todos
 
@@ -63,5 +66,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 01-02-PLAN.md (Auth System)
-Resume file: .planning/phases/01-foundation-security/01-02-SUMMARY.md
+Stopped at: Completed 01-03-PLAN.md (Landing Page & Privacy Policy)
+Resume file: .planning/phases/01-foundation-security/01-03-SUMMARY.md
