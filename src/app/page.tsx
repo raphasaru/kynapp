@@ -1,12 +1,21 @@
-export default function Home() {
+import { HeroSection } from '@/components/landing/hero-section'
+import { FeaturesSection } from '@/components/landing/features-section'
+import { HowItWorksSection } from '@/components/landing/how-it-works-section'
+import { PricingSection } from '@/components/landing/pricing-section'
+import { SecurityBadges } from '@/components/landing/security-badges'
+import { CTASection } from '@/components/landing/cta-section'
+import { Footer } from '@/components/landing/footer'
+
+export default function LandingPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <h1 className="text-6xl font-bold text-primary mb-4">
-        KYN App
-      </h1>
-      <p className="text-xl text-muted-foreground">
-        Finanças Pessoais - Em construção
-      </p>
+    <main>
+      <HeroSection />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <PricingSection />
+      <SecurityBadges />
+      <CTASection />
+      <Footer />
     </main>
-  );
+  )
 }
