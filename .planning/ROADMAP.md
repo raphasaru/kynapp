@@ -31,12 +31,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. App is installable as PWA on mobile and desktop
   6. All financial data is encrypted with AES-256-GCM before storage
   7. RLS enabled on all tables filtering by auth.uid()
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 01-01: TBD during planning
-- [ ] 01-02: TBD during planning
-- [ ] 01-03: TBD during planning
+- [ ] 01-01-PLAN.md — Project setup, Supabase clients, DB migrations, encryption lib
+- [ ] 01-02-PLAN.md — Auth system (signup, login, magic link, password reset, proxy.ts)
+- [ ] 01-03-PLAN.md — Landing page (hero, features, pricing, badges) + privacy policy
+- [ ] 01-04-PLAN.md — PWA config (manifest, service worker, offline) + app shell navigation
 
 ### Phase 2: Core Financial Data
 **Goal**: User can register and view transactions across accounts and cards
