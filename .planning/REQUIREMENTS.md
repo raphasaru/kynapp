@@ -174,97 +174,97 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | — | Pending |
-| AUTH-02 | — | Pending |
-| AUTH-03 | — | Pending |
-| AUTH-04 | — | Pending |
-| AUTH-05 | — | Pending |
-| ONBR-01 | — | Pending |
-| ONBR-02 | — | Pending |
-| ONBR-03 | — | Pending |
-| ONBR-04 | — | Pending |
-| ONBR-05 | — | Pending |
-| ONBR-06 | — | Pending |
-| DASH-01 | — | Pending |
-| DASH-02 | — | Pending |
-| DASH-03 | — | Pending |
-| DASH-04 | — | Pending |
-| DASH-05 | — | Pending |
-| DASH-06 | — | Pending |
-| DASH-07 | — | Pending |
-| DASH-08 | — | Pending |
-| TRNS-01 | — | Pending |
-| TRNS-02 | — | Pending |
-| TRNS-03 | — | Pending |
-| TRNS-04 | — | Pending |
-| TRNS-05 | — | Pending |
-| TRNS-06 | — | Pending |
-| TRNS-07 | — | Pending |
-| CATG-01 | — | Pending |
-| CATG-02 | — | Pending |
-| CATG-03 | — | Pending |
-| BANK-01 | — | Pending |
-| BANK-02 | — | Pending |
-| BANK-03 | — | Pending |
-| BANK-04 | — | Pending |
-| BANK-05 | — | Pending |
-| BANK-06 | — | Pending |
-| CARD-01 | — | Pending |
-| CARD-02 | — | Pending |
-| CARD-03 | — | Pending |
-| CARD-04 | — | Pending |
-| CARD-05 | — | Pending |
-| RECR-01 | — | Pending |
-| RECR-02 | — | Pending |
-| RECR-03 | — | Pending |
-| RECR-04 | — | Pending |
-| RECR-05 | — | Pending |
-| BUDG-01 | — | Pending |
-| BUDG-02 | — | Pending |
-| BUDG-03 | — | Pending |
-| BUDG-04 | — | Pending |
-| HIST-01 | — | Pending |
-| HIST-02 | — | Pending |
-| HIST-03 | — | Pending |
-| WTSP-01 | — | Pending |
-| WTSP-02 | — | Pending |
-| WTSP-03 | — | Pending |
-| WTSP-04 | — | Pending |
-| WTSP-05 | — | Pending |
-| WTSP-06 | — | Pending |
-| WTSP-07 | — | Pending |
-| WTSP-08 | — | Pending |
-| WTSP-09 | — | Pending |
-| SUBS-01 | — | Pending |
-| SUBS-02 | — | Pending |
-| SUBS-03 | — | Pending |
-| SUBS-04 | — | Pending |
-| SUBS-05 | — | Pending |
-| SECU-01 | — | Pending |
-| SECU-02 | — | Pending |
-| SECU-03 | — | Pending |
-| SECU-04 | — | Pending |
-| LAND-01 | — | Pending |
-| LAND-02 | — | Pending |
-| LAND-03 | — | Pending |
-| LAND-04 | — | Pending |
-| LAND-05 | — | Pending |
-| PWAX-01 | — | Pending |
-| PWAX-02 | — | Pending |
-| PWAX-03 | — | Pending |
-| PWAX-04 | — | Pending |
-| PWAX-05 | — | Pending |
-| PWAX-06 | — | Pending |
-| PROF-01 | — | Pending |
-| PROF-02 | — | Pending |
-| PROF-03 | — | Pending |
-| PROF-04 | — | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| ONBR-01 | Phase 4 | Pending |
+| ONBR-02 | Phase 4 | Pending |
+| ONBR-03 | Phase 4 | Pending |
+| ONBR-04 | Phase 4 | Pending |
+| ONBR-05 | Phase 4 | Pending |
+| ONBR-06 | Phase 4 | Pending |
+| DASH-01 | Phase 2 | Pending |
+| DASH-02 | Phase 2 | Pending |
+| DASH-03 | Phase 2 | Pending |
+| DASH-04 | Phase 2 | Pending |
+| DASH-05 | Phase 2 | Pending |
+| DASH-06 | Phase 2 | Pending |
+| DASH-07 | Phase 2 | Pending |
+| DASH-08 | Phase 2 | Pending |
+| TRNS-01 | Phase 2 | Pending |
+| TRNS-02 | Phase 2 | Pending |
+| TRNS-03 | Phase 2 | Pending |
+| TRNS-04 | Phase 2 | Pending |
+| TRNS-05 | Phase 2 | Pending |
+| TRNS-06 | Phase 2 | Pending |
+| TRNS-07 | Phase 2 | Pending |
+| CATG-01 | Phase 2 | Pending |
+| CATG-02 | Phase 2 | Pending |
+| CATG-03 | Phase 2 | Pending |
+| BANK-01 | Phase 2 | Pending |
+| BANK-02 | Phase 2 | Pending |
+| BANK-03 | Phase 2 | Pending |
+| BANK-04 | Phase 2 | Pending |
+| BANK-05 | Phase 2 | Pending |
+| BANK-06 | Phase 2 | Pending |
+| CARD-01 | Phase 2 | Pending |
+| CARD-02 | Phase 2 | Pending |
+| CARD-03 | Phase 2 | Pending |
+| CARD-04 | Phase 2 | Pending |
+| CARD-05 | Phase 2 | Pending |
+| RECR-01 | Phase 3 | Pending |
+| RECR-02 | Phase 3 | Pending |
+| RECR-03 | Phase 3 | Pending |
+| RECR-04 | Phase 3 | Pending |
+| RECR-05 | Phase 3 | Pending |
+| BUDG-01 | Phase 3 | Pending |
+| BUDG-02 | Phase 3 | Pending |
+| BUDG-03 | Phase 3 | Pending |
+| BUDG-04 | Phase 3 | Pending |
+| HIST-01 | Phase 3 | Pending |
+| HIST-02 | Phase 3 | Pending |
+| HIST-03 | Phase 3 | Pending |
+| WTSP-01 | Phase 4 | Pending |
+| WTSP-02 | Phase 4 | Pending |
+| WTSP-03 | Phase 4 | Pending |
+| WTSP-04 | Phase 4 | Pending |
+| WTSP-05 | Phase 4 | Pending |
+| WTSP-06 | Phase 4 | Pending |
+| WTSP-07 | Phase 4 | Pending |
+| WTSP-08 | Phase 4 | Pending |
+| WTSP-09 | Phase 4 | Pending |
+| SUBS-01 | Phase 4 | Pending |
+| SUBS-02 | Phase 4 | Pending |
+| SUBS-03 | Phase 4 | Pending |
+| SUBS-04 | Phase 4 | Pending |
+| SUBS-05 | Phase 4 | Pending |
+| SECU-01 | Phase 1 | Pending |
+| SECU-02 | Phase 1 | Pending |
+| SECU-03 | Phase 1 | Pending |
+| SECU-04 | Phase 1 | Pending |
+| LAND-01 | Phase 1 | Pending |
+| LAND-02 | Phase 1 | Pending |
+| LAND-03 | Phase 1 | Pending |
+| LAND-04 | Phase 1 | Pending |
+| LAND-05 | Phase 1 | Pending |
+| PWAX-01 | Phase 1 | Pending |
+| PWAX-02 | Phase 1 | Pending |
+| PWAX-03 | Phase 1 | Pending |
+| PWAX-04 | Phase 1 | Pending |
+| PWAX-05 | Phase 1 | Pending |
+| PWAX-06 | Phase 4 | Pending |
+| PROF-01 | Phase 4 | Pending |
+| PROF-02 | Phase 4 | Pending |
+| PROF-03 | Phase 4 | Pending |
+| PROF-04 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 74 total
-- Mapped to phases: 0
-- Unmapped: 74 ⚠️
+- Mapped to phases: 74
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-02-11*
-*Last updated: 2026-02-11 after initial definition*
+*Last updated: 2026-02-11 after roadmap creation*
