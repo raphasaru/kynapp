@@ -43,4 +43,8 @@ export const ENCRYPTED_FIELDS: Record<
   category_budgets: {
     monthly_budget: "number",
   },
+  recurring_templates: {
+    amount: "number",
+    description: "string",
+  },
 };
