@@ -3,30 +3,42 @@ import { Button } from '@/components/ui/button'
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-[hsl(220,25%,7%)] text-white py-24 px-6">
+    <section className="relative overflow-hidden bg-[hsl(220,25%,7%)] text-white py-28 px-6">
       {/* Glow effect */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] pointer-events-none animate-glow-pulse"
         style={{
-          background: 'radial-gradient(ellipse, rgba(16, 183, 127, 0.15) 0%, transparent 70%)',
-          filter: 'blur(80px)'
+          background: 'radial-gradient(ellipse, rgba(16, 183, 127, 0.12) 0%, transparent 70%)',
+          filter: 'blur(80px)',
+        }}
+      />
+
+      {/* Subtle grid pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.02]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
         }}
       />
 
       <div className="relative max-w-3xl mx-auto text-center">
-        <h2 className="font-heading text-3xl md:text-5xl font-bold mb-6">
-          Pronto para organizar suas finanças?
+        <h2 className="font-heading text-3xl md:text-5xl font-bold mb-6 animate-slide-up">
+          Pronto para organizar{' '}
+          <span className="text-gradient-primary">suas finanças?</span>
         </h2>
-        <p className="text-lg md:text-xl text-[hsl(220,15%,55%)] mb-8">
+        <p className="text-lg md:text-xl text-[hsl(220,15%,65%)] mb-10 animate-slide-up delay-100">
           Comece grátis e descubra como é fácil.
         </p>
-        <Button
-          asChild
-          size="lg"
-          className="bg-primary hover:bg-primary-dark text-white font-medium shadow-[0_0_20px_rgba(16,183,127,0.2)] hover:shadow-[0_0_40px_rgba(16,183,127,0.25)]"
-        >
-          <Link href="/signup">Criar conta grátis</Link>
-        </Button>
+        <div className="animate-slide-up delay-200">
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary hover:bg-primary-dark text-white font-semibold px-10 h-12 text-base shadow-[0_0_20px_rgba(16,183,127,0.3)] hover:shadow-[0_0_40px_rgba(16,183,127,0.4)] transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <Link href="/signup">Criar conta grátis</Link>
+          </Button>
+        </div>
       </div>
     </section>
   )

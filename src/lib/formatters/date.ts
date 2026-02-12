@@ -2,7 +2,7 @@
  * Date formatters for Brazilian Portuguese (pt-BR)
  */
 
-import { format, parse, startOfMonth, endOfMonth } from 'date-fns'
+import { format, parse, startOfMonth, addMonths } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
 /**
@@ -44,7 +44,7 @@ export function getMonthRange(month: string): { start: string; end: string } {
   const date = new Date(parseInt(year), parseInt(monthNum) - 1, 1)
 
   const start = format(startOfMonth(date), 'yyyy-MM-dd')
-  const end = format(endOfMonth(date), 'yyyy-MM-dd')
+  const end = format(startOfMonth(addMonths(date, 1)), 'yyyy-MM-dd')
 
   return { start, end }
 }

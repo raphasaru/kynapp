@@ -7,7 +7,7 @@ import { useCreateCard, useUpdateCard } from '@/lib/queries/cards'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import CurrencyInput from 'react-currency-input-field'
+import { CurrencyInputField } from '@/components/ui/currency-input'
 import { useEffect } from 'react'
 
 // Extended CardInput with id for editing
@@ -101,18 +101,12 @@ export function CardForm({ card, onSuccess }: CardFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="credit_limit">Limite de crédito</Label>
-        <CurrencyInput
+        <CurrencyInputField
           id="credit_limit"
-          placeholder="R$ 0,00"
-          defaultValue={creditLimitValue}
-          decimalsLimit={2}
-          decimalSeparator=","
-          groupSeparator="."
-          prefix="R$ "
-          onValueChange={(value) => {
-            setValue('credit_limit', value ? parseFloat(value) : 0)
+          value={creditLimitValue}
+          onValueChange={(floatValue) => {
+            setValue('credit_limit', floatValue)
           }}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         />
         {errors.credit_limit && (
           <p className="text-sm text-red-500">{errors.credit_limit.message}</p>

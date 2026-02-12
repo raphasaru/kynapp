@@ -3,10 +3,17 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useTheme } from 'next-themes'
+import { Moon, Sun } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { navItems } from './nav-items'
 
 export function Sidebar() {
   const pathname = usePathname()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
 
   return (
     <aside className="hidden md:flex md:flex-col fixed left-0 top-0 h-screen w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 z-40">
@@ -50,8 +57,15 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      {/* User info placeholder */}
-      <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+      {/* Bottom actions */}
+      <div className="p-4 border-t border-neutral-200 dark:border-neutral-800 space-y-2">
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        >
+          {mounted && theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          <span>{mounted && theme === 'dark' ? 'Modo claro' : 'Modo escuro'}</span>
+        </button>
         <div className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground">
           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
             <span className="text-primary font-semibold">U</span>

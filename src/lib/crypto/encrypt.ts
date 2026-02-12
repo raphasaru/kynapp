@@ -110,9 +110,14 @@ export async function decryptFields<T extends Record<string, any>>(
         } else {
           decrypted[field] = await decrypt(data[field] as string);
         }
-      } catch (error) {
-        console.error(`Failed to decrypt ${tableName}.${field}:`, error);
-        // Keep encrypted value if decryption fails
+      } catch {
+        // Decryption failed — value may be plaintext (e.g. inserted by external service)
+        const raw = data[field];
+        if (type === 'number') {
+          const parsed = typeof raw === 'number' ? raw : parseFloat(raw);
+          decrypted[field] = isNaN(parsed) ? 0 : parsed;
+        }
+        // For strings, keep value as-is (already a string)
       }
     }
   }

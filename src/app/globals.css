@@ -1,99 +1,70 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
-:root {
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
   /* Primary - Emerald Green */
-  --primary: #10b77f;
-  --primary-light: #2cedac;
-  --primary-dark: #0d9668;
-  --primary-50: #ecfdf5;
-  --primary-100: #d1fae5;
-  --primary-200: #a7f3d0;
-  --primary-300: #6ee7b7;
-  --primary-400: #34d399;
-  --primary-500: #10b77f;
-  --primary-600: #0d9668;
-  --primary-700: #047857;
-  --primary-800: #065f46;
-  --primary-900: #064e3b;
+  --color-primary: #10b77f;
+  --color-primary-light: #2cedac;
+  --color-primary-dark: #0d9668;
+  --color-primary-foreground: #ffffff;
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b77f;
+  --color-primary-600: #0d9668;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
 
   /* Semantic Colors */
-  --success: #22c55e;
-  --success-light: #dcfce7;
-  --success-dark: #15803d;
-  --warning: #f59e0b;
-  --warning-light: #fef3c7;
-  --warning-dark: #b45309;
-  --error: hsl(0 72% 51%);
-  --error-light: #fee2e2;
-  --error-dark: #dc2626;
-  --info: #3b82f6;
-  --info-light: #dbeafe;
-  --info-dark: #2563eb;
+  --color-success: #22c55e;
+  --color-success-light: #dcfce7;
+  --color-success-dark: #15803d;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-warning-dark: #b45309;
+  --color-error: hsl(0 72% 51%);
+  --color-error-light: #fee2e2;
+  --color-error-dark: #dc2626;
+  --color-info: #3b82f6;
+  --color-info-light: #dbeafe;
+  --color-info-dark: #2563eb;
 
   /* Income/Expense */
-  --income: #22c55e;
-  --income-bg: #dcfce7;
-  --expense: #ef4444;
-  --expense-bg: #fee2e2;
+  --color-income: #22c55e;
+  --color-income-bg: #dcfce7;
+  --color-expense: #ef4444;
+  --color-expense-bg: #fee2e2;
 
-  /* Neutrals */
-  --background: hsl(220 20% 97%);
-  --foreground: hsl(220 25% 10%);
-  --card: #ffffff;
-  --card-foreground: hsl(220 25% 10%);
-  --muted: hsl(220 15% 94%);
-  --muted-foreground: hsl(220 10% 46%);
-  --border: hsl(220 13% 90%);
-  --input: hsl(220 13% 90%);
-  --ring: var(--primary);
-
-  /* Dark surfaces */
-  --dark-bg: hsl(220 25% 7%);
-  --dark-fg: hsl(0 0% 96%);
-  --dark-muted: hsl(220 15% 55%);
-  --dark-card: hsl(220 20% 12%);
-  --dark-card-fg: hsl(0 0% 94%);
-
-  /* Shadcn UI Variables */
-  --popover: var(--card);
-  --popover-foreground: var(--foreground);
-  --accent: hsl(160 60% 94%);
-  --accent-foreground: hsl(160 84% 25%);
-  --destructive: var(--error);
-  --destructive-foreground: #ffffff;
-
-  /* Border Radius */
-  --radius: 0.75rem;
-}
-
-@theme inline {
-  /* Colors */
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-primary-dark: var(--primary-dark);
-  --color-primary-*: var(--primary-*);
-
-  --color-success: var(--success);
-  --color-warning: var(--warning);
-  --color-error: var(--error);
-  --color-info: var(--info);
-
-  --color-income: var(--income);
-  --color-expense: var(--expense);
-
+  /* Surfaces */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  /* Interactive */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Borders & Inputs */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-dark-bg: var(--dark-bg);
-  --color-dark-fg: var(--dark-fg);
+  /* Dark surfaces */
+  --color-dark-bg: hsl(220 25% 7%);
+  --color-dark-fg: hsl(0 0% 96%);
 
   /* Fonts */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
@@ -113,34 +84,146 @@
   --shadow-glow: 0 0 40px rgba(16, 183, 127, 0.25);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--dark-bg);
-    --foreground: var(--dark-fg);
-    --card: var(--dark-card);
-    --card-foreground: var(--dark-card-fg);
+:root {
+  /* CSS variables consumed by @theme via var() */
+  --background: hsl(220 20% 97%);
+  --foreground: hsl(220 25% 10%);
+  --card: #ffffff;
+  --card-foreground: hsl(220 25% 10%);
+  --popover: #ffffff;
+  --popover-foreground: hsl(220 25% 10%);
+  --muted: hsl(220 15% 94%);
+  --muted-foreground: hsl(220 10% 46%);
+  --accent: hsl(160 60% 94%);
+  --accent-foreground: hsl(160 84% 25%);
+  --secondary: hsl(220 15% 94%);
+  --secondary-foreground: hsl(220 25% 10%);
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: #ffffff;
+  --border: hsl(220 13% 90%);
+  --input: hsl(220 13% 90%);
+  --ring: #10b77f;
+  --radius: 0.75rem;
+}
+
+.dark {
+    --background: hsl(220 25% 7%);
+    --foreground: hsl(0 0% 96%);
+    --card: hsl(220 20% 12%);
+    --card-foreground: hsl(0 0% 94%);
+    --popover: hsl(220 20% 12%);
+    --popover-foreground: hsl(0 0% 94%);
     --muted: hsl(220 20% 20%);
-    --muted-foreground: var(--dark-muted);
+    --muted-foreground: hsl(220 15% 55%);
+    --accent: hsl(160 40% 15%);
+    --accent-foreground: hsl(160 60% 70%);
+    --secondary: hsl(220 20% 20%);
+    --secondary-foreground: hsl(0 0% 94%);
+    --destructive: hsl(0 62% 50%);
+    --destructive-foreground: #ffffff;
     --border: hsl(220 20% 18%);
     --input: hsl(220 20% 18%);
-  }
+    --ring: #10b77f;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  line-height: 1.25;
 }
 
 @layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
+}
+
+/* ========================================
+   Animations & Transitions
+   ======================================== */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up-sm {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-up-sm {
+  animation: slide-up-sm 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Gradient text utility */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #10b77f, #2cedac);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

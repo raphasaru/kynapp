@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYN App - Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* ========================================
+   0. DESIGN TOKENS (from Lovable KYN)
+   ======================================== */
+:root {
+  /* Primary - Emerald Green */
+  --primary: #10b77f;
+  --primary-light: #2cedac;
+  --primary-dark: #0d9668;
+  --primary-50: #ecfdf5;
+  --primary-100: #d1fae5;
+  --primary-200: #a7f3d0;
+  --primary-300: #6ee7b7;
+  --primary-400: #34d399;
+  --primary-500: #10b77f;
+  --primary-600: #0d9668;
+  --primary-700: #047857;
+  --primary-800: #065f46;
+  --primary-900: #064e3b;
+
+  /* Accent - Same primary used as accent */
+  --accent-bg: hsl(160 60% 94%);
+  --accent-fg: hsl(160 84% 25%);
+
+  /* Neutrals (cool-warm) */
+  --bg: hsl(220 20% 97%);
+  --fg: hsl(220 25% 10%);
+  --card: #ffffff;
+  --card-fg: hsl(220 25% 10%);
+  --muted: hsl(220 15% 94%);
+  --muted-fg: hsl(220 10% 46%);
+  --border: hsl(220 13% 90%);
+  --input-border: hsl(220 13% 90%);
+
+  /* Dark surfaces (hero, dark sections) */
+  --dark-bg: hsl(220 25% 7%);
+  --dark-fg: hsl(0 0% 96%);
+  --dark-muted: hsl(220 15% 55%);
+  --dark-card: hsl(220 20% 12%);
+  --dark-card-fg: hsl(0 0% 94%);
+
+  /* Semantic */
+  --success: #22c55e;
+  --success-light: #dcfce7;
+  --success-dark: #15803d;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --warning-dark: #b45309;
+  --error: hsl(0 72% 51%);
+  --error-light: #fee2e2;
+  --error-dark: #dc2626;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+  --info-dark: #2563eb;
+
+  /* Income/Expense */
+  --income: #22c55e;
+  --income-bg: #dcfce7;
+  --expense: #ef4444;
+  --expense-bg: #fee2e2;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing (Tailwind scale) */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  /* Radius */
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Glow */
+  --glow-primary: 0 0 40px rgba(16, 183, 127, 0.25), 0 0 80px rgba(16, 183, 127, 0.1);
+  --glow-primary-sm: 0 0 20px rgba(16, 183, 127, 0.2);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+}
+
+/* ========================================
+   1. RESET & BASE
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+img { display: block; max-width: 100%; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { color: var(--primary-dark); }
+
+.currency { font-variant-numeric: tabular-nums; }
+
+/* ========================================
+   2. NAVIGATION (sticky)
+   ======================================== */
+.ds-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-3) var(--sp-6);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.ds-nav a {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted-fg);
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.ds-nav a:hover {
+  color: var(--primary);
+  background: var(--primary-50);
+}
+
+/* ========================================
+   3. LAYOUT
+   ======================================== */
+.ds-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-16) var(--sp-6);
+}
+.ds-section + .ds-section { padding-top: var(--sp-12); }
+.ds-title {
+  font-family: var(--font-heading);
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin-bottom: var(--sp-2);
+}
+.ds-desc {
+  font-size: 1rem;
+  color: var(--muted-fg);
+  margin-bottom: var(--sp-10);
+}
+.ds-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-fg);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--sp-3);
+}
+.ds-grid-2 { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.ds-grid-3 { display: grid; gap: var(--sp-6); grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.ds-flex { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+.ds-stack { display: flex; flex-direction: column; gap: var(--sp-4); }
+
+.ds-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+.ds-box h4 {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted-fg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sp-4);
+}
+.ds-divider { height: 1px; background: var(--border); margin: var(--sp-8) 0; }
+
+/* ========================================
+   4. HERO (dark section with glow)
+   ======================================== */
+.hero {
+  background: var(--dark-bg);
+  color: var(--dark-fg);
+  padding: var(--sp-24) var(--sp-6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(16, 183, 127, 0.15) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-4);
+  position: relative;
+}
+.hero h1 span {
+  background: linear-gradient(135deg, #10b77f, #2cedac);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.125rem;
+  color: var(--dark-muted);
+  max-width: 560px;
+  margin: 0 auto var(--sp-8);
+  position: relative;
+}
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--dark-muted);
+}
+
+/* ========================================
+   5. SWATCHES
+   ======================================== */
+.swatch-row {
+  display: flex;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.swatch {
+  flex: 1;
+  aspect-ratio: 1;
+  min-height: 56px;
+  display: flex;
+  align-items: flex-end;
+  padding: 2px;
+  position: relative;
+}
+.swatch span {
+  font-size: 9px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.swatch:hover span { opacity: 1; }
+.color-section { margin-bottom: var(--sp-8); }
+.color-section h4 {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted-fg);
+  margin-bottom: var(--sp-3);
+}
+
+/* ========================================
+   6. BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font-family: var(--font-body);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-in-out);
+  white-space: nowrap;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.btn:active { transform: scale(0.97); }
+
+/* Sizes */
+.btn-sm { font-size: 0.8rem; padding: var(--sp-2) var(--sp-3); border-radius: var(--radius-sm); }
+.btn-md { font-size: 0.875rem; padding: var(--sp-3) var(--sp-5); border-radius: var(--radius-md); }
+.btn-lg { font-size: 1rem; padding: var(--sp-4) var(--sp-6); border-radius: var(--radius-lg); }
+
+.btn-primary { background: var(--primary); color: white; }
+.btn-primary:hover { background: var(--primary-dark); box-shadow: var(--glow-primary-sm); }
+
+.btn-secondary { background: var(--muted); color: var(--fg); }
+.btn-secondary:hover { background: var(--border); }
+
+.btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary-300); }
+.btn-outline:hover { background: var(--primary-50); border-color: var(--primary); }
+
+.btn-ghost { background: transparent; color: var(--muted-fg); border-radius: var(--radius-md); }
+.btn-ghost:hover { background: var(--muted); color: var(--fg); }
+
+.btn-danger { background: var(--error); color: white; }
+.btn-danger:hover { background: var(--error-dark); }
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  font-weight: 600;
+}
+.btn-accent:hover { box-shadow: var(--glow-primary); }
+
+.btn:disabled { opacity: 0.45; pointer-events: none; }
+
+.btn-loading { position: relative; color: transparent !important; pointer-events: none; }
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.btn-icon { padding: var(--sp-3); }
+.fab { width: 56px; height: 56px; border-radius: var(--radius-full); box-shadow: var(--shadow-lg); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ========================================
+   7. FORMS
+   ======================================== */
+.form-group { display: flex; flex-direction: column; gap: var(--sp-2); }
+.form-label { font-size: 0.875rem; font-weight: 500; color: var(--fg); }
+.form-hint { font-size: 0.75rem; color: var(--muted-fg); }
+
+.input {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--fg);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  width: 100%;
+  height: 2.75rem;
+}
+.input::placeholder { color: var(--muted-fg); }
+.input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(16,183,127,0.1); }
+.input-error { border-color: var(--error); }
+.input-error:focus { box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+.input-success { border-color: var(--success); }
+
+.input-icon-wrap { position: relative; }
+.input-icon-wrap .input { padding-left: 40px; }
+.input-icon-wrap .input-icon {
+  position: absolute; left: var(--sp-3); top: 50%; transform: translateY(-50%);
+  color: var(--muted-fg); pointer-events: none;
+}
+
+textarea.input { resize: vertical; min-height: 100px; height: auto; }
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23878680' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.switch { position: relative; width: 44px; height: 24px; display: inline-block; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch-track {
+  position: absolute; inset: 0; background: var(--border); border-radius: var(--radius-full);
+  cursor: pointer; transition: background var(--duration-fast);
+}
+.switch-track::before {
+  content: ''; position: absolute; width: 18px; height: 18px; left: 3px; bottom: 3px;
+  background: white; border-radius: 50%; transition: transform var(--duration-fast) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+.switch input:checked + .switch-track { background: var(--primary); }
+.switch input:checked + .switch-track::before { transform: translateX(20px); }
+
+.checkbox, .radio {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  cursor: pointer; font-size: 0.875rem;
+}
+.checkbox input, .radio input { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+
+/* ========================================
+   8. CARDS
+   ======================================== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: box-shadow var(--duration-base) var(--ease-out);
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-body { padding: var(--sp-5); }
+.card-footer { padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--muted); }
+
+.stats-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-5);
+}
+.stats-card-label {
+  font-size: 0.75rem; font-weight: 500; color: var(--muted-fg);
+  display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-2);
+}
+.stats-card-value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.stats-card-value.income { color: var(--success-dark); }
+.stats-card-value.expense { color: var(--expense); }
+.stats-card-value.balance { color: var(--primary-700); }
+
+/* ========================================
+   9. BALANCE HERO
+   ======================================== */
+.balance-hero {
+  background: var(--dark-bg);
+  border-radius: var(--radius-2xl);
+  padding: var(--sp-6);
+  color: var(--dark-fg);
+  position: relative;
+  overflow: hidden;
+}
+.balance-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(16,183,127,0.2) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.balance-hero-label { font-size: 0.875rem; color: var(--dark-muted); margin-bottom: var(--sp-1); position: relative; }
+.balance-hero-amount {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--sp-5);
+  position: relative;
+}
+.balance-hero-sub { display: flex; gap: var(--sp-4); position: relative; }
+.balance-hero-sub-item {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-3) var(--sp-4);
+}
+.balance-hero-sub-label { font-size: 0.75rem; color: var(--dark-muted); display: flex; align-items: center; gap: 4px; }
+.balance-hero-sub-value { font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 2px; }
+
+/* ========================================
+   10. TRANSACTIONS
+   ======================================== */
+.transaction {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--radius-lg);
+  transition: background var(--duration-fast);
+}
+.transaction:hover { background: var(--muted); }
+.transaction-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.transaction-icon.income { background: var(--income-bg); color: var(--income); }
+.transaction-icon.expense { background: var(--expense-bg); color: var(--expense); }
+.transaction-icon.category { background: var(--primary-50); color: var(--primary-700); }
+
+.transaction-info { flex: 1; min-width: 0; }
+.transaction-desc { font-size: 0.875rem; font-weight: 500; color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.transaction-meta { font-size: 0.75rem; color: var(--muted-fg); display: flex; align-items: center; gap: var(--sp-2); margin-top: 2px; }
+
+.transaction-amount { font-family: var(--font-heading); font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; flex-shrink: 0; }
+.transaction-amount.income { color: var(--success-dark); }
+.transaction-amount.expense { color: var(--expense); }
+
+/* ========================================
+   11. BUDGET PROGRESS
+   ======================================== */
+.budget-item { padding: var(--sp-3) 0; }
+.budget-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-2); }
+.budget-item-label { font-size: 0.875rem; font-weight: 500; color: var(--fg); display: flex; align-items: center; gap: var(--sp-2); }
+.budget-item-values { font-size: 0.75rem; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+.budget-bar { height: 6px; background: var(--muted); border-radius: var(--radius-full); overflow: hidden; }
+.budget-bar-fill { height: 100%; border-radius: var(--radius-full); transition: width var(--duration-slow) var(--ease-out); }
+.budget-bar-fill.safe { background: var(--primary); }
+.budget-bar-fill.warn { background: var(--warning); }
+.budget-bar-fill.over { background: var(--error); }
+
+/* ========================================
+   12. MONTH SELECTOR
+   ======================================== */
+.month-selector { display: inline-flex; align-items: center; gap: var(--sp-3); }
+.month-selector-label { font-family: var(--font-heading); font-size: 1rem; font-weight: 600; color: var(--fg); min-width: 160px; text-align: center; }
+.month-selector-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted-fg);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+}
+.month-selector-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-50); }
+
+/* ========================================
+   13. BADGES
+   ======================================== */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.7rem; font-weight: 600;
+  padding: 2px var(--sp-2); border-radius: var(--radius-full);
+}
+.badge-success { background: var(--success-light); color: var(--success-dark); }
+.badge-warning { background: var(--warning-light); color: var(--warning-dark); }
+.badge-error { background: var(--error-light); color: var(--error-dark); }
+.badge-info { background: var(--info-light); color: var(--info-dark); }
+.badge-neutral { background: var(--muted); color: var(--muted-fg); }
+.badge-primary { background: var(--primary-50); color: var(--primary-700); }
+.badge-pro {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+}
+
+.category-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.75rem; font-weight: 500;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  color: var(--muted-fg);
+}
+
+/* ========================================
+   14. ALERTS
+   ======================================== */
+.alert {
+  display: flex; align-items: flex-start; gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+}
+.alert-success { background: var(--success-light); color: var(--success-dark); }
+.alert-warning { background: var(--warning-light); color: var(--warning-dark); }
+.alert-error { background: var(--error-light); color: var(--error-dark); }
+.alert-info { background: var(--info-light); color: var(--info-dark); }
+.alert-title { font-weight: 600; margin-bottom: 2px; }
+
+/* ========================================
+   15. NAV COMPONENTS
+   ======================================== */
+.bottom-nav {
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: var(--sp-2) 0;
+}
+.bottom-nav-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: var(--sp-1); font-size: 10px; font-weight: 500;
+  color: var(--muted-fg); text-decoration: none;
+  transition: color var(--duration-fast);
+}
+.bottom-nav-item.active { color: var(--primary); }
+.bottom-nav-item:hover { color: var(--primary); }
+
+.sidebar {
+  width: 260px; background: var(--card); border-right: 1px solid var(--border);
+  padding: var(--sp-5); display: flex; flex-direction: column; gap: 2px;
+}
+.sidebar-item {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--muted-fg); text-decoration: none;
+  transition: all var(--duration-fast);
+}
+.sidebar-item:hover { background: var(--muted); color: var(--fg); }
+.sidebar-item.active { background: var(--primary-50); color: var(--primary-700); }
+
+.tabs {
+  display: flex; gap: 2px;
+  background: var(--muted);
+  padding: 3px;
+  border-radius: var(--radius-lg);
+}
+.tab {
+  flex: 1; padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-body); font-size: 0.8rem; font-weight: 500;
+  color: var(--muted-fg); text-align: center;
+  border-radius: var(--radius-md);
+  cursor: pointer; transition: all var(--duration-fast);
+  border: none; background: none;
+}
+.tab:hover { color: var(--fg); }
+.tab.active { background: var(--card); color: var(--fg); box-shadow: var(--shadow-sm); }
+
+/* ========================================
+   16. PRICING
+   ======================================== */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-6); align-items: start; }
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: var(--sp-8);
+  position: relative;
+}
+.pricing-card.featured {
+  border-color: var(--primary);
+  box-shadow: var(--glow-primary-sm);
+}
+.pricing-card.featured::before {
+  content: 'Popular';
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--primary); color: white;
+  font-size: 0.75rem; font-weight: 600;
+  padding: var(--sp-1) var(--sp-4);
+  border-radius: var(--radius-full);
+}
+.pricing-name { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--fg); }
+.pricing-desc { font-size: 0.875rem; color: var(--muted-fg); margin-top: 4px; }
+.pricing-price { margin: var(--sp-6) 0; }
+.pricing-currency { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--fg); }
+.pricing-amount { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--fg); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.pricing-period { font-size: 0.875rem; color: var(--muted-fg); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+.pricing-features li { font-size: 0.875rem; color: var(--muted-fg); display: flex; align-items: center; gap: var(--sp-2); }
+.pricing-features li i { color: var(--primary); flex-shrink: 0; }
+
+/* ========================================
+   17. MODAL / SHEET
+   ======================================== */
+.modal {
+  background: var(--card);
+  border-radius: var(--radius-2xl);
+  width: 100%; max-width: 480px;
+  box-shadow: var(--shadow-xl);
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-5); border-bottom: 1px solid var(--border);
+}
+.modal-title { font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600; }
+.modal-body { padding: var(--sp-5); }
+.modal-footer { padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: var(--sp-3); }
+
+.sheet-handle { width: 36px; height: 4px; background: var(--border); border-radius: var(--radius-full); margin: var(--sp-3) auto var(--sp-2); }
+
+/* ========================================
+   18. EMPTY / LOADING
+   ======================================== */
+.empty-state { text-align: center; padding: var(--sp-16) var(--sp-6); }
+.empty-state-icon {
+  width: 64px; height: 64px; margin: 0 auto var(--sp-5);
+  background: var(--muted); border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center; color: var(--muted-fg);
+}
+.empty-state-title { font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600; color: var(--fg); margin-bottom: var(--sp-2); }
+.empty-state-desc { font-size: 0.875rem; color: var(--muted-fg); max-width: 300px; margin: 0 auto var(--sp-6); }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--border) 50%, var(--muted) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.spinner { width: 24px; height: 24px; border: 2.5px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.7s linear infinite; }
+.spinner-sm { width: 16px; height: 16px; border-width: 2px; }
+.spinner-lg { width: 36px; height: 36px; border-width: 3px; }
+
+/* ========================================
+   19. PROGRESS / TABLE
+   ======================================== */
+.progress { height: 6px; background: var(--muted); border-radius: var(--radius-full); overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); border-radius: var(--radius-full); transition: width var(--duration-slow) var(--ease-out); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th { text-align: left; padding: var(--sp-3) var(--sp-4); font-weight: 600; color: var(--muted-fg); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--bg); border-bottom: 1px solid var(--border); }
+td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--muted); color: var(--fg); }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--muted); }
+
+/* ========================================
+   20. ACCORDION
+   ======================================== */
+.accordion-item { border-bottom: 1px solid var(--border); }
+.accordion-trigger {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-4) 0; font-family: var(--font-heading); font-size: 1rem; font-weight: 500;
+  color: var(--fg); background: none; border: none; cursor: pointer; text-align: left;
+}
+.accordion-trigger i { transition: transform var(--duration-fast); color: var(--muted-fg); }
+.accordion-trigger[aria-expanded="true"] i { transform: rotate(180deg); }
+.accordion-content { font-size: 0.875rem; color: var(--muted-fg); padding-bottom: var(--sp-4); line-height: 1.7; }
+
+/* ========================================
+   21. WHATSAPP / SECURITY
+   ======================================== */
+.whatsapp-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--sp-5); }
+.whatsapp-status { display: flex; align-items: center; gap: var(--sp-2); font-size: 0.875rem; font-weight: 500; }
+.whatsapp-dot { width: 8px; height: 8px; border-radius: 50%; }
+.whatsapp-dot.on { background: var(--success); }
+.whatsapp-dot.off { background: var(--border); }
+
+.security-badge {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--primary-50); border: 1px solid var(--primary-100);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem; font-weight: 600; color: var(--primary-700);
+}
+
+/* ========================================
+   22. ONBOARDING
+   ======================================== */
+.onboarding-bar { display: flex; gap: var(--sp-2); }
+.onboarding-step { flex: 1; height: 4px; background: var(--border); border-radius: var(--radius-full); transition: background var(--duration-base); }
+.onboarding-step.done { background: var(--primary); }
+.onboarding-step.active { background: var(--primary-300); }
+
+/* ========================================
+   23. ANIMATIONS
+   ======================================== */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.animate-fade { animation: fadeIn var(--duration-base) var(--ease-out); }
+.animate-slide { animation: slideUp var(--duration-slow) var(--ease-out); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ========================================
+   24. UTILITIES
+   ======================================== */
+.text-income { color: var(--success-dark); }
+.text-expense { color: var(--expense); }
+.text-muted { color: var(--muted-fg); }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.fw-500 { font-weight: 500; }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+.mt-2 { margin-top: var(--sp-2); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-6 { margin-top: var(--sp-6); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.w-full { width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="ds-nav">
+  <a href="#hero">KYN</a>
+  <a href="#tokens">Tokens</a>
+  <a href="#typography">Tipografia</a>
+  <a href="#buttons">Botoes</a>
+  <a href="#forms">Formularios</a>
+  <a href="#cards">Cards</a>
+  <a href="#finance">Financeiro</a>
+  <a href="#nav-section">Navegacao</a>
+  <a href="#feedback">Feedback</a>
+  <a href="#pricing">Precos</a>
+  <a href="#patterns">Padroes</a>
+</nav>
+
+<!-- HERO (dark with glow) -->
+<section id="hero" class="hero">
+  <h1>KYN <span>Design System</span></h1>
+  <p>Sistema visual baseado no KYN Lovable. Space Grotesk + Inter, emerald primary, dark hero com glow effects.</p>
+  <div class="hero-badges">
+    <span class="hero-badge"><i data-lucide="shield-check" style="width:14px;height:14px"></i> LGPD</span>
+    <span class="hero-badge"><i data-lucide="lock" style="width:14px;height:14px"></i> Criptografia</span>
+    <span class="hero-badge"><i data-lucide="smartphone" style="width:14px;height:14px"></i> Mobile-first</span>
+    <span class="hero-badge"><i data-lucide="message-circle" style="width:14px;height:14px"></i> WhatsApp</span>
+  </div>
+</section>
+
+<!-- TOKENS -->
+<section id="tokens" class="ds-section">
+  <h2 class="ds-title">Design Tokens</h2>
+  <p class="ds-desc">Cores, sombras e radius extraidos do KYN Lovable.</p>
+
+  <div class="color-section">
+    <h4>Primary (Emerald)</h4>
+    <div class="swatch-row">
+      <div class="swatch" style="background:var(--primary-50)"><span>50</span></div>
+      <div class="swatch" style="background:var(--primary-100)"><span>100</span></div>
+      <div class="swatch" style="background:var(--primary-200)"><span>200</span></div>
+      <div class="swatch" style="background:var(--primary-300)"><span>300</span></div>
+      <div class="swatch" style="background:var(--primary-400)"><span>400</span></div>
+      <div class="swatch" style="background:var(--primary-500)"><span>500</span></div>
+      <div class="swatch" style="background:var(--primary-600)"><span>600</span></div>
+      <div class="swatch" style="background:var(--primary-700)"><span>700</span></div>
+      <div class="swatch" style="background:var(--primary-800)"><span>800</span></div>
+      <div class="swatch" style="background:var(--primary-900)"><span>900</span></div>
+    </div>
+  </div>
+
+  <div class="color-section">
+    <h4>Neutrals</h4>
+    <div class="swatch-row">
+      <div class="swatch" style="background:hsl(220 20% 97%)"><span>bg</span></div>
+      <div class="swatch" style="background:hsl(220 15% 94%)"><span>muted</span></div>
+      <div class="swatch" style="background:hsl(220 13% 90%)"><span>border</span></div>
+      <div class="swatch" style="background:hsl(220 15% 80%)"><span>300</span></div>
+      <div class="swatch" style="background:hsl(220 10% 60%)"><span>400</span></div>
+      <div class="swatch" style="background:hsl(220 10% 46%)"><span>muted-fg</span></div>
+      <div class="swatch" style="background:hsl(220 15% 30%)"><span>600</span></div>
+      <div class="swatch" style="background:hsl(220 20% 20%)"><span>700</span></div>
+      <div class="swatch" style="background:hsl(220 20% 12%)"><span>dark-card</span></div>
+      <div class="swatch" style="background:hsl(220 25% 7%)"><span>dark-bg</span></div>
+    </div>
+  </div>
+
+  <div class="color-section">
+    <h4>Semantico</h4>
+    <div class="ds-flex">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div style="width:48px;height:48px;border-radius:var(--radius-lg);background:var(--success)"></div>
+        <span class="text-xs text-muted">Success</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div style="width:48px;height:48px;border-radius:var(--radius-lg);background:var(--warning)"></div>
+        <span class="text-xs text-muted">Warning</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div style="width:48px;height:48px;border-radius:var(--radius-lg);background:var(--error)"></div>
+        <span class="text-xs text-muted">Error</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div style="width:48px;height:48px;border-radius:var(--radius-lg);background:var(--info)"></div>
+        <span class="text-xs text-muted">Info</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <span class="ds-label">Sombras & Glow</span>
+  <div class="ds-flex" style="gap:var(--sp-8)">
+    <div style="width:80px;height:80px;background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center" class="text-xs text-muted">sm</div>
+    <div style="width:80px;height:80px;background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center" class="text-xs text-muted">md</div>
+    <div style="width:80px;height:80px;background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:center" class="text-xs text-muted">lg</div>
+    <div style="width:80px;height:80px;background:white;border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);display:flex;align-items:center;justify-content:center" class="text-xs text-muted">xl</div>
+    <div style="width:80px;height:80px;background:white;border-radius:var(--radius-lg);box-shadow:var(--glow-primary);display:flex;align-items:center;justify-content:center" class="text-xs text-muted">glow</div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography" class="ds-section">
+  <h2 class="ds-title">Tipografia</h2>
+  <p class="ds-desc">Space Grotesk para headings, Inter para body.</p>
+
+  <div class="ds-box">
+    <div style="font-family:var(--font-heading);font-size:2.25rem;font-weight:700;color:var(--fg);letter-spacing:-0.03em;margin-bottom:var(--sp-3)">Display / H1 — Space Grotesk</div>
+    <div style="font-family:var(--font-heading);font-size:1.875rem;font-weight:700;margin-bottom:var(--sp-3)">H2 Heading</div>
+    <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:600;margin-bottom:var(--sp-3)">H3 Heading</div>
+    <div style="font-family:var(--font-heading);font-size:1.25rem;font-weight:600;margin-bottom:var(--sp-3)">H4 Heading</div>
+    <div style="font-family:var(--font-heading);font-size:1.125rem;font-weight:600;margin-bottom:var(--sp-3)">H5 Heading</div>
+    <div class="ds-divider"></div>
+    <p style="font-size:1.125rem;margin-bottom:var(--sp-3)">Body Large — Inter 1.125rem</p>
+    <p style="font-size:1rem;margin-bottom:var(--sp-3)">Body Base — Inter 1rem. Texto padrao para todo o app.</p>
+    <p style="font-size:0.875rem;color:var(--muted-fg);margin-bottom:var(--sp-3)">Body Small — Labels e metadata 0.875rem</p>
+    <p style="font-size:0.75rem;color:var(--muted-fg)">Caption — Hints, timestamps 0.75rem</p>
+    <div class="ds-divider"></div>
+    <span class="ds-label">Valores monetarios</span>
+    <div style="font-family:var(--font-heading);font-variant-numeric:tabular-nums;font-size:1.875rem;font-weight:700;color:var(--primary-700)">R$ 12.458,90</div>
+    <div style="font-family:var(--font-heading);font-variant-numeric:tabular-nums;font-size:1.25rem;font-weight:600;color:var(--success-dark)">+ R$ 5.200,00</div>
+    <div style="font-family:var(--font-heading);font-variant-numeric:tabular-nums;font-size:1.25rem;font-weight:600;color:var(--expense)">- R$ 3.847,50</div>
+    <div class="ds-divider"></div>
+    <span class="ds-label">Gradient Text</span>
+    <div style="font-family:var(--font-heading);font-size:2.25rem;font-weight:700;background:linear-gradient(135deg,#10b77f,#2cedac);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">KYN App</div>
+  </div>
+</section>
+
+<!-- BUTTONS -->
+<section id="buttons" class="ds-section">
+  <h2 class="ds-title">Botoes</h2>
+  <p class="ds-desc">Variantes, tamanhos e estados.</p>
+
+  <div class="ds-box">
+    <h4>Variantes</h4>
+    <div class="ds-flex">
+      <button class="btn btn-primary btn-md">Primary</button>
+      <button class="btn btn-secondary btn-md">Secondary</button>
+      <button class="btn btn-outline btn-md">Outline</button>
+      <button class="btn btn-ghost btn-md">Ghost</button>
+      <button class="btn btn-danger btn-md">Danger</button>
+      <button class="btn btn-accent btn-md"><i data-lucide="sparkles" style="width:14px;height:14px"></i> Upgrade Pro</button>
+    </div>
+  </div>
+
+  <div class="ds-grid-2 mt-6">
+    <div class="ds-box">
+      <h4>Tamanhos</h4>
+      <div class="ds-flex">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary btn-md">Medium</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Estados</h4>
+      <div class="ds-flex">
+        <button class="btn btn-primary btn-md">Normal</button>
+        <button class="btn btn-primary btn-md" disabled>Disabled</button>
+        <button class="btn btn-primary btn-md btn-loading">Loading</button>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Icon + FAB</h4>
+      <div class="ds-flex">
+        <button class="btn btn-primary btn-md"><i data-lucide="plus" style="width:16px;height:16px"></i> Nova transacao</button>
+        <button class="btn btn-secondary btn-icon btn-md"><i data-lucide="filter" style="width:18px;height:18px"></i></button>
+        <button class="btn btn-ghost btn-icon btn-md"><i data-lucide="more-vertical" style="width:18px;height:18px"></i></button>
+        <button class="btn btn-primary fab"><i data-lucide="plus" style="width:24px;height:24px"></i></button>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Full Width</h4>
+      <button class="btn btn-primary btn-lg w-full">Salvar transacao</button>
+      <div style="height:var(--sp-3)"></div>
+      <button class="btn btn-outline btn-md w-full">Cancelar</button>
+    </div>
+  </div>
+</section>
+
+<!-- FORMS -->
+<section id="forms" class="ds-section">
+  <h2 class="ds-title">Formularios</h2>
+  <p class="ds-desc">Inputs, selects, switches e validacao.</p>
+
+  <div class="ds-grid-2">
+    <div class="ds-box">
+      <h4>Inputs</h4>
+      <div class="ds-stack">
+        <div class="form-group">
+          <label class="form-label">Descricao</label>
+          <input type="text" class="input" placeholder="Ex: Almoco no restaurante">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Valor (R$)</label>
+          <div class="input-icon-wrap">
+            <i data-lucide="dollar-sign" class="input-icon" style="width:16px;height:16px"></i>
+            <input type="text" class="input" placeholder="0,00" style="font-variant-numeric:tabular-nums">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Buscar</label>
+          <div class="input-icon-wrap">
+            <i data-lucide="search" class="input-icon" style="width:16px;height:16px"></i>
+            <input type="search" class="input" placeholder="Buscar transacoes...">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Estados</h4>
+      <div class="ds-stack">
+        <div class="form-group">
+          <label class="form-label">Erro</label>
+          <input type="text" class="input input-error" value="">
+          <span class="form-hint" style="color:var(--error)">Campo obrigatorio</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Categoria</label>
+          <select class="input">
+            <option>Selecione...</option>
+            <option>Alimentacao</option>
+            <option>Transporte</option>
+            <option>Moradia fixa</option>
+          </select>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="form-label" style="margin:0">Recorrente</span>
+          <label class="switch"><input type="checkbox"><span class="switch-track"></span></label>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="form-label" style="margin:0">Completada</span>
+          <label class="switch"><input type="checkbox" checked><span class="switch-track"></span></label>
+        </div>
+        <label class="radio"><input type="radio" name="tipo" checked> Receita</label>
+        <label class="radio"><input type="radio" name="tipo"> Despesa</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section id="cards" class="ds-section">
+  <h2 class="ds-title">Cards</h2>
+  <p class="ds-desc">Stats, conta bancaria, credit card.</p>
+
+  <div class="ds-grid-3">
+    <div class="stats-card">
+      <div class="stats-card-label"><i data-lucide="trending-up" style="width:14px;height:14px;color:var(--success)"></i> Receitas</div>
+      <div class="stats-card-value income">R$ 5.200,00</div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-card-label"><i data-lucide="trending-down" style="width:14px;height:14px;color:var(--expense)"></i> Despesas</div>
+      <div class="stats-card-value expense">R$ 3.847,50</div>
+    </div>
+    <div class="stats-card">
+      <div class="stats-card-label"><i data-lucide="wallet" style="width:14px;height:14px;color:var(--primary)"></i> Saldo</div>
+      <div class="stats-card-value balance">R$ 1.352,50</div>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <div class="card" style="max-width:400px">
+      <div class="card-body">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <div>
+            <div style="font-family:var(--font-heading);font-weight:600">Nubank — Corrente</div>
+            <div class="text-sm text-muted mt-2">Conta padrao</div>
+          </div>
+          <span class="badge badge-primary">Padrao</span>
+        </div>
+        <div style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--primary-700);margin-top:var(--sp-4);font-variant-numeric:tabular-nums">R$ 4.580,00</div>
+      </div>
+      <div class="card-footer" style="display:flex;gap:var(--sp-3)">
+        <button class="btn btn-ghost btn-sm"><i data-lucide="pencil" style="width:14px;height:14px"></i> Editar</button>
+        <button class="btn btn-ghost btn-sm" style="color:var(--expense)"><i data-lucide="trash-2" style="width:14px;height:14px"></i> Excluir</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section id="finance" class="ds-section">
+  <h2 class="ds-title">Componentes Financeiros</h2>
+  <p class="ds-desc">Balance hero, transacoes, orcamento, WhatsApp, seguranca.</p>
+
+  <span class="ds-label">Balance Hero Card</span>
+  <div class="balance-hero" style="max-width:420px;margin-bottom:var(--sp-8)">
+    <div class="balance-hero-label">Saldo de Fevereiro</div>
+    <div class="balance-hero-amount">R$ 1.352,50</div>
+    <div class="balance-hero-sub">
+      <div class="balance-hero-sub-item">
+        <div class="balance-hero-sub-label"><i data-lucide="arrow-up-right" style="width:12px;height:12px"></i> Receitas</div>
+        <div class="balance-hero-sub-value">R$ 5.200,00</div>
+      </div>
+      <div class="balance-hero-sub-item">
+        <div class="balance-hero-sub-label"><i data-lucide="arrow-down-right" style="width:12px;height:12px"></i> Despesas</div>
+        <div class="balance-hero-sub-value">R$ 3.847,50</div>
+      </div>
+    </div>
+  </div>
+
+  <span class="ds-label">Seletor de Mes</span>
+  <div style="margin-bottom:var(--sp-8)">
+    <div class="month-selector">
+      <button class="month-selector-btn"><i data-lucide="chevron-left" style="width:18px;height:18px"></i></button>
+      <span class="month-selector-label">Fevereiro 2026</span>
+      <button class="month-selector-btn"><i data-lucide="chevron-right" style="width:18px;height:18px"></i></button>
+    </div>
+  </div>
+
+  <span class="ds-label">Transacoes</span>
+  <div class="ds-box" style="max-width:480px;margin-bottom:var(--sp-8);padding:var(--sp-2)">
+    <div class="transaction">
+      <div class="transaction-icon income"><i data-lucide="arrow-up-right" style="width:20px;height:20px"></i></div>
+      <div class="transaction-info">
+        <div class="transaction-desc">Salario</div>
+        <div class="transaction-meta"><span>01 Fev</span><span>&middot;</span><span class="badge badge-success" style="font-size:10px;padding:1px 6px">Completada</span></div>
+      </div>
+      <div class="transaction-amount income">+ R$ 5.200,00</div>
+    </div>
+    <div class="transaction">
+      <div class="transaction-icon category"><i data-lucide="utensils" style="width:20px;height:20px"></i></div>
+      <div class="transaction-info">
+        <div class="transaction-desc">Almoco restaurante</div>
+        <div class="transaction-meta"><span>03 Fev</span><span>&middot;</span><span>Alimentacao</span><span>&middot;</span><span class="badge badge-warning" style="font-size:10px;padding:1px 6px">Planejada</span></div>
+      </div>
+      <div class="transaction-amount expense">- R$ 85,00</div>
+    </div>
+    <div class="transaction">
+      <div class="transaction-icon category"><i data-lucide="home" style="width:20px;height:20px"></i></div>
+      <div class="transaction-info">
+        <div class="transaction-desc">Aluguel</div>
+        <div class="transaction-meta"><span>05 Fev</span><span>&middot;</span><span>Moradia</span></div>
+      </div>
+      <div class="transaction-amount expense">- R$ 1.800,00</div>
+    </div>
+  </div>
+
+  <span class="ds-label">Orcamento por Categoria</span>
+  <div class="ds-box" style="max-width:480px;margin-bottom:var(--sp-8)">
+    <div class="budget-item">
+      <div class="budget-item-header">
+        <span class="budget-item-label"><i data-lucide="utensils" style="width:14px;height:14px"></i> Alimentacao</span>
+        <span class="budget-item-values">R$ 620 / R$ 800</span>
+      </div>
+      <div class="budget-bar"><div class="budget-bar-fill warn" style="width:77.5%"></div></div>
+    </div>
+    <div class="budget-item">
+      <div class="budget-item-header">
+        <span class="budget-item-label"><i data-lucide="car" style="width:14px;height:14px"></i> Transporte</span>
+        <span class="budget-item-values">R$ 180 / R$ 500</span>
+      </div>
+      <div class="budget-bar"><div class="budget-bar-fill safe" style="width:36%"></div></div>
+    </div>
+    <div class="budget-item">
+      <div class="budget-item-header">
+        <span class="budget-item-label"><i data-lucide="home" style="width:14px;height:14px"></i> Moradia</span>
+        <span class="budget-item-values">R$ 1.800 / R$ 1.800</span>
+      </div>
+      <div class="budget-bar"><div class="budget-bar-fill over" style="width:100%"></div></div>
+    </div>
+  </div>
+
+  <span class="ds-label">Category Badges</span>
+  <div class="ds-flex" style="margin-bottom:var(--sp-8)">
+    <span class="category-badge"><i data-lucide="home" style="width:12px;height:12px"></i> Moradia</span>
+    <span class="category-badge"><i data-lucide="zap" style="width:12px;height:12px"></i> Contas fixas</span>
+    <span class="category-badge"><i data-lucide="tv" style="width:12px;height:12px"></i> Assinaturas</span>
+    <span class="category-badge"><i data-lucide="utensils" style="width:12px;height:12px"></i> Alimentacao</span>
+    <span class="category-badge"><i data-lucide="car" style="width:12px;height:12px"></i> Transporte</span>
+    <span class="category-badge"><i data-lucide="credit-card" style="width:12px;height:12px"></i> Cartao</span>
+    <span class="category-badge"><i data-lucide="more-horizontal" style="width:12px;height:12px"></i> Outros</span>
+  </div>
+
+  <span class="ds-label">WhatsApp</span>
+  <div class="ds-grid-2" style="margin-bottom:var(--sp-8)">
+    <div class="whatsapp-card">
+      <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)">
+        <div style="width:40px;height:40px;background:#25D366;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center"><i data-lucide="message-circle" style="width:20px;height:20px;color:white"></i></div>
+        <div>
+          <div style="font-weight:600;font-size:0.875rem">WhatsApp Vinculado</div>
+          <div class="whatsapp-status"><span class="whatsapp-dot on"></span> (11) 99999-9999</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="text-xs text-muted">12 / 30 msgs usadas</span>
+        <button class="btn btn-ghost btn-sm" style="color:var(--expense)">Desvincular</button>
+      </div>
+      <div class="progress mt-2"><div class="progress-fill" style="width:40%"></div></div>
+    </div>
+    <div class="whatsapp-card">
+      <div style="display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-4)">
+        <div style="width:40px;height:40px;background:var(--muted);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center"><i data-lucide="message-circle" style="width:20px;height:20px;color:var(--muted-fg)"></i></div>
+        <div>
+          <div style="font-weight:600;font-size:0.875rem">WhatsApp</div>
+          <div class="whatsapp-status"><span class="whatsapp-dot off"></span> Nao vinculado</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-md w-full"><i data-lucide="link" style="width:16px;height:16px"></i> Vincular numero</button>
+    </div>
+  </div>
+
+  <span class="ds-label">Security Badges</span>
+  <div class="ds-flex">
+    <span class="security-badge"><i data-lucide="shield-check" style="width:14px;height:14px"></i> LGPD Compliance</span>
+    <span class="security-badge"><i data-lucide="lock" style="width:14px;height:14px"></i> Criptografia AES-256</span>
+    <span class="security-badge"><i data-lucide="eye-off" style="width:14px;height:14px"></i> Dados Privados</span>
+  </div>
+</section>
+
+<!-- NAVIGATION -->
+<section id="nav-section" class="ds-section">
+  <h2 class="ds-title">Navegacao</h2>
+  <p class="ds-desc">Bottom nav, sidebar, tabs, onboarding.</p>
+
+  <div class="ds-grid-2">
+    <div class="ds-box">
+      <h4>Bottom Nav (Mobile)</h4>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+        <div class="bottom-nav">
+          <a href="#" class="bottom-nav-item active"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i> Inicio</a>
+          <a href="#" class="bottom-nav-item"><i data-lucide="pie-chart" style="width:20px;height:20px"></i> Orcamento</a>
+          <a href="#" class="bottom-nav-item"><i data-lucide="wallet" style="width:20px;height:20px"></i> Carteira</a>
+          <a href="#" class="bottom-nav-item"><i data-lucide="bar-chart-3" style="width:20px;height:20px"></i> Historico</a>
+          <a href="#" class="bottom-nav-item"><i data-lucide="user" style="width:20px;height:20px"></i> Perfil</a>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Tabs</h4>
+      <div class="ds-stack">
+        <div class="tabs">
+          <button class="tab active">Todas</button>
+          <button class="tab">Pendentes</button>
+          <button class="tab">Completadas</button>
+        </div>
+        <div class="tabs">
+          <button class="tab active">Todas</button>
+          <button class="tab">Receitas</button>
+          <button class="tab">Despesas</button>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Sidebar (Desktop)</h4>
+      <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+        <div class="sidebar" style="width:100%">
+          <div style="font-family:var(--font-heading);font-size:1.25rem;font-weight:700;padding:var(--sp-3) var(--sp-4);margin-bottom:var(--sp-2);background:linear-gradient(135deg,#10b77f,#2cedac);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">KYN</div>
+          <a href="#" class="sidebar-item active"><i data-lucide="layout-dashboard" style="width:18px;height:18px"></i> Dashboard</a>
+          <a href="#" class="sidebar-item"><i data-lucide="pie-chart" style="width:18px;height:18px"></i> Orcamento</a>
+          <a href="#" class="sidebar-item"><i data-lucide="wallet" style="width:18px;height:18px"></i> Carteira</a>
+          <a href="#" class="sidebar-item"><i data-lucide="repeat" style="width:18px;height:18px"></i> Recorrentes</a>
+          <a href="#" class="sidebar-item"><i data-lucide="bar-chart-3" style="width:18px;height:18px"></i> Historico</a>
+          <a href="#" class="sidebar-item"><i data-lucide="settings" style="width:18px;height:18px"></i> Config</a>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Onboarding Progress</h4>
+      <div class="ds-stack">
+        <div>
+          <span class="text-xs text-muted">Etapa 2 de 4</span>
+          <div class="onboarding-bar" style="margin-top:var(--sp-2)">
+            <div class="onboarding-step done"></div>
+            <div class="onboarding-step active"></div>
+            <div class="onboarding-step"></div>
+            <div class="onboarding-step"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="ds-section">
+  <h2 class="ds-title">Feedback</h2>
+  <p class="ds-desc">Alerts, badges, loading, empty state.</p>
+
+  <div class="ds-stack" style="max-width:520px;margin-bottom:var(--sp-8)">
+    <div class="alert alert-success"><i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0"></i><div><div class="alert-title">Transacao salva!</div>Sua despesa foi registrada com sucesso.</div></div>
+    <div class="alert alert-warning"><i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0"></i><div><div class="alert-title">Limite proximo</div>25 de 30 mensagens WhatsApp usadas.</div></div>
+    <div class="alert alert-error"><i data-lucide="x-circle" style="width:18px;height:18px;flex-shrink:0"></i><div><div class="alert-title">Erro</div>Verifique os campos e tente novamente.</div></div>
+    <div class="alert alert-info"><i data-lucide="info" style="width:18px;height:18px;flex-shrink:0"></i><div><div class="alert-title">Dica</div>Vincule seu WhatsApp para registrar gastos em 5 segundos.</div></div>
+  </div>
+
+  <div class="ds-grid-2">
+    <div class="ds-box">
+      <h4>Badges</h4>
+      <div class="ds-flex">
+        <span class="badge badge-success">Completada</span>
+        <span class="badge badge-warning">Planejada</span>
+        <span class="badge badge-error">Atrasada</span>
+        <span class="badge badge-info">Recorrente</span>
+        <span class="badge badge-neutral">Rascunho</span>
+        <span class="badge badge-primary">Padrao</span>
+        <span class="badge badge-pro"><i data-lucide="sparkles" style="width:10px;height:10px"></i> Pro</span>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Loading</h4>
+      <div class="ds-flex" style="gap:var(--sp-6)">
+        <div class="spinner-sm spinner"></div>
+        <div class="spinner"></div>
+        <div class="spinner-lg spinner"></div>
+      </div>
+      <div style="margin-top:var(--sp-4);display:flex;gap:var(--sp-3);align-items:center">
+        <div class="skeleton" style="width:40px;height:40px;border-radius:var(--radius-lg)"></div>
+        <div style="flex:1"><div class="skeleton" style="height:14px;width:60%;margin-bottom:6px"></div><div class="skeleton" style="height:10px;width:40%"></div></div>
+        <div class="skeleton" style="height:16px;width:80px"></div>
+      </div>
+    </div>
+    <div class="ds-box" style="grid-column:1/-1">
+      <h4>Empty State</h4>
+      <div class="empty-state" style="padding:var(--sp-8) var(--sp-4)">
+        <div class="empty-state-icon"><i data-lucide="receipt" style="width:28px;height:28px"></i></div>
+        <div class="empty-state-title">Sem transacoes</div>
+        <div class="empty-state-desc">Comece adicionando sua primeira transacao ou envie pelo WhatsApp.</div>
+        <button class="btn btn-primary btn-md"><i data-lucide="plus" style="width:16px;height:16px"></i> Nova transacao</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="ds-section">
+  <h2 class="ds-title">Precos</h2>
+  <p class="ds-desc">Free, Pro Mensal e Pro Anual.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-name">Gratis</div>
+      <div class="pricing-desc">Comece a controlar suas financas</div>
+      <div class="pricing-price">
+        <span class="pricing-currency">R$</span><span class="pricing-amount"> 0</span><span class="pricing-period"> /mes</span>
+      </div>
+      <ul class="pricing-features">
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Dashboard completo</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Transacoes ilimitadas</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> 2 contas bancarias</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> 1 cartao de credito</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> 30 msgs WhatsApp/mes</li>
+      </ul>
+      <button class="btn btn-outline btn-lg w-full">Plano atual</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-name">Pro</div>
+      <div class="pricing-desc">Maximo de praticidade</div>
+      <div class="pricing-price">
+        <span class="pricing-currency">R$</span><span class="pricing-amount"> 19,90</span><span class="pricing-period"> /mes</span>
+      </div>
+      <ul class="pricing-features">
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Tudo do Gratis</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> WhatsApp ilimitado</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Contas e cartoes ilimitados</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Historico ilimitado</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Exportacao CSV/PDF</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Categorias personalizadas</li>
+      </ul>
+      <button class="btn btn-primary btn-lg w-full">Assinar Pro</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">Pro Anual</div>
+      <div class="pricing-desc">25% de desconto</div>
+      <div class="pricing-price">
+        <span class="pricing-currency">R$</span><span class="pricing-amount"> 179,90</span><span class="pricing-period"> /ano</span>
+      </div>
+      <div style="font-size:0.875rem;color:var(--primary);font-weight:600;margin-top:-16px;margin-bottom:var(--sp-6)">= R$ 14,99/mes</div>
+      <ul class="pricing-features">
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Tudo do Pro</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> 25% de desconto</li>
+        <li><i data-lucide="check" style="width:16px;height:16px"></i> Garantia de 7 dias</li>
+      </ul>
+      <button class="btn btn-accent btn-lg w-full"><i data-lucide="sparkles" style="width:16px;height:16px"></i> Melhor oferta</button>
+    </div>
+  </div>
+</section>
+
+<!-- PATTERNS -->
+<section id="patterns" class="ds-section">
+  <h2 class="ds-title">Padroes</h2>
+  <p class="ds-desc">Modal, sheet, accordion, tabela.</p>
+
+  <div class="ds-grid-2">
+    <div class="ds-box">
+      <h4>Modal</h4>
+      <div style="background:rgba(0,0,0,0.06);border-radius:var(--radius-lg);padding:var(--sp-6);display:flex;align-items:center;justify-content:center">
+        <div class="modal" style="position:static;width:100%">
+          <div class="modal-header">
+            <span class="modal-title">Nova transacao</span>
+            <button class="btn btn-ghost btn-icon" style="padding:4px"><i data-lucide="x" style="width:18px;height:18px"></i></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group"><label class="form-label">Descricao</label><input type="text" class="input" placeholder="Ex: Almoco"></div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary btn-md">Cancelar</button>
+            <button class="btn btn-primary btn-md">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Sheet (Mobile)</h4>
+      <div style="background:rgba(0,0,0,0.06);border-radius:var(--radius-lg);padding:var(--sp-8) var(--sp-4) 0;overflow:hidden">
+        <div style="background:var(--card);border-radius:var(--radius-2xl) var(--radius-2xl) 0 0;padding:0 0 var(--sp-5)">
+          <div class="sheet-handle"></div>
+          <div style="padding:var(--sp-4) var(--sp-5)">
+            <div style="font-family:var(--font-heading);font-weight:600;margin-bottom:var(--sp-4)">Nova transacao</div>
+            <div class="form-group"><label class="form-label">Valor</label><input type="text" class="input" placeholder="R$ 0,00"></div>
+            <div style="margin-top:var(--sp-4)"><button class="btn btn-primary btn-lg w-full">Salvar</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Accordion</h4>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="true" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.style.display=this.getAttribute('aria-expanded')==='true'?'block':'none'">Como registro gastos pelo WhatsApp?<i data-lucide="chevron-down" style="width:18px;height:18px"></i></button>
+        <div class="accordion-content">Envie mensagens como "gastei 50 no uber" ou foto do recibo. A IA cria a transacao automaticamente.</div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" aria-expanded="false" onclick="this.setAttribute('aria-expanded',this.getAttribute('aria-expanded')==='true'?'false':'true');this.nextElementSibling.style.display=this.getAttribute('aria-expanded')==='true'?'block':'none'">Meus dados estao seguros?<i data-lucide="chevron-down" style="width:18px;height:18px"></i></button>
+        <div class="accordion-content" style="display:none">Criptografia AES-256 + LGPD compliance. Nao vendemos dados.</div>
+      </div>
+    </div>
+    <div class="ds-box">
+      <h4>Tabela</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Data</th><th>Descricao</th><th style="text-align:right">Valor</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>01/02</td><td>Salario</td><td style="text-align:right;color:var(--success-dark);font-weight:600;font-variant-numeric:tabular-nums">+ R$ 5.200</td><td><span class="badge badge-success">OK</span></td></tr>
+            <tr><td>03/02</td><td>Almoco</td><td style="text-align:right;color:var(--expense);font-weight:600;font-variant-numeric:tabular-nums">- R$ 85</td><td><span class="badge badge-warning">Plan.</span></td></tr>
+            <tr><td>05/02</td><td>Aluguel</td><td style="text-align:right;color:var(--expense);font-weight:600;font-variant-numeric:tabular-nums">- R$ 1.800</td><td><span class="badge badge-success">OK</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="text-align:center;padding:var(--sp-12) var(--sp-6);color:var(--muted-fg);font-size:0.875rem">KYN Design System &middot; Baseado no KYN Lovable</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -64,17 +64,8 @@ export function getIncomeExpenseByMonth(
   transactionsByMonth: Map<string, DecryptedTransaction[]>,
   months: { month: string; label: string }[]
 ): { month: string; income: number; expense: number }[] {
-  return months.map(({ label }) => {
-    // Find transactions for this month (match by label or month key)
-    let transactions: DecryptedTransaction[] = []
-    for (const [monthKey, trans] of transactionsByMonth.entries()) {
-      // Match by month key (yyyy-MM format)
-      const monthLabel = format(new Date(monthKey + '-01'), 'MMM yy', { locale: ptBR })
-      if (monthLabel === label) {
-        transactions = trans
-        break
-      }
-    }
+  return months.map(({ month, label }) => {
+    const transactions = transactionsByMonth.get(month) || []
 
     // Sum completed income and expenses
     const completed = transactions.filter(t => t.status === 'completed')
@@ -123,6 +114,3 @@ export function getReportSummary(transactions: DecryptedTransaction[]): {
   return { totalReceived, totalPaid, projectedBalance }
 }
 
-// Import for date formatting
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'

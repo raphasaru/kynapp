@@ -1,6 +1,6 @@
 'use client'
 
-import { Home, Zap, CreditCard, User, FileText, UtensilsCrossed, Car, MoreHorizontal, Circle, CheckCircle2 } from 'lucide-react'
+import { Home, Zap, CreditCard, User, FileText, UtensilsCrossed, Car, MoreHorizontal, Circle, CheckCircle2, QrCode, Banknote, ArrowLeftRight, Barcode } from 'lucide-react'
 import { formatCurrency } from '@/lib/formatters/currency'
 import { formatDate } from '@/lib/formatters/date'
 import { useToggleTransactionStatus } from '@/lib/queries/transactions'
@@ -31,6 +31,16 @@ const categoryIcons: Record<string, string> = {
   variable_other: "MoreHorizontal",
 }
 
+// Ícones por forma de pagamento (receitas ou quando não há categoria)
+const paymentMethodIcons: Record<string, string> = {
+  pix: "QrCode",
+  cash: "Banknote",
+  debit: "CreditCard",
+  credit: "CreditCard",
+  transfer: "ArrowLeftRight",
+  boleto: "Barcode",
+}
+
 const iconMap = {
   Home,
   Zap,
@@ -40,6 +50,10 @@ const iconMap = {
   UtensilsCrossed,
   Car,
   MoreHorizontal,
+  QrCode,
+  Banknote,
+  ArrowLeftRight,
+  Barcode,
 }
 
 interface TransactionItemProps {
@@ -54,10 +68,16 @@ export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
   const isCompleted = transaction.status === 'completed'
 
   const getIcon = () => {
-    if (isIncome) {
-      return null // No icon for income
+    // Receitas ou despesas sem categoria: ícone da forma de pagamento
+    const usePaymentIcon = isIncome || !transaction.category
+    const paymentMethod = transaction.payment_method as keyof typeof paymentMethodIcons | null
+    if (usePaymentIcon && paymentMethod && paymentMethodIcons[paymentMethod]) {
+      const iconName = paymentMethodIcons[paymentMethod] as keyof typeof iconMap
+      const Icon = iconMap[iconName]
+      if (Icon) return <Icon className="h-4 w-4" />
     }
 
+    // Despesas: ícone da categoria
     const iconName = categoryIcons[transaction.category || 'variable_other'] as keyof typeof iconMap
     const Icon = iconMap[iconName] || MoreHorizontal
     return <Icon className="h-4 w-4" />

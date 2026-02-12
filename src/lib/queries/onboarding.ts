@@ -22,7 +22,7 @@ export function useOnboardingProgress() {
       const { data, error } = await supabase
         .from('profiles')
         .select('onboarding_step, onboarding_completed')
-        .eq('user_id', user.id)
+        .eq('id', user.id)
         .maybeSingle()
 
       if (error) {
@@ -56,7 +56,7 @@ export function useUpdateOnboardingStep() {
           onboarding_step: step,
           updated_at: new Date().toISOString(),
         })
-        .eq('user_id', user.id)
+        .eq('id', user.id)
 
       if (error) throw error
       return step
@@ -86,12 +86,16 @@ export function useCompleteOnboarding() {
           onboarding_step: 6,
           updated_at: new Date().toISOString(),
         })
-        .eq('user_id', user.id)
+        .eq('id', user.id)
 
       if (error) throw error
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['profile', 'onboarding'] })
+      // Optimistic: set cache immediately so OnboardingGate sees true before refetch
+      queryClient.setQueryData(['profile', 'onboarding'], {
+        onboarding_step: 6,
+        onboarding_completed: true,
+      })
       queryClient.invalidateQueries({ queryKey: ['profile'] })
       toast.success('Bem-vindo ao KYN!')
     },

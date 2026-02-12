@@ -6,9 +6,10 @@ import { toast } from 'sonner'
 
 export interface Profile {
   id: string
-  user_id: string
   full_name: string | null
   avatar_url: string | null
+  preferred_currency: string
+  default_bank_account_id: string | null
   onboarding_completed: boolean
   onboarding_step: number
   whatsapp_phone: string | null
@@ -52,7 +53,7 @@ export function useUpdateProfile() {
           full_name: data.full_name,
           updated_at: new Date().toISOString(),
         })
-        .eq('user_id', user.id)
+        .eq('id', user.id)
         .select()
         .single()
 

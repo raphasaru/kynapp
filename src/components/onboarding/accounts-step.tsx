@@ -5,11 +5,27 @@ import { AccountForm } from '@/components/accounts/account-form'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { useAccounts } from '@/lib/queries/accounts'
+import { useProfile } from '@/lib/queries/profile'
 import { AccountCard } from '@/components/accounts/account-card'
+import type { Database } from '@/types/database'
+
+type BankAccount = Database['public']['Tables']['bank_accounts']['Row']
 
 export function AccountsStep() {
   const [showForm, setShowForm] = useState(false)
+  const [editingAccount, setEditingAccount] = useState<BankAccount | null>(null)
   const { data: accounts } = useAccounts()
+  const { data: profile } = useProfile()
+
+  const handleEdit = (account: BankAccount) => {
+    setEditingAccount(account)
+    setShowForm(true)
+  }
+
+  const handleFormClose = () => {
+    setShowForm(false)
+    setEditingAccount(null)
+  }
 
   return (
     <div className="space-y-6">
@@ -23,14 +39,32 @@ export function AccountsStep() {
       {/* Form */}
       {showForm && (
         <div className="border rounded-lg p-4 bg-background">
-          <AccountForm onSuccess={() => setShowForm(false)} />
+          <AccountForm
+            account={editingAccount ? {
+              id: editingAccount.id,
+              name: editingAccount.name,
+              type: editingAccount.type as 'checking' | 'savings' | 'investment',
+              balance: typeof editingAccount.balance === 'string' ? parseFloat(editingAccount.balance) : editingAccount.balance,
+              bank_name: editingAccount.bank_name || '',
+              color: editingAccount.color || '#10b77f',
+            } : undefined}
+            onSuccess={handleFormClose}
+          />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="mt-2 w-full"
+            onClick={handleFormClose}
+          >
+            Cancelar
+          </Button>
         </div>
       )}
 
       {/* Add button */}
       {!showForm && (
         <Button
-          onClick={() => setShowForm(true)}
+          onClick={() => { setEditingAccount(null); setShowForm(true) }}
           variant="outline"
           className="w-full"
         >
@@ -45,7 +79,12 @@ export function AccountsStep() {
           <p className="text-sm font-medium">Contas adicionadas:</p>
           <div className="space-y-2">
             {accounts.map((account) => (
-              <AccountCard key={account.id} account={account} />
+              <AccountCard
+                key={account.id}
+                account={account}
+                isDefault={profile?.default_bank_account_id === account.id}
+                onEdit={handleEdit}
+              />
             ))}
           </div>
         </div>

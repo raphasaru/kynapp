@@ -15,19 +15,17 @@ interface OnboardingGateProps {
 export function OnboardingGate({ children }: OnboardingGateProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const { data: onboardingProgress, isLoading, error } = useOnboardingProgress()
+  const { data: onboardingProgress, isLoading, isFetching, error } = useOnboardingProgress()
 
   useEffect(() => {
-    // Log error for debugging if present
     if (error) {
       console.error('[OnboardingGate] Query error:', error)
       return
     }
 
-    // Skip redirect logic while loading
-    if (isLoading) return
+    // Skip redirect while loading or refetching (avoid stale-data redirect)
+    if (isLoading || isFetching) return
 
-    // Only redirect if onboarding NOT completed AND user NOT already on /app/onboarding
     if (
       onboardingProgress &&
       !onboardingProgress.onboarding_completed &&
@@ -35,7 +33,7 @@ export function OnboardingGate({ children }: OnboardingGateProps) {
     ) {
       router.push('/app/onboarding')
     }
-  }, [onboardingProgress, pathname, router, isLoading, error])
+  }, [onboardingProgress, pathname, router, isLoading, isFetching, error])
 
   // Always render children (non-blocking redirect)
   return <>{children}</>

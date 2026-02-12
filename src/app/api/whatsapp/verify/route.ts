@@ -32,21 +32,32 @@ export async function POST(request: NextRequest) {
     const expiresAt = new Date();
     expiresAt.setHours(expiresAt.getHours() + 1);
 
-    // Upsert into user_whatsapp_links
-    const { error: upsertError } = await supabase
+    // Delete existing link for this user first (avoid unique constraint conflicts on re-verify)
+    await supabase
       .from('user_whatsapp_links')
-      .upsert({
+      .delete()
+      .eq('user_id', user.id);
+
+    // Insert new link
+    const { error: insertError } = await supabase
+      .from('user_whatsapp_links')
+      .insert({
         user_id: user.id,
         phone_number: phoneNumber,
         verification_code: code,
         verification_expires_at: expiresAt.toISOString(),
         verified_at: null,
-      }, {
-        onConflict: 'user_id'
       });
 
-    if (upsertError) {
-      console.error('Error upserting whatsapp link:', upsertError);
+    if (insertError) {
+      console.error('Error inserting whatsapp link:', insertError);
+      // Check if phone is already linked to another account
+      if (insertError.code === '23505' && insertError.message?.includes('phone_number')) {
+        return NextResponse.json(
+          { error: 'Este número já está vinculado a outra conta' },
+          { status: 409 }
+        );
+      }
       return NextResponse.json(
         { error: 'Erro ao gerar código de verificação' },
         { status: 500 }
@@ -63,8 +74,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const message = `Verificação KYN: ${code}`;
-    const deepLink = `https://wa.me/${botNumber}?text=${encodeURIComponent(message)}`;
+    const deepLink = `https://wa.me/${botNumber}?text=${encodeURIComponent(code)}`;
 
     return NextResponse.json({
       code,

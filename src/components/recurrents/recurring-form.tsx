@@ -97,7 +97,15 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
       setOpen(false)
       onSuccess?.()
     } catch (error: any) {
-      console.error('Recurring creation error:', error)
+      console.error('Recurring creation error:', {
+        message: error?.message,
+        code: error?.code,
+        details: error?.details,
+        hint: error?.hint,
+        full: error,
+      })
+      // Show user-friendly error
+      alert(error?.message || 'Erro ao criar recorrência. Verifique o console.')
     }
   }
 

@@ -1,14 +1,14 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { budgetFormSchema, type BudgetFormInput } from '@/lib/validators/budget'
 import { useUpsertBudgets, type DecryptedBudget } from '@/lib/queries/budgets'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { CurrencyInputField } from '@/components/ui/currency-input'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { categoryLabels } from '@/lib/constants/categories'
 import { useState } from 'react'
@@ -34,7 +34,7 @@ const expenseCategories = [
 function BudgetFormContent({ budgets, onSuccess }: { budgets: DecryptedBudget[]; onSuccess: () => void }) {
   const mutation = useUpsertBudgets()
 
-  const { register, handleSubmit, formState: { errors } } = useForm<BudgetFormInput>({
+  const { register, control, handleSubmit, formState: { errors } } = useForm<BudgetFormInput>({
     resolver: zodResolver(budgetFormSchema),
     defaultValues: {
       budgets: expenseCategories.map(category => {
@@ -66,13 +66,19 @@ function BudgetFormContent({ budgets, onSuccess }: { budgets: DecryptedBudget[];
             <Label htmlFor={`budgets.${index}.monthly_budget`}>
               {categoryLabels[category]}
             </Label>
-            <Input
-              id={`budgets.${index}.monthly_budget`}
-              type="number"
-              step="0.01"
-              min="0"
-              placeholder="R$ 0,00"
-              {...register(`budgets.${index}.monthly_budget`, { valueAsNumber: true })}
+            <Controller
+              control={control}
+              name={`budgets.${index}.monthly_budget`}
+              render={({ field }) => (
+                <CurrencyInputField
+                  id={`budgets.${index}.monthly_budget`}
+                  value={field.value}
+                  onValueChange={(floatValue) => {
+                    field.onChange(floatValue)
+                  }}
+                  placeholder="R$ 0,00"
+                />
+              )}
             />
             {/* Hidden field for category */}
             <input
