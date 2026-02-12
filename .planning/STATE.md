@@ -10,30 +10,30 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 2 of 4 (Core Financial Data)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-12 — Completed 02-04 (transaction CRUD)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-12 — Completed 02-05 (dashboard page)
 
-Progress: [████░░░░░░] 44%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 3.5 min
-- Total execution time: 0.47 hours
+- Total plans completed: 9
+- Average duration: 3.2 min
+- Total execution time: 0.48 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
-| 02 Core Financial Data | 4 | 12 min | 3.0 min |
+| 02 Core Financial Data | 5 | 13 min | 2.6 min |
 
 **Recent Trend:**
-- Last plan: 02-04 (3 min)
-- Previous: 02-03 (2 min)
-- Trend: Consistent velocity (avg 3.5 min)
+- Last plan: 02-05 (1 min)
+- Previous: 02-04 (3 min)
+- Trend: Accelerating (avg decreasing)
 
 ## Accumulated Context
 
@@ -74,6 +74,10 @@ Recent decisions affecting current work:
 - Optimistic status toggle (02-04: instant UI feedback before server response)
 - Client-side search helper (02-04: filterTransactionsBySearch - no server query needed)
 - Conditional account/card selector (02-04: payment_method=credit shows cards, otherwise accounts)
+- Month selector as controlled component (02-05: parent manages state via useMonthSelector)
+- Balance cards calculate from transactions array (02-05: no separate queries, efficient)
+- Client-side filtering via useState (02-05: instant updates, no server queries)
+- Responsive form pattern (02-05: Sheet on mobile, Dialog on desktop via useMediaQuery)
 
 ### Pending Todos
 
@@ -86,5 +90,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 02-04-PLAN.md (transaction CRUD)
-Resume file: .planning/phases/02-core-financial-data/02-04-SUMMARY.md
+Stopped at: Completed 02-05-PLAN.md (dashboard page) — Phase 2 complete
+Resume file: .planning/phases/02-core-financial-data/02-05-SUMMARY.md
