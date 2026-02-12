@@ -59,7 +59,15 @@ export function useCreateRecurring() {
 
       // Encrypt fields before insert
       const encrypted = await encryptFields('recurring_templates', {
-        ...values,
+        description: values.description,
+        amount: values.amount,
+        type: values.type,
+        category: values.category,
+        day_of_month: values.day_of_month,
+        end_date: values.end_date,
+        payment_method: values.payment_method,
+        bank_account_id: values.bank_account_id,
+        credit_card_id: values.credit_card_id,
         user_id: user.id,
       }) as unknown as Database['public']['Tables']['recurring_templates']['Insert']
 

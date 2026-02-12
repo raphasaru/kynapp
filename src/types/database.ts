@@ -274,6 +274,7 @@ export type Database = {
           category: string | null
           custom_category_id: string | null
           day_of_month: number
+          end_date: string | null
           is_active: boolean
           payment_method: string | null
           bank_account_id: string | null
@@ -290,6 +291,7 @@ export type Database = {
           category?: string | null
           custom_category_id?: string | null
           day_of_month: number
+          end_date?: string | null
           is_active?: boolean
           payment_method?: string | null
           bank_account_id?: string | null
@@ -306,6 +308,7 @@ export type Database = {
           category?: string | null
           custom_category_id?: string | null
           day_of_month?: number
+          end_date?: string | null
           is_active?: boolean
           payment_method?: string | null
           bank_account_id?: string | null
