@@ -91,6 +91,13 @@ export type Database = {
           category: string | null
           status: 'planned' | 'completed'
           due_date: string
+          payment_method: string | null
+          bank_account_id: string | null
+          credit_card_id: string | null
+          notes: string | null
+          completed_date: string | null
+          source: string | null
+          is_recurring: boolean
           created_at: string | null
           updated_at: string | null
         }
@@ -103,6 +110,13 @@ export type Database = {
           category?: string | null
           status?: 'planned' | 'completed'
           due_date: string
+          payment_method?: string | null
+          bank_account_id?: string | null
+          credit_card_id?: string | null
+          notes?: string | null
+          completed_date?: string | null
+          source?: string | null
+          is_recurring?: boolean
           created_at?: string | null
           updated_at?: string | null
         }
@@ -115,8 +129,54 @@ export type Database = {
           category?: string | null
           status?: 'planned' | 'completed'
           due_date?: string
+          payment_method?: string | null
+          bank_account_id?: string | null
+          credit_card_id?: string | null
+          notes?: string | null
+          completed_date?: string | null
+          source?: string | null
+          is_recurring?: boolean
           created_at?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      credit_cards: {
+        Row: {
+          id: string
+          user_id: string
+          name: string
+          credit_limit: string
+          current_bill: string
+          due_day: number
+          closing_day: number
+          color: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          name: string
+          credit_limit: string
+          current_bill?: string
+          due_day: number
+          closing_day: number
+          color?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          name?: string
+          credit_limit?: string
+          current_bill?: string
+          due_day?: number
+          closing_day?: number
+          color?: string | null
+          created_at?: string
+          updated_at?: string
         }
         Relationships: []
       }
