@@ -73,11 +73,12 @@ Plans:
   5. System auto-generates monthly transactions from recurring template
   6. User sees pie chart of expenses by category
   7. User sees bar chart of income vs expenses for last 6 months
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 03-01: TBD during planning
-- [ ] 03-02: TBD during planning
+- [ ] 03-01-PLAN.md — Budget management (types, queries, aggregation, progress bars, budget page)
+- [ ] 03-02-PLAN.md — Recurring transactions (templates CRUD, grouped list, pg_cron migration)
+- [ ] 03-03-PLAN.md — Reports & charts (pie chart by category, bar chart 6-month trend, summary)
 
 ### Phase 4: Integrations & Activation
 **Goal**: User can register transactions via WhatsApp, upgrade to Pro, and complete onboarding
@@ -109,9 +110,9 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation & Security | 4/4 | ✓ Complete | 2026-02-11 |
 | 2. Core Financial Data | 5/5 | ✓ Complete | 2026-02-11 |
-| 3. Analysis & Automation | 0/2 | Not started | - |
+| 3. Analysis & Automation | 0/3 | Not started | - |
 | 4. Integrations & Activation | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-11*
-*Last updated: 2026-02-11 — Phase 2 complete*
+*Last updated: 2026-02-11 — Phase 3 planned*
