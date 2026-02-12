@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 4 of 4 (Integrations & Activation)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: Executing
-Last activity: 2026-02-12 — Plan 04-01 complete (Stripe subscriptions)
+Last activity: 2026-02-12 — Plan 04-03 complete (WhatsApp integration)
 
-Progress: [███████░░░] 65%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
-- Average duration: 3.5 min
-- Total execution time: 0.74 hours
+- Total plans completed: 14
+- Average duration: 3.7 min
+- Total execution time: 0.85 hours
 
 **By Phase:**
 
@@ -30,20 +30,20 @@ Progress: [███████░░░] 65%
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
 | 02 Core Financial Data | 5 | 13 min | 2.6 min |
 | 03 Analysis & Automation | 2 | 11 min | 5.5 min |
-| 04 Integrations & Activation | 2 | 8 min | 4.0 min |
+| 04 Integrations & Activation | 3 | 14 min | 4.7 min |
 
 **Recent Trend:**
-- Last plan: 04-01 (5 min)
-- Previous: 04-02 (3 min)
+- Last plan: 04-03 (6.5 min)
+- Previous: 04-01 (5 min)
 - Trend: Stable
 
 **Recent Executions:**
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
+| Phase 04 P03 | 6.5 min | 2 | 12 |
 | Phase 04 P01 | 5 min | 2 | 14 |
 | Phase 04 P02 | 3 min | 2 | 9 |
 | Phase 03 P02 | 6 min | 3 | 9 |
-| Phase 03 P01 | 5 min | 3 | 10 |
 
 ## Accumulated Context
 
@@ -106,6 +106,10 @@ Recent decisions affecting current work:
 - Raw body for webhook verification (04-01: Stripe signature verification requires raw body string)
 - WhatsApp usage color thresholds 75%/90% (04-01: green/yellow/red visual warnings)
 - TanStack Query mutations with window.location (04-01: Stripe Checkout/Portal require full page redirect)
+- Service role client for WhatsApp transaction callback (04-03: n8n webhook has no user session, same pattern as Stripe)
+- 5-second polling during verification (04-03: balance freshness with server load, stop polling once verified)
+- QR code + deep link + copy code verification (04-03: multiple methods for different user preferences/devices)
+- Brazilian phone mask (DD) 9XXXX-XXXX (04-03: local format, intuitive for Brazilian users)
 
 ### Pending Todos
 
@@ -118,5 +122,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 04-01-PLAN.md (Stripe subscriptions)
-Resume file: .planning/phases/04-integrations-and-activation/04-01-SUMMARY.md
+Stopped at: Completed 04-03-PLAN.md (WhatsApp integration)
+Resume file: .planning/phases/04-integrations-and-activation/04-03-SUMMARY.md
