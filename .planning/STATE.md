@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** Registrar e acompanhar gastos com o mínimo de atrito — pelo app ou pelo WhatsApp em 5 segundos.
-**Current focus:** Phase 3 - Analysis & Automation
+**Current focus:** Phase 4 - Integrations & Activation
 
 ## Current Position
 
-Phase: 3 of 4 (Analysis & Automation)
-Plan: 2 of 3 in current phase
+Phase: 4 of 4 (Integrations & Activation)
+Plan: 2 of 4 in current phase
 Status: Executing
-Last activity: 2026-02-12 — Plan 03-02 complete (recurring transactions)
+Last activity: 2026-02-12 — Plan 04-02 complete (profile & FAB)
 
-Progress: [██████░░░░] 58%
+Progress: [███████░░░] 63%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 3.5 min
-- Total execution time: 0.63 hours
+- Total plans completed: 12
+- Average duration: 3.4 min
+- Total execution time: 0.66 hours
 
 **By Phase:**
 
@@ -30,15 +30,17 @@ Progress: [██████░░░░] 58%
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
 | 02 Core Financial Data | 5 | 13 min | 2.6 min |
 | 03 Analysis & Automation | 2 | 11 min | 5.5 min |
+| 04 Integrations & Activation | 1 | 3 min | 3.0 min |
 
 **Recent Trend:**
-- Last plan: 03-02 (6 min)
-- Previous: 03-01 (5 min)
-- Trend: Stable
+- Last plan: 04-02 (3 min)
+- Previous: 03-02 (6 min)
+- Trend: Faster
 
 **Recent Executions:**
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
+| Phase 04 P02 | 3 min | 2 | 9 |
 | Phase 03 P02 | 6 min | 3 | 9 |
 | Phase 03 P01 | 5 min | 3 | 10 |
 
@@ -94,6 +96,9 @@ Recent decisions affecting current work:
 - LEAST(day_of_month, days_in_month) for variable month lengths (03-02: handles Feb/30-day months)
 - Client-side chart aggregation (03-03: no server queries, efficient with cached data)
 - CHART_COLORS constant (03-03: 9 colors for 9 categories, matches brand)
+- Toast library (sonner) (04-02: minimal bundle, React 18 native)
+- Server layout + client AppShell composition (04-02: preserve server component benefits)
+- FAB scroll behavior hide on down >100px (04-02: common mobile pattern)
 
 ### Pending Todos
 
@@ -106,5 +111,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 03-02-PLAN.md (recurring transactions)
-Resume file: .planning/phases/03-analysis-and-automation/03-02-SUMMARY.md
+Stopped at: Completed 04-02-PLAN.md (profile & FAB)
+Resume file: .planning/phases/04-integrations-and-activation/04-02-SUMMARY.md
