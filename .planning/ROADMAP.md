@@ -13,7 +13,7 @@ KYN delivers a mobile-first Brazilian finance PWA in 4 phases: foundation with a
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Security** - Auth, encryption, landing page, PWA basics *(completed 2026-02-11)*
-- [ ] **Phase 2: Core Financial Data** - Transactions, accounts, cards, dashboard
+- [x] **Phase 2: Core Financial Data** - Transactions, accounts, cards, dashboard *(completed 2026-02-11)*
 - [ ] **Phase 3: Analysis & Automation** - Budget, recurring transactions, reports
 - [ ] **Phase 4: Integrations & Activation** - WhatsApp, Stripe, onboarding, settings
 
@@ -55,11 +55,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Shared utilities (deps, formatters, validators, hooks, query provider, types)
-- [ ] 02-02-PLAN.md — Bank accounts CRUD (queries, form, card, wallet page)
-- [ ] 02-03-PLAN.md — Credit cards CRUD (queries, form, display, wallet integration)
-- [ ] 02-04-PLAN.md — Transactions CRUD (queries, form, list item, category select, amount input)
-- [ ] 02-05-PLAN.md — Dashboard (month selector, balance cards, transaction list, filters, search)
+- [x] 02-01-PLAN.md — Shared utilities (deps, formatters, validators, hooks, query provider, types)
+- [x] 02-02-PLAN.md — Bank accounts CRUD (queries, form, card, wallet page)
+- [x] 02-03-PLAN.md — Credit cards CRUD (queries, form, display, wallet integration)
+- [x] 02-04-PLAN.md — Transactions CRUD (queries, form, list item, category select, amount input)
+- [x] 02-05-PLAN.md — Dashboard (month selector, balance cards, transaction list, filters, search)
 
 ### Phase 3: Analysis & Automation
 **Goal**: User can set budgets, create recurring transactions, and view spending reports
@@ -108,10 +108,10 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Security | 4/4 | ✓ Complete | 2026-02-11 |
-| 2. Core Financial Data | 0/5 | Not started | - |
+| 2. Core Financial Data | 5/5 | ✓ Complete | 2026-02-11 |
 | 3. Analysis & Automation | 0/2 | Not started | - |
 | 4. Integrations & Activation | 0/3 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-11*
-*Last updated: 2026-02-11 — Phase 1 complete*
+*Last updated: 2026-02-11 — Phase 2 complete*
