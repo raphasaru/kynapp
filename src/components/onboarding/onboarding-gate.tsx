@@ -15,9 +15,12 @@ interface OnboardingGateProps {
 export function OnboardingGate({ children }: OnboardingGateProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const { data: onboardingProgress } = useOnboardingProgress()
+  const { data: onboardingProgress, isLoading, error } = useOnboardingProgress()
 
   useEffect(() => {
+    // Skip redirect logic while loading or if error
+    if (isLoading || error) return
+
     // Only redirect if onboarding NOT completed AND user NOT already on /app/onboarding
     if (
       onboardingProgress &&
@@ -26,7 +29,7 @@ export function OnboardingGate({ children }: OnboardingGateProps) {
     ) {
       router.push('/app/onboarding')
     }
-  }, [onboardingProgress, pathname, router])
+  }, [onboardingProgress, pathname, router, isLoading, error])
 
   // Always render children (non-blocking redirect)
   return <>{children}</>
