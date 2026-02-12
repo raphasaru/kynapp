@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 4 of 4 (Integrations & Activation)
-Plan: 3 of 4 in current phase
-Status: Executing
-Last activity: 2026-02-12 — Plan 04-03 complete (WhatsApp integration)
+Plan: 4 of 4 in current phase
+Status: Phase Complete
+Last activity: 2026-02-12 — Plan 04-04 complete (Onboarding wizard)
 
-Progress: [████████░░] 75%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
-- Average duration: 3.7 min
-- Total execution time: 0.85 hours
+- Total plans completed: 15
+- Average duration: 3.8 min
+- Total execution time: 0.94 hours
 
 **By Phase:**
 
@@ -30,20 +30,20 @@ Progress: [████████░░] 75%
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
 | 02 Core Financial Data | 5 | 13 min | 2.6 min |
 | 03 Analysis & Automation | 2 | 11 min | 5.5 min |
-| 04 Integrations & Activation | 3 | 14 min | 4.7 min |
+| 04 Integrations & Activation | 4 | 19 min | 4.8 min |
 
 **Recent Trend:**
-- Last plan: 04-03 (6.5 min)
-- Previous: 04-01 (5 min)
+- Last plan: 04-04 (5.2 min)
+- Previous: 04-03 (6.5 min)
 - Trend: Stable
 
 **Recent Executions:**
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
+| Phase 04 P04 | 5.2 min | 2 | 13 |
 | Phase 04 P03 | 6.5 min | 2 | 12 |
 | Phase 04 P01 | 5 min | 2 | 14 |
 | Phase 04 P02 | 3 min | 2 | 9 |
-| Phase 03 P02 | 6 min | 3 | 9 |
 
 ## Accumulated Context
 
@@ -110,6 +110,11 @@ Recent decisions affecting current work:
 - 5-second polling during verification (04-03: balance freshness with server load, stop polling once verified)
 - QR code + deep link + copy code verification (04-03: multiple methods for different user preferences/devices)
 - Brazilian phone mask (DD) 9XXXX-XXXX (04-03: local format, intuitive for Brazilian users)
+- Nested layout for onboarding (04-04: clean full-screen without sidebar/nav)
+- URL-based onboarding step tracking (04-04: ?step=N for resumption, shareable)
+- Client-side onboarding redirect (04-04: useEffect in dashboard page, no server redirect)
+- Component reuse in onboarding (04-04: AccountForm, CardForm, PhoneInput - no duplication)
+- Optional all onboarding steps (04-04: skip button, reduces friction for activation)
 
 ### Pending Todos
 
@@ -122,5 +127,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 04-03-PLAN.md (WhatsApp integration)
-Resume file: .planning/phases/04-integrations-and-activation/04-03-SUMMARY.md
+Stopped at: Completed 04-04-PLAN.md (Onboarding wizard) — Phase 04 complete
+Resume file: .planning/phases/04-integrations-and-activation/04-04-SUMMARY.md
