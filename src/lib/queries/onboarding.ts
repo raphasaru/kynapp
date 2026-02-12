@@ -13,19 +13,20 @@ export function useOnboardingProgress() {
   return useQuery({
     queryKey: ['profile', 'onboarding'],
     queryFn: async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) throw new Error('Not authenticated')
-
       const { data, error } = await supabase
         .from('profiles')
         .select('onboarding_step, onboarding_completed')
-        .eq('user_id', user.id)
         .single()
 
-      if (error) throw error
+      if (error) {
+        console.error('[useOnboardingProgress] Supabase error:', error)
+        throw error
+      }
+
       return data
     },
     staleTime: 30 * 1000, // 30s
+    retry: false, // Don't retry auth errors
   })
 }
 
