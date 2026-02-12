@@ -10,29 +10,30 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 2 of 4 (Core Financial Data)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-02-11 — Phase 1 complete, verified, ready for Phase 2
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-12 — Completed 02-01 (shared foundation)
 
-Progress: [██░░░░░░░░] 25%
+Progress: [██░░░░░░░░] 28%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 4.5 min
-- Total execution time: 0.28 hours
+- Total plans completed: 5
+- Average duration: 3.8 min
+- Total execution time: 0.32 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
+| 02 Core Financial Data | 1 | 2 min | 2.0 min |
 
 **Recent Trend:**
-- Last plan: 01-04 (3 min)
-- Previous: 01-03 (2 min)
-- Trend: Stable velocity (consistent execution)
+- Last plan: 02-01 (2 min)
+- Previous: 01-04 (3 min)
+- Trend: Improving velocity (faster execution)
 
 ## Accumulated Context
 
@@ -57,6 +58,10 @@ Recent decisions affecting current work:
 - Client component for SW registration (01-04: useEffect pattern vs inline script)
 - Route group (app) for authenticated pages (01-04: layout without URL segment)
 - Conditional rendering for nav (01-04: md:hidden / hidden md:flex pattern)
+- Intl.NumberFormat for currency (02-01: native browser API, reliable pt-BR)
+- date-fns over Day.js (02-01: better TypeScript support, tree-shakable)
+- TanStack Query staleTime 5min (02-01: balance freshness vs server load)
+- URL-based month state (02-01: shareable URLs, browser back/forward)
 
 ### Pending Todos
 
@@ -68,6 +73,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-11
-Stopped at: Phase 1 complete + verified. Ready to plan Phase 2.
-Resume file: .planning/phases/01-foundation-security/01-VERIFICATION.md
+Last session: 2026-02-12
+Stopped at: Completed 02-01-PLAN.md (shared foundation)
+Resume file: .planning/phases/02-core-financial-data/02-01-SUMMARY.md
