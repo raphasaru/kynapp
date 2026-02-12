@@ -52,11 +52,14 @@ Plans:
   6. User can add/edit/delete bank accounts with updated balance
   7. User sees credit card bill calculated from transactions
   8. User can filter transactions by status and type
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 02-01: TBD during planning
-- [ ] 02-02: TBD during planning
+- [ ] 02-01-PLAN.md — Shared utilities (deps, formatters, validators, hooks, query provider, types)
+- [ ] 02-02-PLAN.md — Bank accounts CRUD (queries, form, card, wallet page)
+- [ ] 02-03-PLAN.md — Credit cards CRUD (queries, form, display, wallet integration)
+- [ ] 02-04-PLAN.md — Transactions CRUD (queries, form, list item, category select, amount input)
+- [ ] 02-05-PLAN.md — Dashboard (month selector, balance cards, transaction list, filters, search)
 
 ### Phase 3: Analysis & Automation
 **Goal**: User can set budgets, create recurring transactions, and view spending reports
@@ -105,7 +108,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Security | 4/4 | ✓ Complete | 2026-02-11 |
-| 2. Core Financial Data | 0/2 | Not started | - |
+| 2. Core Financial Data | 0/5 | Not started | - |
 | 3. Analysis & Automation | 0/2 | Not started | - |
 | 4. Integrations & Activation | 0/3 | Not started | - |
 
