@@ -10,30 +10,30 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 2 of 4 (Core Financial Data)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-12 — Completed 02-01 (shared foundation)
+Last activity: 2026-02-12 — Completed 02-02 (bank accounts CRUD)
 
-Progress: [██░░░░░░░░] 28%
+Progress: [███░░░░░░░] 33%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 3.8 min
-- Total execution time: 0.32 hours
+- Total plans completed: 6
+- Average duration: 4.0 min
+- Total execution time: 0.40 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
-| 02 Core Financial Data | 1 | 2 min | 2.0 min |
+| 02 Core Financial Data | 2 | 7 min | 3.5 min |
 
 **Recent Trend:**
-- Last plan: 02-01 (2 min)
-- Previous: 01-04 (3 min)
-- Trend: Improving velocity (faster execution)
+- Last plan: 02-02 (5 min)
+- Previous: 02-01 (2 min)
+- Trend: Stable velocity (avg ~4 min)
 
 ## Accumulated Context
 
@@ -62,6 +62,10 @@ Recent decisions affecting current work:
 - date-fns over Day.js (02-01: better TypeScript support, tree-shakable)
 - TanStack Query staleTime 5min (02-01: balance freshness vs server load)
 - URL-based month state (02-01: shareable URLs, browser back/forward)
+- Free tier check via subscriptions table (02-02: 2 accounts max for 'free' plan)
+- Balance encrypted TEXT → number for UI (02-02: encrypt on write, decrypt on read)
+- 15 Brazilian banks + "Outro" (02-02: covers major banks users likely have)
+- AlertDialog for delete confirmation (02-02: prevent accidental deletion)
 
 ### Pending Todos
 
@@ -74,5 +78,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 02-01-PLAN.md (shared foundation)
-Resume file: .planning/phases/02-core-financial-data/02-01-SUMMARY.md
+Stopped at: Completed 02-02-PLAN.md (bank accounts CRUD)
+Resume file: .planning/phases/02-core-financial-data/02-02-SUMMARY.md
