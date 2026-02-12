@@ -180,6 +180,48 @@ export type Database = {
         }
         Relationships: []
       }
+      subscriptions: {
+        Row: {
+          id: string
+          user_id: string
+          stripe_customer_id: string | null
+          stripe_subscription_id: string | null
+          plan: string
+          status: string
+          current_period_end: string | null
+          whatsapp_messages_used: number
+          whatsapp_messages_reset_at: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          plan?: string
+          status?: string
+          current_period_end?: string | null
+          whatsapp_messages_used?: number
+          whatsapp_messages_reset_at?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          stripe_customer_id?: string | null
+          stripe_subscription_id?: string | null
+          plan?: string
+          status?: string
+          current_period_end?: string | null
+          whatsapp_messages_used?: number
+          whatsapp_messages_reset_at?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
