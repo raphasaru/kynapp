@@ -1,11 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { useMonthSelector } from '@/hooks/use-month-selector'
 import { useTransactions } from '@/lib/queries/transactions'
 import { useMediaQuery } from '@/hooks/use-media-query'
-import { useOnboardingProgress } from '@/lib/queries/onboarding'
 import { MonthSelector } from '@/components/dashboard/month-selector'
 import { BalanceCards } from '@/components/dashboard/balance-cards'
 import { QuickActions } from '@/components/dashboard/quick-actions'
@@ -17,21 +15,12 @@ import type { DecryptedTransaction } from '@/lib/queries/transactions'
 import { createClient } from '@/lib/supabase/client'
 
 export default function DashboardPage() {
-  const router = useRouter()
   const [userName, setUserName] = useState<string>('')
-  const { data: onboardingProgress } = useOnboardingProgress()
   const { month, prevMonth, nextMonth, monthLabel } = useMonthSelector()
   const { data: transactions = [], isLoading } = useTransactions(month)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editTransaction, setEditTransaction] = useState<DecryptedTransaction | undefined>()
   const isDesktop = useMediaQuery('(min-width: 768px)')
-
-  // Redirect to onboarding if not completed
-  useEffect(() => {
-    if (onboardingProgress && !onboardingProgress.onboarding_completed) {
-      router.push('/app/onboarding')
-    }
-  }, [onboardingProgress, router])
 
   // Get user name
   useEffect(() => {
