@@ -10,30 +10,30 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 2 of 4 (Core Financial Data)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-12 — Completed 02-03 (credit cards CRUD)
+Last activity: 2026-02-12 — Completed 02-04 (transaction CRUD)
 
-Progress: [███░░░░░░░] 38%
+Progress: [████░░░░░░] 44%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 3.6 min
-- Total execution time: 0.42 hours
+- Total plans completed: 8
+- Average duration: 3.5 min
+- Total execution time: 0.47 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01 Foundation & Security | 4 | 17 min | 4.3 min |
-| 02 Core Financial Data | 3 | 9 min | 3.0 min |
+| 02 Core Financial Data | 4 | 12 min | 3.0 min |
 
 **Recent Trend:**
-- Last plan: 02-03 (2 min)
-- Previous: 02-02 (5 min)
-- Trend: Improving velocity (avg 3.6 min, down from 4.0)
+- Last plan: 02-04 (3 min)
+- Previous: 02-03 (2 min)
+- Trend: Consistent velocity (avg 3.5 min)
 
 ## Accumulated Context
 
@@ -70,6 +70,10 @@ Recent decisions affecting current work:
 - Visual credit card design with gradient (02-03: 1.6:1 aspect ratio, banking app aesthetic)
 - Horizontal scroll on mobile for cards (02-03: snap-x for native feel)
 - 1 card limit for free tier (02-03: consistent with accounts pattern)
+- Month-based transaction fetching (02-04: useTransactions(month) filters by due_date range)
+- Optimistic status toggle (02-04: instant UI feedback before server response)
+- Client-side search helper (02-04: filterTransactionsBySearch - no server query needed)
+- Conditional account/card selector (02-04: payment_method=credit shows cards, otherwise accounts)
 
 ### Pending Todos
 
@@ -82,5 +86,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Completed 02-03-PLAN.md (credit cards CRUD)
-Resume file: .planning/phases/02-core-financial-data/02-03-SUMMARY.md
+Stopped at: Completed 02-04-PLAN.md (transaction CRUD)
+Resume file: .planning/phases/02-core-financial-data/02-04-SUMMARY.md
