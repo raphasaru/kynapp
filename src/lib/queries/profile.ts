@@ -11,6 +11,10 @@ export interface Profile {
   avatar_url: string | null
   onboarding_completed: boolean
   onboarding_step: number
+  whatsapp_phone: string | null
+  whatsapp_verified: boolean
+  whatsapp_verification_code: string | null
+  whatsapp_verification_expires_at: string | null
   created_at: string
   updated_at: string
 }
