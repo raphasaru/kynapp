@@ -94,7 +94,7 @@ export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
   return (
     <div
       onClick={onEdit}
-      className="flex items-center gap-3 p-3 hover:bg-accent rounded-lg cursor-pointer transition-colors"
+      className="flex items-center gap-3 p-3 hover:bg-accent rounded-lg cursor-pointer transition-colors overflow-hidden"
     >
       {/* Left: Icon + Status indicator */}
       <div className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
       </div>
 
       {/* Right: Amount */}
-      <div className={cn('font-semibold', isIncome ? 'text-green-600' : 'text-red-600')}>
+      <div className={cn('font-semibold shrink-0 whitespace-nowrap text-right', isIncome ? 'text-green-600' : 'text-red-600')}>
         {isIncome ? '+' : '-'}{formatCurrency(transaction.amount)}
       </div>
     </div>

@@ -22,11 +22,11 @@ export function AppShell() {
 
       {/* Transaction sheet */}
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-        <SheetContent side="bottom" className="h-[85vh]">
+        <SheetContent side="bottom" className="h-[85vh] rounded-t-2xl">
           <SheetHeader>
             <SheetTitle>Nova transação</SheetTitle>
           </SheetHeader>
-          <div className="mt-4 overflow-y-auto h-[calc(85vh-80px)]">
+          <div className="overflow-y-auto flex-1 px-4 pb-4">
             <TransactionForm onSuccess={() => setSheetOpen(false)} />
           </div>
         </SheetContent>

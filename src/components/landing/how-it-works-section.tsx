@@ -18,7 +18,7 @@ export function HowItWorksSection() {
   ]
 
   return (
-    <section className="py-24 px-6 bg-[hsl(220,25%,7%)] text-white">
+    <section id="how-it-works" className="py-24 px-6 bg-[hsl(220,25%,7%)] text-white">
       <div className="max-w-5xl mx-auto">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-white animate-slide-up">
           Como funciona

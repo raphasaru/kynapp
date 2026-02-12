@@ -38,7 +38,7 @@ export function SettingsSection() {
   return (
     <div className="space-y-2">
       {/* Theme toggle */}
-      <button onClick={() => setTheme(isDark ? 'light' : 'dark')} className="w-full text-left">
+      <button onClick={() => setTheme(isDark ? 'light' : 'dark')} className="w-full text-left block">
         <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -56,7 +56,7 @@ export function SettingsSection() {
       {settings.map((setting) => {
         const Icon = setting.icon
         return (
-          <Link key={setting.href} href={setting.href}>
+          <Link key={setting.href} href={setting.href} className="block">
             <Card className="p-4 hover:bg-muted/50 transition-colors cursor-pointer">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useMonthSelector } from '@/hooks/use-month-selector'
 import { useTransactions } from '@/lib/queries/transactions'
+import { useProfile } from '@/lib/queries/profile'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { MonthSelector } from '@/components/dashboard/month-selector'
 import { BalanceCards } from '@/components/dashboard/balance-cards'
@@ -12,25 +13,17 @@ import { TransactionForm } from '@/components/transactions/transaction-form'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import type { DecryptedTransaction } from '@/lib/queries/transactions'
-import { createClient } from '@/lib/supabase/client'
 
 export default function DashboardPage() {
-  const [userName, setUserName] = useState<string>('')
+  const { data: profile } = useProfile()
   const { month, prevMonth, nextMonth, monthLabel } = useMonthSelector()
   const { data: transactions = [], isLoading } = useTransactions(month)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editTransaction, setEditTransaction] = useState<DecryptedTransaction | undefined>()
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
-  // Get user name
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user?.email) {
-        setUserName(user.email.split('@')[0])
-      }
-    })
-  }, [])
+  // Get first name from profile
+  const firstName = profile?.full_name?.split(' ')[0] || ''
 
   const handleNewTransaction = () => {
     setEditTransaction(undefined)
@@ -47,17 +40,14 @@ export default function DashboardPage() {
     setEditTransaction(undefined)
   }
 
-  const FormComponent = isDesktop ? Dialog : Sheet
-  const ContentComponent = isDesktop ? DialogContent : SheetContent
-  const HeaderComponent = isDesktop ? DialogHeader : SheetHeader
-  const TitleComponent = isDesktop ? DialogTitle : SheetTitle
+  const formTitle = editTransaction ? 'Editar transação' : 'Nova transação'
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold font-heading">
-          Olá{userName ? `, ${userName}` : ''}!
+          Olá{firstName ? `, ${firstName}` : ''}!
         </h1>
         <p className="text-muted-foreground mt-1">Seu resumo financeiro</p>
       </div>
@@ -93,21 +83,36 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Transaction form (Sheet on mobile, Dialog on desktop) */}
-      <FormComponent open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <ContentComponent className={isDesktop ? '' : 'h-[90vh]'}>
-          <HeaderComponent>
-            <TitleComponent>
-              {editTransaction ? 'Editar transação' : 'Nova transação'}
-            </TitleComponent>
-          </HeaderComponent>
-          <TransactionForm
-            transaction={editTransaction}
-            defaultMonth={month}
-            onSuccess={handleFormSuccess}
-          />
-        </ContentComponent>
-      </FormComponent>
+      {/* Transaction form — Sheet (bottom) on mobile, Dialog on desktop */}
+      {isDesktop ? (
+        <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{formTitle}</DialogTitle>
+            </DialogHeader>
+            <TransactionForm
+              transaction={editTransaction}
+              defaultMonth={month}
+              onSuccess={handleFormSuccess}
+            />
+          </DialogContent>
+        </Dialog>
+      ) : (
+        <Sheet open={isFormOpen} onOpenChange={setIsFormOpen}>
+          <SheetContent side="bottom" className="h-[85vh] rounded-t-2xl">
+            <SheetHeader>
+              <SheetTitle>{formTitle}</SheetTitle>
+            </SheetHeader>
+            <div className="overflow-y-auto flex-1 px-4 pb-4">
+              <TransactionForm
+                transaction={editTransaction}
+                defaultMonth={month}
+                onSuccess={handleFormSuccess}
+              />
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
     </div>
   )
 }

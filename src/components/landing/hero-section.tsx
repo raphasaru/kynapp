@@ -1,11 +1,28 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Shield, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const targetElement = document.getElementById('features')
+    
+    if (targetElement) {
+      const navHeight = 64
+      const targetPosition = targetElement.offsetTop - navHeight
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
-    <section className="relative overflow-hidden bg-[hsl(220,25%,7%)] text-white min-h-[90vh] flex items-center px-6">
+    <section className="relative overflow-hidden bg-[hsl(220,25%,7%)] text-white min-h-screen flex items-center px-6 pt-16">
       {/* Glow effect */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] pointer-events-none animate-glow-pulse"
@@ -73,9 +90,9 @@ export function HeroSection() {
             asChild
             variant="outline"
             size="lg"
-            className="border-white/20 text-white hover:bg-white/10 h-12 px-8 text-base transition-all duration-300 hover:-translate-y-0.5"
+            className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:border-white/30 h-12 px-8 text-base transition-all duration-300 hover:-translate-y-0.5"
           >
-            <a href="#features">Saiba mais</a>
+            <a href="#features" onClick={handleSmoothScroll}>Saiba mais</a>
           </Button>
         </div>
       </div>

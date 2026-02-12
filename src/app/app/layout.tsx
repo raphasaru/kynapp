@@ -26,7 +26,7 @@ export default async function AppLayout({
           <Sidebar />
 
           {/* Main content */}
-          <main className="flex-1 pb-16 md:pb-0 md:ml-64">
+          <main className="flex-1 min-w-0 overflow-hidden pb-16 md:pb-0 md:ml-64">
             <div className="container mx-auto px-4 py-6 max-w-4xl">
               {children}
             </div>

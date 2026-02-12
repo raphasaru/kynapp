@@ -43,7 +43,7 @@ export function PricingSection() {
   ]
 
   return (
-    <section className="py-24 px-6 bg-neutral-50 text-neutral-900">
+    <section id="pricing" className="py-24 px-6 bg-neutral-50 text-neutral-900">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-neutral-900 animate-slide-up">
           Planos simples, sem surpresas

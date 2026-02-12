@@ -29,7 +29,7 @@ export function BalanceCards({ transactions }: BalanceCardsProps) {
       <Card className="p-6">
         <p className="text-sm text-muted-foreground mb-2">Saldo do Mês</p>
         <p className={cn(
-          'text-3xl font-bold font-heading',
+          'text-3xl font-bold font-heading truncate',
           balance >= 0 ? 'text-green-600' : 'text-red-600'
         )}>
           {formatCurrency(balance)}
@@ -42,7 +42,7 @@ export function BalanceCards({ transactions }: BalanceCardsProps) {
       {/* Income card */}
       <Card className="p-6">
         <p className="text-sm text-muted-foreground mb-2">Receitas</p>
-        <p className="text-3xl font-bold font-heading text-green-600">
+        <p className="text-3xl font-bold font-heading text-green-600 truncate">
           {formatCurrency(totalIncome)}
         </p>
         <p className="text-xs text-muted-foreground mt-2">
@@ -53,7 +53,7 @@ export function BalanceCards({ transactions }: BalanceCardsProps) {
       {/* Expenses card */}
       <Card className="p-6">
         <p className="text-sm text-muted-foreground mb-2">Despesas</p>
-        <p className="text-3xl font-bold font-heading text-red-600">
+        <p className="text-3xl font-bold font-heading text-red-600 truncate">
           {formatCurrency(totalExpense)}
         </p>
         <p className="text-xs text-muted-foreground mt-2">
