@@ -15,7 +15,7 @@ export const transactionSchema = z.object({
     'variable_transport',
     'variable_other',
   ]).nullable().optional(),
-  status: z.enum(['planned', 'completed']).default('completed'),
+  status: z.enum(['planned', 'completed']).optional().default('completed'),
   due_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato de data inválido'),
   payment_method: z.enum(['pix', 'cash', 'debit', 'credit', 'transfer', 'boleto']).nullable().optional(),
   bank_account_id: z.string().uuid().nullable().optional(),
