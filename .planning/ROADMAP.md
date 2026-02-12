@@ -94,13 +94,14 @@ Plans:
   7. User sees 4-step onboarding (welcome, first transaction, basic config, WhatsApp)
   8. User can skip any onboarding step
   9. User can view profile, manage subscription, and log out from settings
-**Plans**: 4 plans
+**Plans**: 5 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Stripe subscription (SDK, checkout, portal, webhooks, subscription page)
-- [ ] 04-02-PLAN.md — Profile & settings hub (profile form, logout, settings links, FAB)
-- [ ] 04-03-PLAN.md — WhatsApp integration (verify, transaction callback, settings page, QR flow)
-- [ ] 04-04-PLAN.md — Onboarding wizard (6 steps, progress tracking, redirect logic)
+- [x] 04-01-PLAN.md — Stripe subscription (SDK, checkout, portal, webhooks, subscription page)
+- [x] 04-02-PLAN.md — Profile & settings hub (profile form, logout, settings links, FAB)
+- [x] 04-03-PLAN.md — WhatsApp integration (verify, transaction callback, settings page, QR flow)
+- [x] 04-04-PLAN.md — Onboarding wizard (6 steps, progress tracking, redirect logic)
+- [ ] 04-05-PLAN.md — Gap closure: onboarding redirect in layout + Stripe webhook verification
 
 ## Progress
 
