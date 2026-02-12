@@ -318,6 +318,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_whatsapp_links: {
+        Row: {
+          id: string
+          user_id: string
+          phone_number: string
+          whatsapp_lid: string | null
+          verification_code: string | null
+          verification_expires_at: string | null
+          verified_at: string | null
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          phone_number: string
+          whatsapp_lid?: string | null
+          verification_code?: string | null
+          verification_expires_at?: string | null
+          verified_at?: string | null
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          phone_number?: string
+          whatsapp_lid?: string | null
+          verification_code?: string | null
+          verification_expires_at?: string | null
+          verified_at?: string | null
+          created_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
