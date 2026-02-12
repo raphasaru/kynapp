@@ -94,12 +94,13 @@ Plans:
   7. User sees 4-step onboarding (welcome, first transaction, basic config, WhatsApp)
   8. User can skip any onboarding step
   9. User can view profile, manage subscription, and log out from settings
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 04-01: TBD during planning
-- [ ] 04-02: TBD during planning
-- [ ] 04-03: TBD during planning
+- [ ] 04-01-PLAN.md — Stripe subscription (SDK, checkout, portal, webhooks, subscription page)
+- [ ] 04-02-PLAN.md — Profile & settings hub (profile form, logout, settings links, FAB)
+- [ ] 04-03-PLAN.md — WhatsApp integration (verify, transaction callback, settings page, QR flow)
+- [ ] 04-04-PLAN.md — Onboarding wizard (6 steps, progress tracking, redirect logic)
 
 ## Progress
 
@@ -111,8 +112,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation & Security | 4/4 | ✓ Complete | 2026-02-11 |
 | 2. Core Financial Data | 5/5 | ✓ Complete | 2026-02-11 |
 | 3. Analysis & Automation | 0/3 | Not started | - |
-| 4. Integrations & Activation | 0/3 | Not started | - |
+| 4. Integrations & Activation | 0/4 | Not started | - |
 
 ---
 *Roadmap created: 2026-02-11*
-*Last updated: 2026-02-11 — Phase 3 planned*
+*Last updated: 2026-02-11 — Phase 4 planned*
