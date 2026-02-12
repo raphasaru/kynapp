@@ -98,6 +98,10 @@ export type Database = {
           completed_date: string | null
           source: string | null
           is_recurring: boolean
+          recurring_day: number | null
+          recurring_group_id: string | null
+          recurring_end_date: string | null
+          custom_category_id: string | null
           created_at: string | null
           updated_at: string | null
         }
@@ -117,6 +121,10 @@ export type Database = {
           completed_date?: string | null
           source?: string | null
           is_recurring?: boolean
+          recurring_day?: number | null
+          recurring_group_id?: string | null
+          recurring_end_date?: string | null
+          custom_category_id?: string | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -136,6 +144,10 @@ export type Database = {
           completed_date?: string | null
           source?: string | null
           is_recurring?: boolean
+          recurring_day?: number | null
+          recurring_group_id?: string | null
+          recurring_end_date?: string | null
+          custom_category_id?: string | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -217,6 +229,87 @@ export type Database = {
           current_period_end?: string | null
           whatsapp_messages_used?: number
           whatsapp_messages_reset_at?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      category_budgets: {
+        Row: {
+          id: string
+          user_id: string
+          category: string | null
+          custom_category_id: string | null
+          monthly_budget: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          category?: string | null
+          custom_category_id?: string | null
+          monthly_budget: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          category?: string | null
+          custom_category_id?: string | null
+          monthly_budget?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      recurring_templates: {
+        Row: {
+          id: string
+          user_id: string
+          description: string
+          amount: string
+          type: 'income' | 'expense'
+          category: string | null
+          custom_category_id: string | null
+          day_of_month: number
+          is_active: boolean
+          payment_method: string | null
+          bank_account_id: string | null
+          credit_card_id: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          description: string
+          amount: string
+          type: 'income' | 'expense'
+          category?: string | null
+          custom_category_id?: string | null
+          day_of_month: number
+          is_active?: boolean
+          payment_method?: string | null
+          bank_account_id?: string | null
+          credit_card_id?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          description?: string
+          amount?: string
+          type?: 'income' | 'expense'
+          category?: string | null
+          custom_category_id?: string | null
+          day_of_month?: number
+          is_active?: boolean
+          payment_method?: string | null
+          bank_account_id?: string | null
+          credit_card_id?: string | null
           created_at?: string | null
           updated_at?: string | null
         }
