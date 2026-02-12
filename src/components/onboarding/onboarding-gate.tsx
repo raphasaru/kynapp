@@ -18,8 +18,14 @@ export function OnboardingGate({ children }: OnboardingGateProps) {
   const { data: onboardingProgress, isLoading, error } = useOnboardingProgress()
 
   useEffect(() => {
-    // Skip redirect logic while loading or if error
-    if (isLoading || error) return
+    // Log error for debugging if present
+    if (error) {
+      console.error('[OnboardingGate] Query error:', error)
+      return
+    }
+
+    // Skip redirect logic while loading
+    if (isLoading) return
 
     // Only redirect if onboarding NOT completed AND user NOT already on /app/onboarding
     if (
