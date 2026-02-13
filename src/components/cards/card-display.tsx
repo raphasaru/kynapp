@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { MoreVertical, Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -28,11 +29,13 @@ type CreditCard = Database['public']['Tables']['credit_cards']['Row']
 interface CardDisplayProps {
   card: CreditCard
   onEdit?: (card: CreditCard) => void
+  nextBillAmount?: number
 }
 
-export function CardDisplay({ card, onEdit }: CardDisplayProps) {
+export function CardDisplay({ card, onEdit, nextBillAmount }: CardDisplayProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const deleteCard = useDeleteCard()
+  const router = useRouter()
 
   const handleDelete = async () => {
     try {
@@ -48,9 +51,7 @@ export function CardDisplay({ card, onEdit }: CardDisplayProps) {
     ? parseFloat(card.credit_limit)
     : card.credit_limit
 
-  const currentBill = typeof card.current_bill === 'string'
-    ? parseFloat(card.current_bill)
-    : card.current_bill
+  const billAmount = nextBillAmount ?? 0
 
   // Create gradient background
   const backgroundColor = card.color || '#8b5cf6'
@@ -61,18 +62,24 @@ export function CardDisplay({ card, onEdit }: CardDisplayProps) {
   return (
     <>
       <div
-        className="relative rounded-xl p-6 text-white shadow-lg min-w-[300px] flex-shrink-0"
+        className="relative rounded-xl p-6 text-white shadow-lg min-w-[300px] flex-shrink-0 cursor-pointer transition-transform hover:scale-[1.02]"
         style={{
           aspectRatio: '1.6 / 1',
           ...gradientStyle,
         }}
+        onClick={() => router.push(`/app/carteira/${card.id}`)}
       >
         {/* Card name */}
         <div className="flex items-start justify-between mb-4">
           <h3 className="font-semibold text-lg">{card.name}</h3>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 text-white hover:bg-white/20">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-white hover:bg-white/20"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <MoreVertical className="h-4 w-4" />
                 <span className="sr-only">Menu</span>
               </Button>
@@ -99,10 +106,16 @@ export function CardDisplay({ card, onEdit }: CardDisplayProps) {
           <p className="text-xl font-semibold">{formatCurrency(creditLimit)}</p>
         </div>
 
-        {/* Current bill */}
-        <div className="mb-4">
-          <p className="text-xs opacity-80">Fatura atual</p>
-          <p className="text-xl font-semibold">{formatCurrency(currentBill)}</p>
+        {/* Current bill + Available */}
+        <div className="flex items-end justify-between mb-4">
+          <div>
+            <p className="text-xs opacity-80">Fatura atual</p>
+            <p className="text-xl font-semibold">{formatCurrency(billAmount)}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs opacity-80">Disponível</p>
+            <p className="text-lg font-semibold">{formatCurrency(creditLimit - billAmount)}</p>
+          </div>
         </div>
 
         {/* Bottom row - due and closing days */}

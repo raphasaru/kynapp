@@ -40,6 +40,9 @@ export const ENCRYPTED_FIELDS: Record<
     price: "number",
     total_value: "number",
   },
+  credit_card_bills: {
+    total_amount: "number",
+  },
   category_budgets: {
     monthly_budget: "number",
   },

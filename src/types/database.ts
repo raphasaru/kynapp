@@ -102,6 +102,9 @@ export type Database = {
           recurring_group_id: string | null
           recurring_end_date: string | null
           custom_category_id: string | null
+          installment_number: number | null
+          total_installments: number | null
+          parent_transaction_id: string | null
           created_at: string | null
           updated_at: string | null
         }
@@ -125,6 +128,9 @@ export type Database = {
           recurring_group_id?: string | null
           recurring_end_date?: string | null
           custom_category_id?: string | null
+          installment_number?: number | null
+          total_installments?: number | null
+          parent_transaction_id?: string | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -148,6 +154,9 @@ export type Database = {
           recurring_group_id?: string | null
           recurring_end_date?: string | null
           custom_category_id?: string | null
+          installment_number?: number | null
+          total_installments?: number | null
+          parent_transaction_id?: string | null
           created_at?: string | null
           updated_at?: string | null
         }
@@ -189,6 +198,42 @@ export type Database = {
           color?: string | null
           created_at?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      credit_card_bills: {
+        Row: {
+          id: string
+          user_id: string
+          credit_card_id: string
+          month: string
+          status: 'open' | 'paid'
+          paid_date: string | null
+          total_amount: string
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          credit_card_id: string
+          month: string
+          status?: 'open' | 'paid'
+          paid_date?: string | null
+          total_amount?: string
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          credit_card_id?: string
+          month?: string
+          status?: 'open' | 'paid'
+          paid_date?: string | null
+          total_amount?: string
+          created_at?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -357,6 +402,7 @@ export type Database = {
     Enums: {
       transaction_type: 'income' | 'expense'
       transaction_status: 'planned' | 'completed'
+      bill_status: 'open' | 'paid'
     }
   }
 }

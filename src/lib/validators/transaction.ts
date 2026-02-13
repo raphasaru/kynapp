@@ -21,6 +21,7 @@ export const transactionSchema = z.object({
   bank_account_id: z.string().uuid().nullable().optional(),
   credit_card_id: z.string().uuid().nullable().optional(),
   notes: z.string().optional(),
+  installment_count: z.number().int().min(1).max(24).optional().default(1),
 })
 
 export type TransactionInput = z.infer<typeof transactionSchema>

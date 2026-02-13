@@ -13,6 +13,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { AmountInput } from './amount-input'
 import { CategorySelect } from './category-select'
+import { formatCurrency } from '@/lib/formatters/currency'
 import { format } from 'date-fns'
 import { useState, useEffect } from 'react'
 import type { DecryptedTransaction } from '@/lib/queries/transactions'
@@ -26,6 +27,8 @@ interface TransactionFormProps {
 export function TransactionForm({ transaction, onSuccess, defaultMonth }: TransactionFormProps) {
   const [type, setType] = useState<'income' | 'expense'>(transaction?.type || 'expense')
   const [paymentMethod, setPaymentMethod] = useState<string | null>(transaction?.payment_method || null)
+  const [installmentCount, setInstallmentCount] = useState(1)
+  const [isCreatingInstallments, setIsCreatingInstallments] = useState(false)
 
   const createMutation = useCreateTransaction()
   const updateMutation = useUpdateTransaction()
@@ -71,6 +74,9 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
   const watchedType = watch('type')
   const watchedStatus = watch('status')
   const watchedPaymentMethod = watch('payment_method')
+  const watchedAmount = watch('amount')
+
+  const showInstallments = !isEdit && watchedPaymentMethod === 'credit' && watchedType === 'expense'
 
   // Update local state when form values change
   useEffect(() => {
@@ -88,10 +94,11 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
     }
   }, [watchedType, setValue])
 
-  // Clear credit_card_id when payment method is not credit
+  // Clear credit_card_id and installments when payment method is not credit
   useEffect(() => {
     if (watchedPaymentMethod !== 'credit') {
       setValue('credit_card_id', null)
+      setInstallmentCount(1)
     }
   }, [watchedPaymentMethod, setValue])
 
@@ -102,16 +109,21 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
     }
   }, [watchedPaymentMethod, setValue])
 
-  const onSubmit = async (data: TransactionInput) => {
+  const onSubmit = async (data: any) => {
     try {
       if (isEdit) {
         await updateMutation.mutateAsync({ id: transaction.id, ...data })
       } else {
-        await createMutation.mutateAsync(data)
+        if (installmentCount > 1) {
+          setIsCreatingInstallments(true)
+        }
+        await createMutation.mutateAsync({ ...data, installment_count: installmentCount } as TransactionInput)
       }
       onSuccess?.()
     } catch (error: any) {
       console.error('Transaction error:', error)
+    } finally {
+      setIsCreatingInstallments(false)
     }
   }
 
@@ -277,6 +289,32 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
         </div>
       )}
 
+      {/* Installments (only for new credit card expenses) */}
+      {showInstallments && (
+        <div className="space-y-2">
+          <Label>Parcelamento</Label>
+          <Select
+            value={String(installmentCount)}
+            onValueChange={(value) => setInstallmentCount(parseInt(value))}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">À vista</SelectItem>
+              {Array.from({ length: 11 }, (_, i) => i + 2).map((n) => (
+                <SelectItem key={n} value={String(n)}>{n}x</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {installmentCount > 1 && watchedAmount > 0 && (
+            <p className="text-sm text-muted-foreground">
+              {installmentCount}x de {formatCurrency(Math.floor((watchedAmount * 100) / installmentCount) / 100)}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Notes */}
       <div className="space-y-2">
         <Label htmlFor="notes">Observações (opcional)</Label>
@@ -284,9 +322,21 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
       </div>
 
       {/* Submit button */}
-      <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? 'Salvando...' : 'Salvar'}
-      </Button>
+      <div className="space-y-2">
+        <Button type="submit" className="w-full" disabled={isPending || isCreatingInstallments}>
+          {isCreatingInstallments
+            ? `Gerando ${installmentCount} parcelas...`
+            : isPending
+            ? 'Salvando...'
+            : 'Salvar'
+          }
+        </Button>
+        {isCreatingInstallments && (
+          <p className="text-sm text-center text-muted-foreground animate-pulse">
+            Criando transações parceladas, aguarde...
+          </p>
+        )}
+      </div>
     </form>
   )
 }

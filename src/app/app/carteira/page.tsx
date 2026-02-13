@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Skeleton } from '@/components/ui/skeleton'
 import { useAccounts } from '@/lib/queries/accounts'
 import { useCards } from '@/lib/queries/cards'
+import { useNextBillAmounts } from '@/lib/queries/bills'
 import { AccountCard } from '@/components/accounts/account-card'
 import { AccountForm } from '@/components/accounts/account-form'
 import { CardDisplay } from '@/components/cards/card-display'
@@ -38,6 +39,7 @@ export default function CarteirasPage() {
 
   const { data: accounts, isLoading: accountsLoading } = useAccounts()
   const { data: cards, isLoading: cardsLoading } = useCards()
+  const { data: nextBillAmounts } = useNextBillAmounts(cards as any)
 
   // Get default account ID from profile (would need useProfile hook, for now just check first)
   const defaultAccountId = accounts?.[0]?.id
@@ -149,6 +151,7 @@ export default function CarteirasPage() {
                 key={card.id}
                 card={card}
                 onEdit={handleEditCard}
+                nextBillAmount={nextBillAmounts?.get(card.id)}
               />
             ))}
           </div>

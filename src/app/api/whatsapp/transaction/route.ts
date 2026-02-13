@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/types/database';
-import { encryptFields } from '@/lib/crypto/encrypt';
 
 export const runtime = 'nodejs';
 
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create admin Supabase client (service role)
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
       console.error('Missing Supabase env vars');
       return NextResponse.json(
@@ -48,7 +46,6 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    // Parse request body
     const body: RequestBody = await request.json();
     const { phone_number, transaction_data } = body;
 
@@ -74,87 +71,41 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const userId = linkData.user_id;
+    // Use RPC function: handles category mapping, inserts plaintext,
+    // trigger handles whatsapp_messages counting + free tier limit
+    const { data, error: rpcError } = await (supabase.rpc as any)('create_whatsapp_transaction', {
+      p_user_id: linkData.user_id,
+      p_type: transaction_data.type,
+      p_amount: transaction_data.amount.toString(),
+      p_category: transaction_data.category || 'other',
+      p_description: transaction_data.description,
+      p_due_date: new Date().toISOString().split('T')[0],
+      p_status: 'completed',
+    });
 
-    // Check free tier limit
-    const { data: subscription, error: subError } = await supabase
-      .from('subscriptions')
-      .select('plan, whatsapp_messages_used')
-      .eq('user_id', userId)
-      .single();
-
-    if (subError) {
-      console.error('Error fetching subscription:', subError);
-      return NextResponse.json(
-        { error: 'Erro ao verificar assinatura' },
-        { status: 500 }
-      );
-    }
-
-    // Enforce 30-message limit for free tier
-    if (subscription.plan === 'free' && subscription.whatsapp_messages_used >= 30) {
-      return NextResponse.json(
-        {
-          error: 'Limite de mensagens atingido',
-          message: 'Você atingiu o limite de 30 mensagens do plano gratuito. Faça upgrade para Pro para mensagens ilimitadas.',
-          upgrade_required: true,
-        },
-        { status: 429 }
-      );
-    }
-
-    // Encrypt transaction data
-    const encryptedData = await encryptFields('transactions', {
-      amount: transaction_data.amount,
-      description: transaction_data.description,
-    }) as unknown as { amount: string; description: string };
-
-    // Insert transaction
-    const insertData: Database['public']['Tables']['transactions']['Insert'] = {
-      user_id: userId,
-      amount: encryptedData.amount,
-      description: encryptedData.description,
-      type: transaction_data.type,
-      category: transaction_data.category || 'variable_other',
-      status: 'planned',
-      due_date: new Date().toISOString().split('T')[0], // Today's date
-      source: 'whatsapp',
-    };
-
-    const { data, error: insertError } = await supabase
-      .from('transactions')
-      .insert(insertData)
-      .select('id, description, amount, type')
-      .single();
-
-    if (insertError || !data) {
-      console.error('Error inserting transaction:', insertError);
+    if (rpcError) {
+      // Trigger raises exception when free tier limit exceeded
+      if (rpcError.message?.includes('limit reached')) {
+        return NextResponse.json(
+          {
+            error: 'Limite de mensagens atingido',
+            message: 'Você atingiu o limite de 30 mensagens do plano gratuito. Faça upgrade para Pro para mensagens ilimitadas.',
+            upgrade_required: true,
+          },
+          { status: 429 }
+        );
+      }
+      console.error('RPC error:', rpcError);
       return NextResponse.json(
         { error: 'Erro ao criar transação' },
         { status: 500 }
       );
     }
 
-    const transaction = data;
-
-    // Increment WhatsApp messages counter
-    const { error: updateError } = await supabase
-      .from('subscriptions')
-      .update({
-        whatsapp_messages_used: subscription.whatsapp_messages_used + 1,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('user_id', userId);
-
-    if (updateError) {
-      console.error('Error updating message counter:', updateError);
-      // Don't fail the transaction creation, just log
-    }
-
     return NextResponse.json({
       transaction: {
-        id: transaction.id,
-        description: transaction_data.description, // Return unencrypted for n8n
+        id: (data as any)?.transaction_id,
+        description: transaction_data.description,
         amount: transaction_data.amount,
         type: transaction_data.type,
       },
