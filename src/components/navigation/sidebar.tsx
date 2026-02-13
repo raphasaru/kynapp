@@ -7,18 +7,20 @@ import { useTheme } from 'next-themes'
 import { Moon, Sun } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { navItems } from './nav-items'
+import { useProfile } from '@/lib/queries/profile'
 
 export function Sidebar() {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const { data: profile } = useProfile()
 
   useEffect(() => setMounted(true), [])
 
   return (
     <aside className="hidden md:flex md:flex-col fixed left-0 top-0 h-screen w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 z-40">
       {/* Logo */}
-      <div className="flex items-center h-16 px-6 border-b border-neutral-200 dark:border-neutral-800">
+      <div className="flex items-center justify-center h-16 px-6 border-b border-neutral-200 dark:border-neutral-800">
         <Image
           src="/kyn-logo.png"
           alt="KYN"
@@ -68,9 +70,11 @@ export function Sidebar() {
         </button>
         <div className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground">
           <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-            <span className="text-primary font-semibold">U</span>
+            <span className="text-primary font-semibold">
+              {profile?.full_name?.[0]?.toUpperCase() || 'U'}
+            </span>
           </div>
-          <span>Usuário</span>
+          <span>{profile?.full_name?.split(' ')[0] || ''}</span>
         </div>
       </div>
     </aside>

@@ -6,6 +6,7 @@ import { useOnboardingProgress } from '@/lib/queries/onboarding'
 import { OnboardingWizard } from '@/components/onboarding/onboarding-wizard'
 import { WelcomeStep } from '@/components/onboarding/welcome-step'
 import { AccountsStep } from '@/components/onboarding/accounts-step'
+import { DefaultAccountStep } from '@/components/onboarding/default-account-step'
 import { CardsStep } from '@/components/onboarding/cards-step'
 import { BudgetStep } from '@/components/onboarding/budget-step'
 import { WhatsAppStep } from '@/components/onboarding/whatsapp-step'
@@ -14,6 +15,7 @@ import { ProStep } from '@/components/onboarding/pro-step'
 const STEP_COMPONENTS = [
   WelcomeStep,
   AccountsStep,
+  DefaultAccountStep,
   CardsStep,
   BudgetStep,
   WhatsAppStep,

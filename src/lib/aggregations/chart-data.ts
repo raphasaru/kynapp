@@ -63,7 +63,7 @@ export function getExpenseByCategoryData(
 export function getIncomeExpenseByMonth(
   transactionsByMonth: Map<string, DecryptedTransaction[]>,
   months: { month: string; label: string }[]
-): { month: string; income: number; expense: number }[] {
+): { month: string; income: number; expense: number; balance: number }[] {
   return months.map(({ month, label }) => {
     const transactions = transactionsByMonth.get(month) || []
 
@@ -76,7 +76,7 @@ export function getIncomeExpenseByMonth(
       .filter(t => t.type === 'expense')
       .reduce((sum, t) => sum + t.amount, 0)
 
-    return { month: label, income, expense }
+    return { month: label, income, expense, balance: income - expense }
   })
 }
 

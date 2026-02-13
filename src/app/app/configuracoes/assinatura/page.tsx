@@ -17,7 +17,7 @@ export default function AssinaturaPage() {
     return (
       <div className="container max-w-6xl mx-auto p-6 space-y-6">
         <div className="flex items-center gap-4">
-          <Link href="/app">
+          <Link href="/app/perfil">
             <Button variant="ghost" size="icon">
               <ArrowLeft className="h-5 w-5" />
             </Button>
@@ -35,7 +35,7 @@ export default function AssinaturaPage() {
     return (
       <div className="container max-w-6xl mx-auto p-6 space-y-6">
         <div className="flex items-center gap-4">
-          <Link href="/app">
+          <Link href="/app/perfil">
             <Button variant="ghost" size="icon">
               <ArrowLeft className="h-5 w-5" />
             </Button>
@@ -57,7 +57,7 @@ export default function AssinaturaPage() {
     <div className="container max-w-6xl mx-auto p-6 space-y-8">
       {/* Header */}
       <div className="flex items-center gap-4">
-        <Link href="/app">
+        <Link href="/app/perfil">
           <Button variant="ghost" size="icon">
             <ArrowLeft className="h-5 w-5" />
           </Button>

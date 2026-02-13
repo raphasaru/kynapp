@@ -14,26 +14,26 @@ export function BudgetSummary({ totalBudgeted, totalSpent, remaining }: BudgetSu
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Total Budgeted */}
-      <Card className="p-6">
-        <p className="text-sm text-muted-foreground mb-2">Total Orçado</p>
-        <p className="text-3xl font-bold font-heading">
+      <Card className="p-3 md:p-6">
+        <p className="text-xs md:text-sm text-muted-foreground mb-1 md:mb-2">Total Orçado</p>
+        <p className="text-xl md:text-3xl font-bold font-heading">
           {formatCurrency(totalBudgeted)}
         </p>
       </Card>
 
       {/* Total Spent */}
-      <Card className="p-6">
-        <p className="text-sm text-muted-foreground mb-2">Total Gasto</p>
-        <p className="text-3xl font-bold font-heading text-amber-600">
+      <Card className="p-3 md:p-6">
+        <p className="text-xs md:text-sm text-muted-foreground mb-1 md:mb-2">Total Gasto</p>
+        <p className="text-xl md:text-3xl font-bold font-heading text-amber-600">
           {formatCurrency(totalSpent)}
         </p>
       </Card>
 
       {/* Remaining */}
-      <Card className="p-6">
-        <p className="text-sm text-muted-foreground mb-2">Restante</p>
+      <Card className="p-3 md:p-6">
+        <p className="text-xs md:text-sm text-muted-foreground mb-1 md:mb-2">Restante</p>
         <p className={cn(
-          'text-3xl font-bold font-heading',
+          'text-xl md:text-3xl font-bold font-heading',
           remaining >= 0 ? 'text-[#10b77f]' : 'text-red-600'
         )}>
           {formatCurrency(remaining)}

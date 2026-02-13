@@ -1,9 +1,10 @@
 'use client'
 
-import { Home, Zap, CreditCard, User, FileText, UtensilsCrossed, Car, MoreHorizontal, Circle, CheckCircle2, QrCode, Banknote, ArrowLeftRight, Barcode } from 'lucide-react'
+import { Home, Zap, CreditCard, User, FileText, UtensilsCrossed, Car, MoreHorizontal, Circle, CheckCircle2, QrCode, Banknote, ArrowLeftRight, Barcode, Trash2 } from 'lucide-react'
+import { PrivateValue } from '@/components/ui/private-value'
 import { formatCurrency } from '@/lib/formatters/currency'
 import { formatDate } from '@/lib/formatters/date'
-import { useToggleTransactionStatus } from '@/lib/queries/transactions'
+import { useToggleTransactionStatus, useDeleteTransaction } from '@/lib/queries/transactions'
 import { cn } from '@/lib/utils'
 import type { DecryptedTransaction } from '@/lib/queries/transactions'
 
@@ -63,6 +64,7 @@ interface TransactionItemProps {
 
 export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
   const toggleStatus = useToggleTransactionStatus()
+  const deleteTransaction = useDeleteTransaction()
 
   const isIncome = transaction.type === 'income'
   const isCompleted = transaction.status === 'completed'
@@ -91,10 +93,17 @@ export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
     })
   }
 
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (confirm('Excluir esta transação?')) {
+      deleteTransaction.mutate(transaction.id)
+    }
+  }
+
   return (
     <div
       onClick={onEdit}
-      className="flex items-center gap-3 p-3 hover:bg-accent rounded-lg cursor-pointer transition-colors overflow-hidden"
+      className="group flex items-center gap-3 p-3 hover:bg-accent rounded-lg cursor-pointer transition-colors overflow-hidden"
     >
       {/* Left: Icon + Status indicator */}
       <div className="flex items-center gap-2">
@@ -127,9 +136,18 @@ export function TransactionItem({ transaction, onEdit }: TransactionItemProps) {
         </p>
       </div>
 
-      {/* Right: Amount */}
-      <div className={cn('font-semibold shrink-0 whitespace-nowrap text-right', isIncome ? 'text-green-600' : 'text-red-600')}>
-        {isIncome ? '+' : '-'}{formatCurrency(transaction.amount)}
+      {/* Right: Delete + Amount */}
+      <div className="flex items-center gap-1 shrink-0">
+        <button
+          onClick={handleDelete}
+          className="p-1.5 rounded-full text-muted-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+          aria-label="Excluir transação"
+        >
+          <Trash2 className="h-4 w-4" />
+        </button>
+        <span className={cn('font-semibold whitespace-nowrap text-right', isIncome ? 'text-green-600' : 'text-red-600')}>
+          <PrivateValue>{isIncome ? '+' : '-'}{formatCurrency(transaction.amount)}</PrivateValue>
+        </span>
       </div>
     </div>
   )

@@ -44,8 +44,8 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6 pb-20 md:pb-6">
-      {/* Header */}
-      <div>
+      {/* Header — hidden on mobile (shown in MobileHeader) */}
+      <div className="hidden md:block">
         <h1 className="text-3xl font-bold font-heading">
           Olá{firstName ? `, ${firstName}` : ''}!
         </h1>
@@ -93,6 +93,7 @@ export default function DashboardPage() {
             <TransactionForm
               transaction={editTransaction}
               defaultMonth={month}
+              defaultAccountId={profile?.default_bank_account_id}
               onSuccess={handleFormSuccess}
             />
           </DialogContent>
@@ -107,6 +108,7 @@ export default function DashboardPage() {
               <TransactionForm
                 transaction={editTransaction}
                 defaultMonth={month}
+                defaultAccountId={profile?.default_bank_account_id}
                 onSuccess={handleFormSuccess}
               />
             </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { useCompleteOnboarding, useUpdateOnboardingStep } from '@/lib/queries/onboarding'
 import { useRouter } from 'next/navigation'
@@ -8,6 +9,7 @@ import { ChevronRight, X } from 'lucide-react'
 const STEPS = [
   'Boas-vindas',
   'Contas',
+  'Conta padrão',
   'Cartões',
   'Orçamento',
   'WhatsApp',
@@ -24,6 +26,15 @@ export function OnboardingWizard({ currentStep, children, onNext }: OnboardingWi
   const router = useRouter()
   const updateStep = useUpdateOnboardingStep()
   const completeOnboarding = useCompleteOnboarding()
+  const savedStepRef = useRef(-1)
+
+  // Persist current step on mount/change so closing mid-step is saved
+  useEffect(() => {
+    if (currentStep > 0 && currentStep !== savedStepRef.current) {
+      savedStepRef.current = currentStep
+      updateStep.mutate(currentStep)
+    }
+  }, [currentStep]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const isLastStep = currentStep === STEPS.length - 1
   const progressPercent = ((currentStep + 1) / STEPS.length) * 100
@@ -86,13 +97,14 @@ export function OnboardingWizard({ currentStep, children, onNext }: OnboardingWi
             onClick={handleNext}
             disabled={updateStep.isPending || completeOnboarding.isPending}
             size="lg"
+            variant={isLastStep ? 'default' : 'outline'}
             className="w-full"
           >
             {updateStep.isPending || completeOnboarding.isPending
               ? 'Aguarde...'
               : isLastStep
               ? 'Começar a usar'
-              : 'Próximo'}
+              : `Avançar para: ${STEPS[currentStep + 1] || 'próximo'}`}
             {!isLastStep && <ChevronRight className="ml-2 h-4 w-4" />}
           </Button>
         </div>

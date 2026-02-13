@@ -14,11 +14,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { PrivateValue } from '@/components/ui/private-value'
+import { RecurringForm } from './recurring-form'
 import { categoryLabels, categoryIcons } from '@/lib/constants/categories'
 import { formatCurrency } from '@/lib/formatters/currency'
 import * as Icons from 'lucide-react'
 import type { DecryptedRecurring } from '@/lib/queries/recurring'
-import { Trash2 } from 'lucide-react'
+import { Pencil, Trash2 } from 'lucide-react'
 
 interface RecurringItemProps {
   recurring: DecryptedRecurring
@@ -52,33 +54,44 @@ export function RecurringItem({ recurring, onDelete }: RecurringItemProps) {
               </Badge>
             </div>
           </div>
-          <p className="font-semibold text-lg">{formatCurrency(recurring.amount)}</p>
+          <p className="font-semibold text-lg"><PrivateValue>{formatCurrency(recurring.amount)}</PrivateValue></p>
         </div>
 
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="ghost" size="icon" className="ml-2">
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Excluir recorrente?</AlertDialogTitle>
-              <AlertDialogDescription>
-                Todas as transações futuras deste recorrente serão removidas. Esta ação não pode ser desfeita.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction
-                onClick={() => onDelete(recurring.id)}
-                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              >
-                Excluir
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="flex items-center ml-2">
+          <RecurringForm
+            editData={recurring}
+            trigger={
+              <Button variant="ghost" size="icon">
+                <Pencil className="h-4 w-4" />
+              </Button>
+            }
+          />
+
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Trash2 className="h-4 w-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Excluir recorrente?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Todas as transações futuras deste recorrente serão removidas. Esta ação não pode ser desfeita.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={() => onDelete(recurring.id)}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                >
+                  Excluir
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </div>
     </Card>
   )

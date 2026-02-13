@@ -83,7 +83,7 @@ export function useCompleteOnboarding() {
         .from('profiles')
         .update({
           onboarding_completed: true,
-          onboarding_step: 6,
+          onboarding_step: 7,
           updated_at: new Date().toISOString(),
         })
         .eq('id', user.id)
@@ -93,7 +93,7 @@ export function useCompleteOnboarding() {
     onSuccess: () => {
       // Optimistic: set cache immediately so OnboardingGate sees true before refetch
       queryClient.setQueryData(['profile', 'onboarding'], {
-        onboarding_step: 6,
+        onboarding_step: 7,
         onboarding_completed: true,
       })
       queryClient.invalidateQueries({ queryKey: ['profile'] })

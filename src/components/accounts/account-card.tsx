@@ -21,6 +21,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import { PrivateValue } from '@/components/ui/private-value'
 import { formatCurrency } from '@/lib/formatters/currency'
 import { useDeleteAccount, useSetDefaultAccount } from '@/lib/queries/accounts'
 import type { Database } from '@/types/database'
@@ -92,7 +93,7 @@ export function AccountCard({ account, isDefault, onEdit }: AccountCardProps) {
               </Badge>
             </div>
             <p className="text-2xl font-semibold mt-3">
-              {formatCurrency(balance)}
+              <PrivateValue>{formatCurrency(balance)}</PrivateValue>
             </p>
           </div>
 

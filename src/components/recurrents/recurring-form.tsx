@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { recurringSchema, type RecurringInput } from '@/lib/validators/recurring'
-import { useCreateRecurring } from '@/lib/queries/recurring'
+import { useCreateRecurring, useUpdateRecurring, type DecryptedRecurring } from '@/lib/queries/recurring'
 import { useAccounts } from '@/lib/queries/accounts'
 import { useCards } from '@/lib/queries/cards'
 import { useMediaQuery } from '@/hooks/use-media-query'
@@ -15,28 +15,40 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { AmountInput } from '@/components/transactions/amount-input'
 import { CategorySelect } from '@/components/transactions/category-select'
-import { format, addMonths } from 'date-fns'
 import { useState, useEffect } from 'react'
 import { Plus } from 'lucide-react'
 
 interface RecurringFormProps {
   onSuccess?: () => void
+  /** If provided, form opens in edit mode */
+  editData?: DecryptedRecurring
+  /** Controlled open state (for edit mode) */
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  /** Custom trigger element (for edit mode) */
+  trigger?: React.ReactNode
 }
 
-export function RecurringForm({ onSuccess }: RecurringFormProps) {
-  const [open, setOpen] = useState(false)
-  const [type, setType] = useState<'income' | 'expense'>('expense')
-  const [paymentMethod, setPaymentMethod] = useState<string | null>(null)
+export function RecurringForm({ onSuccess, editData, open: controlledOpen, onOpenChange, trigger }: RecurringFormProps) {
+  const [internalOpen, setInternalOpen] = useState(false)
+  const open = controlledOpen ?? internalOpen
+  const setOpen = onOpenChange ?? setInternalOpen
+
+  const [type, setType] = useState<'income' | 'expense'>(editData?.type ?? 'expense')
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(editData?.payment_method ?? null)
+
+  const isEditMode = !!editData
 
   const createMutation = useCreateRecurring()
+  const updateMutation = useUpdateRecurring()
   const { data: accounts } = useAccounts()
   const { data: cards } = useCards()
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
-  const isPending = createMutation.isPending
+  const isPending = createMutation.isPending || updateMutation.isPending
 
-  // Default end_date to 12 months from today
-  const defaultEndDate = format(addMonths(new Date(), 12), 'yyyy-MM-dd')
+  // Default end_date to Dec 31 of current year
+  const defaultEndDate = `${new Date().getFullYear()}-12-31`
 
   const {
     register,
@@ -48,19 +60,30 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
     formState: { errors },
   } = useForm<RecurringInput>({
     resolver: zodResolver(recurringSchema),
-    defaultValues: {
-      type: 'expense',
-      amount: 0,
-      description: '',
-      day_of_month: 1,
-      end_date: defaultEndDate,
-    },
+    defaultValues: isEditMode
+      ? {
+          type: editData.type,
+          amount: editData.amount,
+          description: editData.description,
+          day_of_month: editData.day_of_month,
+          end_date: editData.end_date ?? defaultEndDate,
+          category: editData.category as RecurringInput['category'] ?? null,
+          payment_method: editData.payment_method as RecurringInput['payment_method'] ?? null,
+          bank_account_id: editData.bank_account_id ?? null,
+          credit_card_id: editData.credit_card_id ?? null,
+        }
+      : {
+          type: 'expense',
+          amount: 0,
+          description: '',
+          day_of_month: 1,
+          end_date: defaultEndDate,
+        },
   })
 
   const watchedType = watch('type')
   const watchedPaymentMethod = watch('payment_method')
 
-  // Update local state when form values change
   useEffect(() => {
     setType(watchedType)
   }, [watchedType])
@@ -69,21 +92,18 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
     setPaymentMethod(watchedPaymentMethod || null)
   }, [watchedPaymentMethod])
 
-  // Clear category when switching to income
   useEffect(() => {
     if (watchedType === 'income') {
       setValue('category', null)
     }
   }, [watchedType, setValue])
 
-  // Clear credit_card_id when payment method is not credit
   useEffect(() => {
     if (watchedPaymentMethod !== 'credit') {
       setValue('credit_card_id', null)
     }
   }, [watchedPaymentMethod, setValue])
 
-  // Clear bank_account_id when payment method is credit
   useEffect(() => {
     if (watchedPaymentMethod === 'credit') {
       setValue('bank_account_id', null)
@@ -92,29 +112,35 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
 
   const onSubmit = async (data: RecurringInput) => {
     try {
-      await createMutation.mutateAsync(data)
-      reset()
+      if (isEditMode) {
+        await updateMutation.mutateAsync({ id: editData.id, values: data })
+      } else {
+        await createMutation.mutateAsync(data)
+        reset()
+      }
       setOpen(false)
       onSuccess?.()
     } catch (error: any) {
-      console.error('Recurring creation error:', {
-        message: error?.message,
-        code: error?.code,
-        details: error?.details,
-        hint: error?.hint,
-        full: error,
-      })
-      // Show user-friendly error
-      alert(error?.message || 'Erro ao criar recorrência. Verifique o console.')
+      console.error('Recurring error:', error)
+      alert(error?.message || `Erro ao ${isEditMode ? 'editar' : 'criar'} recorrência.`)
     }
   }
 
-  // Prevent Enter key from submitting form
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-    }
+    if (e.key === 'Enter') e.preventDefault()
   }
+
+  const title = isEditMode ? 'Editar Recorrência' : 'Nova Recorrência'
+  const submitLabel = isEditMode
+    ? (isPending ? 'Salvando...' : 'Salvar')
+    : (isPending ? 'Criando...' : 'Criar Recorrente')
+
+  const defaultTrigger = (
+    <Button>
+      <Plus className="h-4 w-4 mr-2" />
+      Novo
+    </Button>
+  )
 
   const formContent = (
     <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown} className="space-y-4">
@@ -267,7 +293,7 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
 
       {/* Submit button */}
       <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? 'Criando...' : 'Criar Recorrente'}
+        {submitLabel}
       </Button>
     </form>
   )
@@ -275,15 +301,14 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button>
-            <Plus className="h-4 w-4 mr-2" />
-            Novo
-          </Button>
-        </DialogTrigger>
+        {trigger !== undefined ? (
+          <DialogTrigger asChild>{trigger}</DialogTrigger>
+        ) : (
+          <DialogTrigger asChild>{defaultTrigger}</DialogTrigger>
+        )}
         <DialogContent className="max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Nova Recorrência</DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
           {formContent}
         </DialogContent>
@@ -293,15 +318,14 @@ export function RecurringForm({ onSuccess }: RecurringFormProps) {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button>
-          <Plus className="h-4 w-4 mr-2" />
-          Novo
-        </Button>
-      </SheetTrigger>
+      {trigger !== undefined ? (
+        <SheetTrigger asChild>{trigger}</SheetTrigger>
+      ) : (
+        <SheetTrigger asChild>{defaultTrigger}</SheetTrigger>
+      )}
       <SheetContent side="bottom" className="h-[90vh] overflow-y-auto">
         <SheetHeader>
-          <SheetTitle>Nova Recorrência</SheetTitle>
+          <SheetTitle>{title}</SheetTitle>
         </SheetHeader>
         <div className="mt-4">{formContent}</div>
       </SheetContent>

@@ -41,7 +41,7 @@ export function CardTransactions({ transactions, bills, cardId }: CardTransactio
 
     // Convert to sorted array (newest first)
     const result: MonthGroup[] = []
-    const sortedKeys = Array.from(map.keys()).sort().reverse()
+    const sortedKeys = Array.from(map.keys()).sort()
 
     for (const month of sortedKeys) {
       const txs = map.get(month)!

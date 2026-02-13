@@ -36,7 +36,7 @@ export default function WhatsAppSettingsPage() {
       {/* Header with back button */}
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="icon" asChild>
-          <Link href="/app/configuracoes">
+          <Link href="/app/perfil">
             <ArrowLeft className="h-5 w-5" />
           </Link>
         </Button>

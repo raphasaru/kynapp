@@ -9,9 +9,11 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import { TransactionForm } from '@/components/transactions/transaction-form'
+import { useProfile } from '@/lib/queries/profile'
 
 export function AppShell() {
   const [sheetOpen, setSheetOpen] = useState(false)
+  const { data: profile } = useProfile()
 
   return (
     <>
@@ -27,7 +29,10 @@ export function AppShell() {
             <SheetTitle>Nova transação</SheetTitle>
           </SheetHeader>
           <div className="overflow-y-auto flex-1 px-4 pb-4">
-            <TransactionForm onSuccess={() => setSheetOpen(false)} />
+            <TransactionForm
+              defaultAccountId={profile?.default_bank_account_id}
+              onSuccess={() => setSheetOpen(false)}
+            />
           </div>
         </SheetContent>
       </Sheet>

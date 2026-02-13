@@ -28,6 +28,7 @@ export function IncomeExpenseBars({ transactionsByMonth }: IncomeExpenseBarsProp
           <Legend />
           <Bar dataKey="income" fill="#10b77f" name="Receitas" />
           <Bar dataKey="expense" fill="#ef4444" name="Despesas" />
+          <Bar dataKey="balance" fill="#6366f1" name="Saldo" />
         </BarChart>
       </ResponsiveContainer>
     </div>

@@ -20,6 +20,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import { PrivateValue } from '@/components/ui/private-value'
 import { formatCurrency } from '@/lib/formatters/currency'
 import { useDeleteCard } from '@/lib/queries/cards'
 import type { Database } from '@/types/database'
@@ -30,9 +31,10 @@ interface CardDisplayProps {
   card: CreditCard
   onEdit?: (card: CreditCard) => void
   nextBillAmount?: number
+  totalOutstanding?: number
 }
 
-export function CardDisplay({ card, onEdit, nextBillAmount }: CardDisplayProps) {
+export function CardDisplay({ card, onEdit, nextBillAmount, totalOutstanding }: CardDisplayProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const deleteCard = useDeleteCard()
   const router = useRouter()
@@ -52,6 +54,8 @@ export function CardDisplay({ card, onEdit, nextBillAmount }: CardDisplayProps) 
     : card.credit_limit
 
   const billAmount = nextBillAmount ?? 0
+  // Available = limit minus ALL outstanding planned charges (not just next month)
+  const outstandingAmount = totalOutstanding ?? billAmount
 
   // Create gradient background
   const backgroundColor = card.color || '#8b5cf6'
@@ -103,18 +107,18 @@ export function CardDisplay({ card, onEdit, nextBillAmount }: CardDisplayProps) 
         {/* Limit */}
         <div className="mb-3">
           <p className="text-xs opacity-80">Limite</p>
-          <p className="text-xl font-semibold">{formatCurrency(creditLimit)}</p>
+          <p className="text-xl font-semibold"><PrivateValue>{formatCurrency(creditLimit)}</PrivateValue></p>
         </div>
 
         {/* Current bill + Available */}
         <div className="flex items-end justify-between mb-4">
           <div>
             <p className="text-xs opacity-80">Fatura atual</p>
-            <p className="text-xl font-semibold">{formatCurrency(billAmount)}</p>
+            <p className="text-xl font-semibold"><PrivateValue>{formatCurrency(billAmount)}</PrivateValue></p>
           </div>
           <div className="text-right">
             <p className="text-xs opacity-80">Disponível</p>
-            <p className="text-lg font-semibold">{formatCurrency(creditLimit - billAmount)}</p>
+            <p className="text-lg font-semibold"><PrivateValue>{formatCurrency(Math.max(0, creditLimit - outstandingAmount))}</PrivateValue></p>
           </div>
         </div>
 

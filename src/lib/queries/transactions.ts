@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { encryptFields, decryptFields } from '@/lib/crypto/encrypt'
 import { getMonthRange } from '@/lib/formatters/date'
 import { applyBalanceEffects } from '@/lib/balance-updates'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { calculateInstallmentDueDates, splitInstallmentAmounts } from '@/lib/installments'
 import type { TransactionInput } from '@/lib/validators/transaction'
 import type { QueryClient } from '@tanstack/react-query'
@@ -88,7 +88,7 @@ export function useCreateTransaction() {
         const insertData: any = {
           ...dbValues,
           user_id: user.id,
-          due_date: format(new Date(dbValues.due_date), 'yyyy-MM-dd'),
+          due_date: dbValues.due_date, // Already yyyy-MM-dd from form input
         }
 
         const encrypted = await encryptFields('transactions', insertData) as unknown as Database['public']['Tables']['transactions']['Insert']
@@ -189,13 +189,26 @@ export function useUpdateTransaction() {
 
   return useMutation({
     mutationFn: async ({ id, ...values }: TransactionInput & { id: string }) => {
-      // Find old transaction from cache for balance reversal
-      const oldTx = findTxInCache(queryClient, id)
+      // Strip installment_count (not a DB column)
+      const { installment_count, ...dbValues } = values
+
+      // Find old transaction from cache for balance reversal, fallback to DB
+      let oldTx = findTxInCache(queryClient, id)
+      if (!oldTx) {
+        const { data: fetchedTx, error: fetchError } = await supabase
+          .from('transactions')
+          .select('*')
+          .eq('id', id)
+          .single()
+        if (!fetchError && fetchedTx) {
+          oldTx = await decryptFields('transactions', fetchedTx) as DecryptedTransaction
+        }
+      }
 
       // Prepare update object
       const updateData: any = {
-        ...values,
-        due_date: format(new Date(values.due_date), 'yyyy-MM-dd'),
+        ...dbValues,
+        due_date: dbValues.due_date, // Already yyyy-MM-dd from form input
       }
 
       // Clear credit_card_id if payment method is not credit
@@ -254,8 +267,18 @@ export function useDeleteTransaction() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      // Find transaction from cache before deleting
-      const oldTx = findTxInCache(queryClient, id)
+      // Find transaction from cache before deleting, fallback to DB
+      let oldTx = findTxInCache(queryClient, id)
+      if (!oldTx) {
+        const { data: fetchedTx, error: fetchError } = await supabase
+          .from('transactions')
+          .select('*')
+          .eq('id', id)
+          .single()
+        if (!fetchError && fetchedTx) {
+          oldTx = await decryptFields('transactions', fetchedTx) as DecryptedTransaction
+        }
+      }
 
       const { error } = await supabase
         .from('transactions')
@@ -296,7 +319,11 @@ export function useToggleTransactionStatus() {
   return useMutation({
     mutationFn: async ({ id, currentStatus }: { id: string; currentStatus: 'planned' | 'completed' }) => {
       const newStatus = currentStatus === 'planned' ? 'completed' : 'planned'
-      const completed_date = newStatus === 'completed' ? format(new Date(), 'yyyy-MM-dd') : null
+      // Use parseISO-safe local date for completed_date
+      const now = new Date()
+      const completed_date = newStatus === 'completed'
+        ? `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+        : null
 
       // Find transaction from cache for balance calculation
       const cachedTx = findTxInCache(queryClient, id)

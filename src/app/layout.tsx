@@ -52,6 +52,17 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <ServiceWorkerRegister />
           <Toaster position="top-center" richColors />
+          {/* Landscape block overlay (mobile only, CSS-controlled) */}
+          <div
+            id="landscape-block"
+            className="fixed inset-0 z-[9999] bg-background items-center justify-center text-center p-8 hidden"
+          >
+            <div>
+              <p className="text-4xl mb-4">📱</p>
+              <p className="text-lg font-semibold font-heading">Gire o celular</p>
+              <p className="text-muted-foreground mt-1">O KYN funciona melhor em modo retrato.</p>
+            </div>
+          </div>
           {children}
         </ThemeProvider>
       </body>

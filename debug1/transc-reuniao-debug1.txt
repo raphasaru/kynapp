@@ -1,0 +1,450 @@
+# Meeting Transcription
+
+  Meeting started: 2/12/2026, 11:17:38 PM
+  Duration: 81 minutes
+  Participants: Rafael Araujo, Raphael Saru
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/o4rXTTSfPvW3ekMtLALo?o=txt)
+
+    
+
+  
+
+  
+    ## Highlights
+
+    > 35:55 Raphael Saru: Então até vou falar para transcrição aqui que eu falei ah no onboard perguntar para o usuário, qual vai ser a conta padrão?
+> 38:49 Raphael Saru: Deixa eu falar aqui ó no Word se o usuário apertar avançar já salva o estado
+> 38:57 Raphael Saru: do da fase que ele estava.
+> 39:11 Raphael Saru: no
+
+  ## Transcript
+
+  00:00 Raphael Saru: alô, alô Vou te passar o link do drive.
+00:39 Raphael Saru: Mano, não sinto sabor velho.
+00:59 Raphael Saru: Aí umas 10:20.
+01:30 Raphael Saru: É bom mano.
+06:28 Raphael Saru: Alô minha vida. boa
+06:36 Rafael Araujo: Cadê como é que faz para estimar o site essa p****?
+06:44 Raphael Saru: É ali na setinha, mas o site é outro mano, é quem app agora?
+06:46 Rafael Araujo: Não é? Boa quem é? c******, ficou bonito, mano. Você é louco, mano dessa vez.
+06:58 Raphael Saru: Ficou legal, né?
+07:03 Raphael Saru: Olá, estou transcrevendo esta chamada com minha extensão Tactiq AI. https://tactiq.io/r/transcribing
+07:06 Rafael Araujo: Que é essa esse foi aí? Compartilhar também o áudio da Guia. Oi É uma conta aqui.
+07:38 Raphael Saru: Mano. Acho que até vale mas daí eu seria bom apagar ela você vai usar mesmo e-mail.
+07:43 Rafael Araujo: melhor
+07:44 Raphael Saru: Deixa eu apagar ela para vir tudo Zerado, mano. Pronto pode criar Vai não pagou. Pera aí, acho que é porque tem dados. Não tá pagando f************. Vou apagar o profile primeiro.
+09:11 Raphael Saru: Não apaga esse c****** velho. o seu dono Tá pagando não?
+09:43 Raphael Saru: Mano, o usuário apagou, mas o Walt não tenta. Fazer login aí acho que vai dar m****, mas tenta.
+09:57 Rafael Araujo: Ai eu não lembro minha senha cara, esse é o problema.
+10:01 Raphael Saru: Não melhor ainda porque daí você pede no Magic, eu não testei ainda.
+10:07 Rafael Araujo: Teria que testar com e-mail desconhecido para ver o que que acontece, né?
+10:12 Raphael Saru: Você tem outro você tem outro e-mail não para testar.
+10:15 Rafael Araujo: Tenho tenho.
+10:17 Raphael Saru: Não testa com outro aí p****, mas zoada não consegui apagar velho. Tinha que saber o porquê que não tá pagando.
+10:25 Rafael Araujo: Que que dá ele enviou?
+10:29 Raphael Saru: ok
+10:30 Rafael Araujo: Ele enviou um link.
+10:39 Raphael Saru: Para um e-mail que não tem conta.
+10:41 Rafael Araujo: sim
+10:43 Raphael Saru: Oxe deixa eu ver o que acontece no banco de dados aqui.
+10:49 Rafael Araujo: Cancela f************.
+10:55 Raphael Saru: É no banco não bateu o e-mail não.
+10:58 Rafael Araujo: Pera aí, deixa eu testar.
+11:02 Raphael Saru: Deixa eu ver se o incêndio enviou?
+11:12 Rafael Araujo: Aí vamos descobrir agora. tá acelerando e Boa noite.
+11:48 Rafael Araujo: Cadê o botão do Bagulho?
+11:50 Raphael Saru: Não foi.
+11:57 Rafael Araujo: Tá puxando para outro site ainda?
+12:02 Raphael Saru: Putz não é possível. Vamos ver. Ah, eu não troquei eu não troquei o o domínio do ricente, c******. Calma aí que eu troco já. domínios adicionando não pode ter dois
+12:18 Rafael Araujo: mas é um bom teste mano que
+12:21 Raphael Saru: p****, já começou a primeira coisa. Ah tá errado.
+12:28 Rafael Araujo: Samba agora. Já começamos como.
+12:31 Raphael Saru: Nem entrou no bagulho.
+12:40 Rafael Araujo: Já tá gastando teus bagulho para transcrever a parada.
+12:44 Raphael Saru: Já mas não gasta não. Depois ele entende da onde que é começa o the bug mesmo. Calma aí que eu tenho que publicar o DNS lá.
+12:58 Rafael Araujo: Cabuloso viu velho.
+13:02 Raphael Saru: Do que?
+13:04 Rafael Araujo: povoado do lado de lá
+29:46 Raphael Saru: Deixa eu começar a anotar, né? Pera aí vou voltar a transcrição aqui. Então precisa arrumar todos os e-mails de Magic redefinição de senha e
+29:52 Rafael Araujo: De boas-vindas não sei porque eu não queria conta ainda. Vou criar conta.
+29:56 Raphael Saru: boas-vindas. Não tá funcionando também, né?
+30:07 Rafael Araujo: Será que vai dar bem? Eu vou criar no outro e-mail lá para ver.
+30:10 Raphael Saru: Tá boa que eu não consegui excluir o seu não. Vou até tentar de novo. Não tá excluindo não, depois eu vou forçar a explosão dele aqui. minha
+30:40 Rafael Araujo: Vou testar. Então vamos logo aqui. Por que meu Deus? Ô buçanha Acabei de criar p**** da conta velho.
+31:14 Raphael Saru: Aqui apareceu o que que tá coisando aí sem errada.
+31:18 Rafael Araujo: é
+31:19 Raphael Saru: Mas você não tá errado não?
+31:21 Rafael Araujo: Não. sim
+31:25 Raphael Saru: Você colocou o nome? Ainda não, né?
+31:29 Rafael Araujo: Não. Não é possível, pera aí. só tem uma certeza que Não. Não v**************, apaga essa conta aí de novo, por favor.
+31:55 Raphael Saru: Pera aí o ambiente de execução não permite deletar diretamente a tabela restringindo por ou. Service
+32:02 Rafael Araujo: Até que eu tenho que aceitar alguma coisa assim confirmar conta. Não, né? Não. Não tô acreditando. p****, mano. Tá certinho assim, cara.
+32:25 Raphael Saru: Que que você falou para tentar aqui Apagar?
+32:28 Rafael Araujo: Pagar essa conta que eu acabei de criar você vai.
+32:34 Raphael Saru: Essa apagou.
+32:35 Rafael Araujo: Eu vou criar de novo aqui, porque não tem não. Vou ficar até assim é fácil. v**************. Ela tá com caixa alta, calma aí. Não, se não for agora vou ficar muito p***. Aí mano, v***********. E-mail tá c*****.
+33:21 Raphael Saru: beleza
+33:21 Rafael Araujo: Confirmação de boas-vindas aí tá errado.
+33:26 Raphael Saru: Tá tenta entrar agora.
+33:30 Rafael Araujo: Fecha esse esse.
+33:36 Raphael Saru: Aí p****, aí jogou para um board. Tá certo?
+33:36 Rafael Araujo: ok Beleza seus dados são criptografados.
+33:46 Raphael Saru: E isso aí é fruta, não consigo ver um valor lançado.
+33:52 Rafael Araujo: Acionar a conta bom muito bom muito bom. Meu sonho. jogar aqui mais um aqui do Itaú seletor de cores não
+34:25 Raphael Saru: Nossa, mente é muito ó, não dá para voltar, né? Mas beleza.
+34:30 Rafael Araujo: duas contas ele pulou já
+34:33 Raphael Saru: Como assim
+34:33 Rafael Araujo: Por isso eu cadastrei duas contas, ele já passou por o cartão de crédito.
+34:38 Raphael Saru: Na verdade, você apertou o próximo, né?
+34:40 Rafael Araujo: p****, tá
+34:41 Raphael Saru: Ah volta ali em cima tá igual a dois. aí É isso. Você não apertou criar conta você apertou o próximo lá embaixo, entendeu?
+34:57 Rafael Araujo: Aqui pode crer.
+35:04 Raphael Saru: Nossa, cabeça é muito igual velho, porque eu fiz. Exatamente isso ó não tá não tá explícito.
+35:13 Rafael Araujo: Intuitivo já viu o bagulho Verde já sai clicando bem.
+35:16 Raphael Saru: É que tem vários bancos e várias cores, mas é todo mundo bem. Que tal é top mais nisso ó, clica nos três pontinhos em uma delas e põe como principal isso aí tinha que perguntar para o usuário, qual vai ser a padrão, entendeu? Porque o lançamento feito pelo WhatsApp cai na padrão, entendeu?
+35:33 Rafael Araujo: Muito bom.
+35:35 Raphael Saru: Agora vamos próximo.
+35:37 Rafael Araujo: Muito bom.
+35:55 Raphael Saru: Então até vou falar para transcrição aqui que eu falei ah no onboard perguntar para o usuário, qual vai ser a conta padrão?
+36:15 Rafael Araujo: Eu tô fazendo minha conta truta Truck.
+36:18 Raphael Saru: o limite de um cartão
+36:23 Rafael Araujo: p****, foi roubado aqui, tá?
+36:26 Raphael Saru: assinatura nova
+36:30 Rafael Araujo: Ficou legal cara, p*** que pariu isso aqui ficou muito bom, velho.
+36:36 Raphael Saru: Mano, fica nessa tela aí show mudar você para o próprio a gente ver. Espera aí.
+36:45 Rafael Araujo: Para ver se vai quebrar, né?
+36:51 Raphael Saru: calma aí Carai, tô com 50 super bem aberto aqui. É não sei onde põe isso que subs. plan free free Achei agora qualquer seu ID. Pro Rafael 95 f a95. e o zeradinho aqui vou dar você para o Pronta, eu acho que não tenta por agora um cartão novo.
+37:35 Rafael Araujo: Ai, ó, c******, ficou da hora isso aqui mano.
+37:42 Raphael Saru: boa Mano, eu fiz um bagulho tipo de fatura aberta fatura fechada.
+38:15 Raphael Saru: Mano, essa parte de orçamento também, achei que ficou muito legal velho. Você vai ver depois como fica no na 10
+38:41 Rafael Araujo: Aqui teria que salvar antes de prosseguir, né?
+38:43 Raphael Saru: É É bom deixar tipo de uma vez apertou o próximo ele já salva, né?
+38:47 Rafael Araujo: Também porque se o cara fizer igual eu.
+38:49 Raphael Saru: Deixa eu falar aqui ó no Word se o usuário apertar avançar já salva o estado
+38:57 Raphael Saru: do da fase que ele estava.
+39:11 Raphael Saru: no
+39:16 Raphael Saru: transcreve direito p****
+39:20 Rafael Araujo: ou tá que o
+39:21 Raphael Saru: Os palavrão ele entendeu?
+39:26 Rafael Araujo: Tira aí. Tira aí. Olá logo, toma é isso. Ficou legal a logo ali na esquerdinha ali, talvez centralizar ela mais né?
+39:45 Raphael Saru: É o que deu ruim. É centralizar a logo.
+39:58 Rafael Araujo: Mas tem que ver como é que vai ficar no celular também, né? Antes de qualquer coisa. Eu tenho essa parada.
+40:03 Raphael Saru: Ah mas de qualquer forma a gente melhora no coisa também o seu número é 61 aqui achei. vai lá
+40:24 Rafael Araujo: Cadê cadê? Cadê, cadê cadê? aquele mesmo lá
+40:41 Raphael Saru: Não é outro é 11.
+40:42 Rafael Araujo: Fala aí. Ele não falou aqui, né?
+40:48 Raphael Saru: Não é esse número aí ó 51987705.
+40:49 Rafael Araujo: pera aí calma aí f************ aqui querendo fazer.
+41:02 Raphael Saru: Sem escanear o QR.
+41:09 Rafael Araujo: comercial aqui ó, Finanças 24 horas É esse, né?
+41:19 Raphael Saru: boa
+41:21 Rafael Araujo: Mandei. E aí
+41:31 Raphael Saru: Não te respondeu.
+41:33 Rafael Araujo: Agora foi. Vou aguardar aqui no site que que vai acontecer.
+41:40 Raphael Saru: Ele tinha que já mostrar aí, né? Não sei se ele vai atualizar isso não, já vou até falar aqui, ó. No onboard ao vincular o WhatsApp precisa atualizar automaticamente após o usuário conseguir vincular.
+42:01 Rafael Araujo: é só
+42:01 Raphael Saru: próximo Aí faz a oferta, né? Beleza começar a usar. É isso aí aconteceu. Ele falou que arrumou e não arrumou esse arrombado.
+42:19 Rafael Araujo: Um bug aqui meu Deus.
+42:19 Raphael Saru: Início ali que ele vai parar esse look infinito aí. Não aí parou.
+42:29 Rafael Araujo: Ficou muito bonito, cara.
+42:32 Raphael Saru: É meu ver no tema claro também se você gosta.
+42:37 Rafael Araujo: Tô cego.
+42:37 Raphael Saru: uma Flash Bang Vai lá no orçamento para você ver como ficou da hora.
+42:41 Rafael Araujo: Não ficou bom.
+42:46 Raphael Saru: Ô b*****, deixa eu por ser um Borge com pronto aqui na verdade mano, atualiza. Dá um F5 aí para ver se para seu humor de tentar com outro aqui já. Foi aqui parou ficou legal, né?
+43:02 Rafael Araujo: Oi Meu sonho é isso tudo aqui por mês. orçamento aqui
+43:17 Raphael Saru: Ficou da hora essa parte.
+43:17 Rafael Araujo: E sobrar ainda p****, ficou muito bom velho. Carteira c****** ficou muito bom velho. Tem como definir cartão padrão Não beleza eu sou editar. Deixei meu nome errado, c******, como editar?
+43:40 Raphael Saru: É bom que já testa a edição já.
+43:44 Rafael Araujo: foi
+43:46 Raphael Saru: Tem que apertar salvar.
+43:47 Rafael Araujo: Onde fica?
+43:49 Raphael Saru: Caraio vai entender.
+43:53 Rafael Araujo: Eu tô com sono, meu Deus. Aí eu acho que tem alguma coisa que não pode quebrei o bagulho.
+44:00 Raphael Saru: A política de privacidade ó Zap tá vinculadinho pro limitado. eita Vamos descobrir onde foi esse apertou em WhatsApp e depois voltar, né?
+44:22 Rafael Araujo: foi
+44:22 Raphael Saru: Isso é problema de Rota.
+44:24 Rafael Araujo: Que ele foi para configurações ó que não tem página de configurações.
+44:28 Raphael Saru: É perfil, né? Então tá a página de configurações não existe então no
+44:29 Rafael Araujo: Tô aqui ó, clicou aqui, ó. eu
+44:33 Raphael Saru: botão voltar da página WhatsApp. Tem que voltar para página de perfil, beleza?
+44:41 Rafael Araujo: Tô achando vários bugs aqui, meu Deus.
+44:48 Raphael Saru: O que a gente tá vendo ainda meio que em tempo real f***-se, tá ligado?
+44:49 Rafael Araujo: Ó, esse aqui é o principal.
+44:56 Raphael Saru: A todos os links que o usuário acessar pela pelo menu configurações precisa voltar para parte de perfil?
+45:06 Rafael Araujo: c******
+45:08 Raphael Saru: Aí tem que tirar aquele Place Holder. É tipo para substituir.
+45:20 Rafael Araujo: Muito bom ver que aconteceu tá pro início deslocou da minha conta.
+45:24 Raphael Saru: A app lá em cima, você deve estar logado ainda porque ele tá persistindo a sessão. Só tira esse é um board aí. Olá aí, ele tá tipo vendo quem é você aí ele te achou ele põe rapaz, tá lenta aí. Mano recorrentes. Não testei. Mas acho que nem tá pronto, mas dá para testar também.
+46:03 Rafael Araujo: c****** legal receitas honorários.
+46:04 Raphael Saru: Já testa já não vamos vamos pelas transações primeiro que é o principal do Bagulho.
+46:20 Rafael Araujo: planejada realizada Essa parada aqui. Não.
+46:31 Raphael Saru: Deixa para ele puxar padrão.
+46:33 Rafael Araujo: Pensei na possibilidade, mas acho que não acho melhor eu não sei se teria como colocar regra na verdade, se ele não selecionasse nenhuma é porque vencem
+46:41 Raphael Saru: Já caí na padrão, né?
+46:42 Rafael Araujo: padrão.
+46:45 Raphael Saru: Eu acho que até melhor vim selecionada padrão, né?
+46:45 Rafael Araujo: ou É pode ser eu vou colocar ele como Campo obrigatório porque tá vendo que veio selecionado nenhum, né? Que que acontece a gente só atacar vamos testar aqui. 5 de honorário Eu vou receber aqui recebi dia 10. realizada planejada com a diferença
+47:14 Raphael Saru: Planejada tipo assim, você vai receber. Ela dia 15 então ela já planeja no
+47:19 Rafael Araujo: Não entendi
+47:19 Raphael Saru: orçamento para você.
+47:23 Rafael Araujo: pequeno débito crédito de transferência foi Não selecionar a conta. Ok foi para onde?
+47:31 Raphael Saru: beleza Para nenhuma para lugar nenhum, só fica nas transações então no formulário
+47:38 Rafael Araujo: beleza
+47:40 Raphael Saru: de Nova transação, já vem uma conta bancária a conta bancária padrão, já vem pré-selecionada e o usuário pode alterar esse campo é obrigatório.
+47:52 Rafael Araujo: Saber como é que eu deleto. Cadê o botão de deletar essa p****?
+47:58 Raphael Saru: Não quando ele salva ele precisa fechar muda ali a conta bancária edita, põe. Não tá salvando, né? Não tá com erro ao editar uma transação já lançada na hora de escolher a conta tenta fazer outra edição nela tipo mudar um homem mudar o valor. Assim também, né?
+48:29 Rafael Araujo: tá
+48:30 Raphael Saru: permitir exclusão de transações
+48:34 Rafael Araujo: Será que tem orçamento?
+48:37 Raphael Saru: Não não.
+48:37 Rafael Araujo: carteira relatórios Não tá vamos fazer uma nova transação aqui.
+48:43 Raphael Saru: Tenta mudar o nome o valor dela para ver se essa alteração tá indo. Não, beleza. Deixa eu deletar ela aqui para não ficar zoando os valores.
+49:08 Rafael Araujo: ô, filha da
+49:40 Raphael Saru: Como é que eu sei agora se tá tudo criptografado esse carai? transações de pegar pelo id do seu do seu usuário
+50:32 Raphael Saru: deletei Tá um pouquinho.
+50:40 Rafael Araujo: beleza Questão da data tá incorreta também, vocês percebeu só vi dia 10, ele jogou
+51:00 Raphael Saru: Que você colocou 10 então precisa Corrigir a data para o padrão horário de
+51:01 Rafael Araujo: dia nove.
+51:06 Raphael Saru: Brasília. Como é que fala o tc-3?
+51:48 Rafael Araujo: Aqui já como pago.
+51:52 Raphael Saru: Já acerta a conta do Itaú? Quanto tinha de saldo quando você criou?
+52:00 Rafael Araujo: Não lembro.
+52:01 Raphael Saru: Era 5k não era não era nove era nove. Aí você colocou entrou mais cinco foi
+52:02 Rafael Araujo: Não era 4:30.
+52:07 Raphael Saru: para
+52:10 Rafael Araujo: Aí quando chegou mais cinco.
+52:12 Raphael Saru: Quatro e meio aí você colocou não aí é o saldo do mês.
+52:17 Rafael Araujo: Pera aí, a gente pode puxar o histórico aqui, né?
+52:21 Raphael Saru: Não quando você criou ela.
+52:25 Rafael Araujo: Eu acho que foi quatro ou foi quatro na real.
+52:28 Raphael Saru: Ó se entrou cinco. Depois tirou 500.
+52:32 Rafael Araujo: É isso mesmo foi quatro.
+52:34 Raphael Saru: foi
+52:35 Rafael Araujo: Vamos pegar dando bem aqui agora que é assim, vou colocar aqui uns bagulho aqui, ó. Diminuiu 450 tá? Ok?
+52:45 Raphael Saru: Luiz Põe a essa despesa agora com o planejada e não marca ver se ela vai. Se ela vai descontar lá? vê lá Era cinco, né? Beleza se você marcar depois diminuir mais.
+53:28 Rafael Araujo: uma Beleza certinho.
+53:33 Raphael Saru: Bom perfeito.
+53:37 Rafael Araujo: Já vamos lançar uma compra no crédito aqui ó 4.500. guitarra
+53:47 Raphael Saru: Eu testando o cartão de crédito exatamente.
+53:56 Rafael Araujo: Tinha até 12.
+54:02 Raphael Saru: Olhando assim a parcelinha. Até fica suave.
+54:07 Rafael Araujo: E aí ó.
+54:08 Raphael Saru: boa
+54:13 Rafael Araujo: Tá querendo.
+54:20 Raphael Saru: boa só que fez errado porque
+54:20 Rafael Araujo: Não ele fez certo cartão. Ele é esse mês mesmo, já vem. A primeira é isso
+54:25 Raphael Saru: não é que boa
+54:32 Rafael Araujo: aí.
+54:33 Raphael Saru: boa
+54:34 Rafael Araujo: Só ver um negócio que aconteceu com isso aqui.
+54:40 Raphael Saru: Limite 900 é não fez nada, né, f************.
+54:44 Rafael Araujo: Não não sou
+54:50 Raphael Saru: Aí era para sair do limite disponível também c****** esse bagulho Tava certinho quando eu testei.
+54:56 Rafael Araujo: Será que é porque eu não marquei o primeiro, deixa eu ver.
+54:58 Raphael Saru: Não faz sentido.
+55:00 Rafael Araujo: Não mudou nada.
+55:02 Raphael Saru: Clica aí nele. 375, beleza
+55:13 Rafael Araujo: Cara isso aqui ficou bom isso aqui ficou bom para c******. Só que eu acho que tem que em Janeiro Esse aqui eu acho que seria legal se aparecesse do da primeira para a última não.
+55:33 Raphael Saru: É melhor. Porque daí você vê a próxima, né? Tá então no detalhe das compras parceladas nas compras do cartão precisa ficar na ordem de data crescente, né? E precisa corrigir que não tá consumindo o limite quando faz a compra o valor
+55:50 Rafael Araujo: isso
+55:56 Raphael Saru: cheio precisa consumir do limite do cartão e só vai liberando conforme vai pagando as parcelas. nubank ali Rafa com valor menor tipo um mil em cinco vezes
+56:26 Raphael Saru: Faz um esquema também, quando que tá para fechar a sua? Faz um esquema que você tá então ele já tem que vir no outro, beleza? Vai
+56:31 Rafael Araujo: Esse aqui é só no outro mês. Se colocar depois do dia 10 já no outro mês.
+56:36 Raphael Saru: lá lança.
+56:42 Rafael Araujo: Tu viu a outra que era? Mentira que ele vai lançar no outro mês.
+56:46 Raphael Saru: tá vai para boa agora vê lá
+56:54 Rafael Araujo: Já estamos no vermelho.
+56:59 Raphael Saru: Ele não tá não tá comendo do limite, né não? É não tá comendo no limite não, ele comeu do disponível ali só da fatura atual.
+57:08 Rafael Araujo: É justamente o contrário, né? Eu tenho que liberar conforme tu vai marcando.
+57:14 Raphael Saru: Tá pedi para corrigir isso.
+57:18 Rafael Araujo: Que é mais.
+57:20 Raphael Saru: Precisa dar uma olhada no relatório, como que ficou? Tá meio simples ainda, né? Pouca coisa mas Os dados estão aí?
+57:38 Rafael Araujo: uhum
+57:41 Raphael Saru: Seria bom por tipo aqueles. hoje ontem Últimos essa semana né as transações.
+57:55 Rafael Araujo: sim
+57:56 Raphael Saru: Tá então a gente precisa de um relatório um pouco mais detalhado por transações nos dias de hoje ontem nos últimos três dias sete 14 e 30.
+58:24 Rafael Araujo: Vamos testar aqui, como isso vai demorar.
+58:27 Raphael Saru: boa Chupar base vamos falando oi tudo ó faltou o valor. super base Oi você tem que mudar para o plano pro muitas requisições no banco ó Ela tem que saber que ele fez com isso, né?
+58:51 Rafael Araujo: Ele não lançou.
+58:52 Raphael Saru: Beleza chegar mês de março ele lança.
+58:55 Rafael Araujo: Eles não são bem, só que se f***.
+58:58 Raphael Saru: Vai ali, ó. Sei lá, que p**** que é como é que faz isso? Você tinha clicado em recorrentes.
+59:16 Rafael Araujo: Tem como editar essa p**** só deletar?
+59:21 Raphael Saru: Tá então os recorrentes precisam ser lançados para todos os meses até a data final escolhida pelo usuário e tem que permitir na página de recorrentes aí são as consequências.
+59:35 Rafael Araujo: Cara e se a gente e se a gente colocasse na verdade as despesas recorrentes sempre fecharem no final do ano. Ou em um ano o cara renovar que aí não isso.
+59:43 Raphael Saru: Pode ser acho que é uma boa festa no final do ano e quando virar o ano a gente a gente tem esse problema para resolver. E aí a gente só implementa assim perguntando para o usuário. O que é que
+59:52 Rafael Araujo: Não.
+59:55 Raphael Saru: relance esse ano todas que você tem recorrente ou ele pode escolher não quer
+59:58 Rafael Araujo: É isso.
+59:59 Raphael Saru: mais ver se dá para lançar uma receita recorrente. tarde
+01:00:29 Rafael Araujo: Dá de boa bons tempos. Cada um mexendo não apareceu aqui.
+01:00:41 Raphael Saru: Não é que System ele descobriu que não existe mais essa receita.
+01:00:47 Rafael Araujo: c****** Nem o sistema que quer mandar dinheiro do Messias para nós.
+01:00:55 Raphael Saru: Beleza então, tem que arrumar a parte de recorrentes tem que arrumar a parte de
+01:00:55 Rafael Araujo: dia primeiro
+01:01:01 Raphael Saru: limite do cartão. O relatório tem que ser mais detalhado as transações e a soma dos períodos de um dia três dias sete dias 14 e 30. Que é mais na página do perfil todos os links que forem acessados e depois apertar para voltar tem que voltar para página de perfil tem que corrigir o Loop Infinito que ao sair do Hamburgo para tela início do app. Centralizar o logo no menu lateral.
+01:01:39 Raphael Saru: Que mais?
+01:01:43 Rafael Araujo: um botão de deletar
+01:01:43 Raphael Saru: orçamento
+01:01:47 Rafael Araujo: Não tá salvando.
+01:01:48 Raphael Saru: Adicionar para alterar editar e alterar e excluir transações lançadas.
+01:01:57 Rafael Araujo: Até que o botão o clicar em cima já tá funcionando, só que não tá salvando, né?
+01:02:02 Raphael Saru: Tenta apagar um bagulho lá do cartão, vai lá no cartão tem um esquema que eu coloquei também que é importante, mano. Clica em uma aí, ele vai perguntar se você quer excluir só essa ou todas tá ligado.
+01:02:17 Rafael Araujo: Muito bom, exclui todos aqui. E aí
+01:02:25 Raphael Saru: boa
+01:02:27 Rafael Araujo: legal Isso ficou muito bom.
+01:02:33 Raphael Saru: Ficou intuitivo que dá para clicar no Card.
+01:02:42 Rafael Araujo: Daqui sim porque tem a setinha, né.
+01:02:45 Raphael Saru: Não do cartão mesmo na carteira.
+01:02:49 Rafael Araujo: também
+01:02:50 Raphael Saru: Ele tá beleza.
+01:02:55 Rafael Araujo: Não sei se a gente coloca algum tipo de instrução.
+01:02:56 Raphael Saru: Dá para trocar a conta padrão ali nos três pontinhos?
+01:03:08 Rafael Araujo: Eu tenho que puxar a conta padrão, quando for lançar uma receita.
+01:03:12 Raphael Saru: Já vai vir para selecionada e vai ser obrigatório, né?
+01:03:19 Rafael Araujo: Eu acho que é isso por hora.
+01:03:20 Raphael Saru: Eu não sabia que eu reparei. Ah não. Tem sim, eu ia falar que não tem. Que não tem categoria. Mas tem sim.
+01:03:30 Rafael Araujo: É não tem como criar mais, né pelo visto.
+01:03:33 Raphael Saru: Não não isso aí tirou. Ele falou ele falou que para MVP é muito tipo é um recurso meio que vai dar trabalho à toa porque 90% das pessoas vão usar essas aí, entendeu?
+01:03:49 Rafael Araujo: Então é isso aí.
+01:03:51 Raphael Saru: Testa ali onde está o usuário era melhor estar sem o nome né embaixo no
+01:03:56 Rafael Araujo: Sim isso.
+01:03:58 Raphael Saru: usuário pelo nome e colocar inicial. Isso até agora o layout de celular. Que eu ia perguntar. Ah! Depois tenta fazer lançamento pelo WhatsApp também isso aí, eu não testei. Eu testei mas ele tava vindo criptografado. Isso aí tá errado, né? Ficou ruim.
+01:04:45 Rafael Araujo: Não porém cortou né?
+01:04:50 Raphael Saru: Tá os filtros de sobe lá para ver. Os filtros de Nova transação orçamento e recorrentes os botões na verdade de Nova transação orçamento e recorrentes não criar horizontal no celular e encaixar no layout os cards poderiam ser menores também, né de resumo. Então
+01:05:11 Rafael Araujo: Sim, sim.
+01:05:12 Raphael Saru: os cards de saldo de saldo, receita e despesa total orçado. receita despesa tanto da home quanto do orçamento podem ser menores de altura
+01:05:28 Rafael Araujo: Cadê o botãozinho também para ocultar que não teve né?
+01:05:32 Raphael Saru: A colocar o botão do olho para ocultar os valores das contas e quando clicar nele ficar os pontinhos ao invés dos números.
+01:05:44 Rafael Araujo: Achei que ficou bom e realmente ficou bom.
+01:05:48 Raphael Saru: Eu sinto falta mas não sei se é costume meu de um Topo. Tá ligado não tem um Topo. Tipo um header um sei lá uma barra fixa em cima com um logo ou com o menu tá ligado é que o menu embaixo, né?
+01:06:01 Rafael Araujo: que o senhor Não é tipo logo do app aqui para cima, né?
+01:06:08 Raphael Saru: é, mas sente falta também ou tipo só ocupa nisso à toa, pensa que
+01:06:12 Rafael Araujo: Não eu acho que não cara, eu acho que faz sentido e tem umas partes que ficam meio em.
+01:06:17 Raphael Saru: Eu vejo.
+01:06:22 Rafael Araujo: Meio vazio pega põe qualquer aplicativo de banco e Finanças vai ter em cima, pô.
+01:06:26 Raphael Saru: deixa eu abrir aqui no Tem minha foto tem menu. Tem o olhinho? fazendo topo no mobile com o Vai lá para o início Rafa para eu ver uma coisa. É o topo pode ser as boas-vindas no início nos outros menus, pode manter apenas o ícone de menu. Mas não faz sentido ter um menu tá lá embaixo já.
+01:07:23 Rafael Araujo: Talvez a gente possa jogar o ícone de perfil para cima, né?
+01:07:27 Raphael Saru: É verdade mantém só os quatro lá embaixo, né? Então no menu de baixo do
+01:07:30 Rafael Araujo: isso
+01:07:32 Raphael Saru: celular. Vai ficar somente emissor e relatórios e o menu de perfil joga para cima. Não numa nova regra fixa. Que fica em todos os todas as páginas.
+01:07:56 Rafael Araujo: Ou será que só na de início cara?
+01:07:59 Raphael Saru: Ele mantém todas no menu lá de cima é fixo.
+01:08:03 Rafael Araujo: No Inter não funciona mais. Meu Deus a internet está ruim.
+01:08:15 Raphael Saru: Para lançar um bagulho, você achou que tá de boa no celular?
+01:08:19 Rafael Araujo: Você ficou muito bom, né?
+01:08:26 Raphael Saru: Esse campo aí de digitar o valor ele já puxa o teclado numérico já.
+01:09:09 Raphael Saru: Dos cartões, né?
+01:09:11 Rafael Araujo: Cara. Acho que no celular o cartão pode ficar um embaixo do outro sabia? Em vez de ficar essa.
+01:09:16 Raphael Saru: É eita para passar o scroll é arrastando com o dedo, né?
+01:09:17 Rafael Araujo: Ô, p****.
+01:09:23 Raphael Saru: Do lado e não fica se não ficam escuro muito grande de para cima e para baixo.
+01:09:24 Rafael Araujo: Se bem que assim também fica bom, né, cara?
+01:09:29 Raphael Saru: Que que aquilo que tinha aberto, ele ficou feião abrindo em cima o resumo.
+01:09:29 Rafael Araujo: Tá bom.
+01:09:35 Raphael Saru: Precisa arrumar o card de resumo do cartão de crédito quando entra nele?
+01:09:41 Rafael Araujo: Vamos esquecer.
+01:09:43 Raphael Saru: É o mobile verdade.
+01:09:46 Rafael Araujo: tá Eu não sei se é o teu caso, mas eu acho muito estranho esses Card aqui velho.
+01:09:54 Raphael Saru: Não tá feio isso aí tá feio.
+01:09:56 Rafael Araujo: Tá me incomodando tá ligado esses caras do tamanho do mundo assim, ó.
+01:10:00 Raphael Saru: é não é para o celular a gente precisa de cards de resumo tanto em início quanto em orçamento quanto em relatório mas Outros como é que eu vou explicar como altura menor e mais moderno, né mais? Não sei ele tá muito cru e muito espaçoso.
+01:10:28 Rafael Araujo: beleza
+01:10:28 Raphael Saru: Ou de carteira, eu achei que ficou legal nas contas aí.
+01:10:30 Rafael Araujo: Não de carteira tá? Excelente aqui tá? Excelente cara. Você vai mexer em nada só adicionar o botão de
+01:10:33 Raphael Saru: isso
+01:10:36 Rafael Araujo: De eu cortar valores e tá de boa. Na verdade aqui poderia ter um ícone aqui.
+01:10:41 Raphael Saru: Inclusive o botão de ocultar valor pode ser igual do nubank ele pode ficar no menu fixo do Topo porque independente de qual tela você tá você consegue esconder?
+01:10:49 Rafael Araujo: Sim, sim, sim. Ícone de perfil aqui o olhinho aqui para tampar o bagulho. Ou no topo de algum card principal. Enfim a gente no topo mesmo, né?
+01:11:00 Raphael Saru: Clique em cima do de pizza, vê se como é que ele mostra o valor.
+01:11:02 Rafael Araujo: isso mais
+01:11:16 Raphael Saru: das categorias Não mostra.
+01:11:20 Rafael Araujo: Não.
+01:11:21 Raphael Saru: Tá então não mobile precisa mostrar os valores também das despesas por categoria.
+01:11:30 Rafael Araujo: Para clicar na interagir roupa apareceu agora.
+01:11:31 Raphael Saru: Na verdade apareceu na verdade, eu acho que além do de pizza ou substituiu de pizza por gráficos, tipo como se fosse as Barrinhas sabe que é esse.
+01:11:44 Rafael Araujo: Tem um como mudar, né? Talvez.
+01:11:49 Raphael Saru: É então a gente precisa da visualização da despesa por categoria com a
+01:11:50 Rafael Araujo: o formato de exibição do gráfico
+01:11:54 Raphael Saru: listagem das categorias e barras horizontais mostrando o pão foi gasto o quanto foi gasto em cada uma.
+01:12:03 Rafael Araujo: Pô mano, tá bugado aqui não consigo ver o bagulho velho. Só não clicar em nada.
+01:12:09 Raphael Saru: Tá bugadão.
+01:12:11 Rafael Araujo: Então clicar em algum lugar e depois eu consigo ver.
+01:12:16 Raphael Saru: Acho importante nesse de baixo aí de receita versus uma barrinha Azul mostrando o saldo.
+01:12:25 Rafael Araujo: Acho que não cara.
+01:12:27 Raphael Saru: Ficaria três então, tipo assim, receita 5 despesa três saldo dois que aí o cara consegue ver bem no que mês que ele ficou com saldo melhor.
+01:12:34 Rafael Araujo: É pode ser pode ser uma boa.
+01:12:36 Raphael Saru: Ah então de receita versus despesa colocar uma barra para o saldo também. Só testar lançamento pelo whats.
+01:12:52 Rafael Araujo: Categoria dele tá?
+01:12:55 Raphael Saru: Eu vou te mandar também, mano, que a gente já bota para f**** um bagulho que eu comprei no mercado. Você já encaminha para ele também, porque eu não testei de imagem, mano. Pera aí.
+01:13:32 Rafael Araujo: f************ Mano, tá tem alguma coisa errada que eu consigo bem enfim. Como é que eu saio dessa p**** mesmo de colocar a virar o celular vai ficar ó? Quando o cara virou o celular dele que aconteceu. Virou o celular dele ficou uma m****.
+01:14:12 Raphael Saru: eita
+01:14:20 Rafael Araujo: Pega aqui um Galaxy S8, vamos virar para ver o que que acontece.
+01:14:26 Raphael Saru: Ou mais alguém os aplicativos assim.
+01:14:29 Rafael Araujo: Essa semana mas questão distante que preocupação com tudo, né?
+01:14:32 Raphael Saru: Deixa eu ver se eu vi aqui o nubank que acontece. Nada, então, vou falar para no celular não não permitir a rotação para o
+01:14:41 Rafael Araujo: Não virar.
+01:14:45 Raphael Saru: modo horizontal.
+01:14:47 Rafael Araujo: É isso boa garoto, tá vendo? Tem que pensar em tudo velho. Como é que eu saio dessa buçanha aqui meu Deus?
+01:14:55 Raphael Saru: É lá naquele.
+01:14:57 Rafael Araujo: Tá vamos ver se ele lançou aqui o bagulho, acabei de mandar é certo que ele lançou o Uber como? O transporte aqui ele me voltou a mensagem como?
+01:15:12 Raphael Saru: Desse caiu para Conta Certa para conta padrão. Só a forma de pagamento que foi para o c******, né?
+01:15:19 Rafael Araujo: Mas não é a minha a minha nubank não é a padrão aí que tá.
+01:15:29 Raphael Saru: Ei, beleza. Lançamento pelo WhatsApp precisa ir pela conta que o usuário definiu como
+01:15:35 Rafael Araujo: f************, mataram quem ele ó ele puxando bem.
+01:15:44 Raphael Saru: padrão? c******, já tinha falado esse áudio velho.
+01:15:47 Rafael Araujo: Foi porque foi porque a nubank foi a primeira conta que eu cadastrei.
+01:15:50 Raphael Saru: é
+01:15:54 Rafael Araujo: Tá, cadê o bagulho que tu mandou aqui? Que isso sarou? Cadê o sabor?
+01:16:20 Raphael Saru: É o quê?
+01:16:22 Rafael Araujo: Melissa não comprou o sabor energético veio.
+01:16:26 Raphael Saru: Nossa Turma da Mônica a melhor maçã que já inventaram
+01:16:27 Rafael Araujo: Meu Deus. Quer outra comprando um Monster? O relatório ficou correto.
+01:16:38 Raphael Saru: Oxe todo dia essa p****.
+01:16:41 Rafael Araujo: Na cadeia que não atualiza.
+01:16:42 Raphael Saru: O que o que tem mais de humanidade? Ele não fez né? Tipo pipoca micro-ondas eu comprei duas ele f***-se Leite São três.
+01:16:53 Rafael Araujo: Na verdade ele pegou o valor total, cara, ele fez todos os lançamentos.
+01:16:54 Raphael Saru: Precisa ensinar ele fazer é mas precisaria.
+01:17:00 Rafael Araujo: Com valor cheio e bateu o valor final da nota.
+01:17:00 Raphael Saru: precisaria Mas será que é importante entrar na descrição a quantidade? Acho que sim, né?
+01:17:10 Rafael Araujo: Acho que sim
+01:17:11 Raphael Saru: Porque daí o pessoal vai ver tipo apaguei 23 reais no leite não.
+01:17:16 Rafael Araujo: É exato.
+01:17:17 Raphael Saru: Tá então adaptar o prompt do Gemini para identificar quando tem mais de uma unidade do mesmo item. No formato da Imagem e lançar isso também a quantidade também na descrição do lançamento. Cadê não apareceu aí?
+01:17:36 Rafael Araujo: Dama foi para onde o bagulho pelo amor de Deus.
+01:17:39 Raphael Saru: Aí p****.
+01:17:41 Rafael Araujo: tá
+01:17:42 Raphael Saru: É e também foi um bagulho que ele falou para não colocar agora no MVP. para evitar complexidade da parada
+01:17:51 Rafael Araujo: boa Bom muito bom já categorizou certo?
+01:17:59 Raphael Saru: Manda um áudio lá.
+01:18:01 Rafael Araujo: Mandar o teu áudio lá.
+01:18:02 Raphael Saru: Manda dois áudios, manda um de recebimento de coisa única recebi tanto de tal coisa e manda um tipo assim completar o coisa e tal coisa para ver se ele se ele lança dois no mesmo áudio. Tipo comprar cigarro comprei durex e paguei não fala da p*** não, senão ele não lança.
+01:18:29 Rafael Araujo: Aqui eu já tô usando o teu áudio de exemplo que é muito bom.
+01:18:33 Raphael Saru: qual
+01:18:35 Rafael Araujo: O com o Netflix e refrigerante e quase não sai óleo de proteína.
+01:18:43 Raphael Saru: Nossa tava cansado, hein, velho.
+01:18:47 Rafael Araujo: Lançou a 10 Barrinha e 120. E se falar e se falar diferente falar mais embolado. Será que ele pega? Vamos testar.
+01:18:58 Raphael Saru: festa Fala a marca também. Fala que comprou um snowflakes.
+01:19:10 Rafael Araujo: Calma aí, não recebimento, tipo eu coloco recebi tantos reais de tal lugar acabou.
+01:19:17 Raphael Saru: É recebi tanto de tal coisa tal serviço, né honorário na comissão.
+01:19:47 Rafael Araujo: Vamos ver como é que ele lançou a empresa de construção. E onde? honorário de uma empresa de construção
+01:19:57 Raphael Saru: f***-se Bom doido que a minha de proteína ele colocou acento na proteína.
+01:20:12 Rafael Araujo: Vamos ver aqui se ele vai lançar.
+01:20:15 Raphael Saru: Tá não isso eu vou pedir para corrigir. Bom eu acho que Que você mandou?
+01:20:37 Rafael Araujo: c****** mano, o aplicativo tá da hora sarou.
+01:20:48 Raphael Saru: Passar essa velho, c******, depois quero ver lá depois.
+01:20:53 Rafael Araujo: A p*** entendeu a p*** só não pode tem que ter mais gasto, p****.
+01:21:00 Raphael Saru: Tem que pagar o drink da moça, pô.
+01:21:10 Rafael Araujo: Mano Acho que é isso cara por hora.
+01:21:14 Raphael Saru: É eu acho que assim arrumando essas coisinhas da balançada não.
+01:21:18 Rafael Araujo: Tipo assim, se ele não quebrar outra Acho que dá sim.
+01:21:23 Raphael Saru: Aguento mais nem bugar velho. Ô. Hoje eu fiquei o dia inteiro trampando com o Cláudio nesse bagulho velho.
+01:21:29 Rafael Araujo: Não ficou muito bom. Tá doido. Ficou muito melhor que o outro.
+01:21:34 Raphael Saru: É já tinha mais ou menos um direcionamento. E aí eu fui usando aquele papador de token que a gente usou lá no puxadinho ele vai por etapa, tá ligado?
+01:21:44 Rafael Araujo: Amanhã eu vou ver se o carro tá lá para ela mostrar o bagulho para ele antes
+01:21:47 Raphael Saru: boa
+01:21:47 Rafael Araujo: que a ideia. Acho que é isso aí.
+01:21:53 Raphael Saru: Boa fechou, vamos lá para o discord, valeu?
+  

@@ -224,6 +224,15 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
+/* ========================================
+   Landscape lock (mobile only)
+   ======================================== */
+@media (max-width: 767px) and (orientation: landscape) {
+  #landscape-block {
+    display: flex !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

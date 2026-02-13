@@ -3,7 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { createClient } from '@/lib/supabase/client'
 import { encryptFields, decryptFields } from '@/lib/crypto/encrypt'
-import { format, addMonths, getDaysInMonth, min } from 'date-fns'
+import { format, addMonths, getDaysInMonth } from 'date-fns'
 import type { RecurringInput } from '@/lib/validators/recurring'
 import type { Database } from '@/types/database'
 
@@ -57,17 +57,17 @@ export function useCreateRecurring() {
       const { data: { user }, error: userError } = await supabase.auth.getUser()
       if (userError || !user) throw new Error('Not authenticated')
 
-      // Encrypt fields before insert
+      // Encrypt fields before insert (clean undefined → null)
       const encrypted = await encryptFields('recurring_templates', {
         description: values.description,
         amount: values.amount,
         type: values.type,
-        category: values.category,
+        category: values.category ?? null,
         day_of_month: values.day_of_month,
         end_date: values.end_date,
-        payment_method: values.payment_method,
-        bank_account_id: values.bank_account_id,
-        credit_card_id: values.credit_card_id,
+        payment_method: values.payment_method ?? null,
+        bank_account_id: values.bank_account_id ?? null,
+        credit_card_id: values.credit_card_id ?? null,
         user_id: user.id,
       }) as unknown as Database['public']['Tables']['recurring_templates']['Insert']
 
@@ -81,38 +81,139 @@ export function useCreateRecurring() {
 
       const createdTemplate = template as RecurringTemplate
 
-      // Generate first transaction for current month if applicable
+      // Generate transactions for ALL months from now to end_date
       const today = new Date()
       const currentDay = today.getDate()
+      const endDate = new Date(values.end_date + 'T00:00:00')
 
-      if (values.day_of_month >= currentDay) {
-        // Calculate target date using LEAST(day_of_month, last_day_of_month)
-        const daysInMonth = getDaysInMonth(today)
+      // Start month: current month if day >= today, else next month
+      let cursor = new Date(today.getFullYear(), today.getMonth(), 1)
+      if (values.day_of_month < currentDay) {
+        cursor = addMonths(cursor, 1)
+      }
+      const endMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 1)
+
+      while (cursor <= endMonth) {
+        const daysInMonth = getDaysInMonth(cursor)
         const targetDay = Math.min(values.day_of_month, daysInMonth)
-        const targetDate = new Date(today.getFullYear(), today.getMonth(), targetDay)
+        const targetDate = new Date(cursor.getFullYear(), cursor.getMonth(), targetDay)
 
-        // Encrypt transaction fields
+        // Don't generate past end_date
+        if (targetDate > endDate) break
+
         const transactionData = await encryptFields('transactions', {
           user_id: user.id,
           description: values.description,
           amount: values.amount,
           type: values.type,
-          category: values.category,
+          category: values.category ?? null,
           status: 'planned' as const,
           due_date: format(targetDate, 'yyyy-MM-dd'),
           is_recurring: true,
           recurring_day: values.day_of_month,
           recurring_group_id: createdTemplate.id,
-          payment_method: values.payment_method,
-          bank_account_id: values.bank_account_id,
-          credit_card_id: values.credit_card_id,
+          payment_method: values.payment_method ?? null,
+          bank_account_id: values.bank_account_id ?? null,
+          credit_card_id: values.credit_card_id ?? null,
         }) as unknown as Database['public']['Tables']['transactions']['Insert']
 
-        await supabase.from('transactions').insert(transactionData)
+        const { error: txError } = await supabase.from('transactions').insert(transactionData)
+        if (txError) {
+          console.error('Failed to create recurring transaction:', txError)
+        }
+
+        cursor = addMonths(cursor, 1)
       }
 
       // Decrypt response
       return decryptFields('recurring_templates', createdTemplate) as unknown as DecryptedRecurring
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recurring-templates'] })
+      queryClient.invalidateQueries({ queryKey: ['transactions'] })
+    },
+  })
+}
+
+/**
+ * Update a recurring template + regenerate future planned transactions
+ */
+export function useUpdateRecurring() {
+  const supabase = createClient()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({ id, values }: { id: string; values: RecurringInput }) => {
+      const { data: { user }, error: userError } = await supabase.auth.getUser()
+      if (userError || !user) throw new Error('Not authenticated')
+
+      // Update template
+      const encrypted = await encryptFields('recurring_templates', {
+        description: values.description,
+        amount: values.amount,
+        type: values.type,
+        category: values.category ?? null,
+        day_of_month: values.day_of_month,
+        end_date: values.end_date,
+        payment_method: values.payment_method ?? null,
+        bank_account_id: values.bank_account_id ?? null,
+        credit_card_id: values.credit_card_id ?? null,
+      }) as Record<string, unknown>
+
+      const { error: updateError } = await supabase
+        .from('recurring_templates')
+        .update(encrypted)
+        .eq('id', id)
+
+      if (updateError) throw updateError
+
+      // Delete all future planned transactions for this template
+      const today = format(new Date(), 'yyyy-MM-dd')
+      await supabase
+        .from('transactions')
+        .delete()
+        .eq('recurring_group_id', id)
+        .eq('status', 'planned')
+        .gte('due_date', today)
+
+      // Regenerate future transactions
+      const currentDay = new Date().getDate()
+      const endDate = new Date(values.end_date + 'T00:00:00')
+
+      let cursor = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+      if (values.day_of_month < currentDay) {
+        cursor = addMonths(cursor, 1)
+      }
+      const endMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 1)
+
+      while (cursor <= endMonth) {
+        const daysInMonth = getDaysInMonth(cursor)
+        const targetDay = Math.min(values.day_of_month, daysInMonth)
+        const targetDate = new Date(cursor.getFullYear(), cursor.getMonth(), targetDay)
+
+        if (targetDate > endDate) break
+
+        const transactionData = await encryptFields('transactions', {
+          user_id: user.id,
+          description: values.description,
+          amount: values.amount,
+          type: values.type,
+          category: values.category ?? null,
+          status: 'planned' as const,
+          due_date: format(targetDate, 'yyyy-MM-dd'),
+          is_recurring: true,
+          recurring_day: values.day_of_month,
+          recurring_group_id: id,
+          payment_method: values.payment_method ?? null,
+          bank_account_id: values.bank_account_id ?? null,
+          credit_card_id: values.credit_card_id ?? null,
+        }) as unknown as Database['public']['Tables']['transactions']['Insert']
+
+        const { error: txError } = await supabase.from('transactions').insert(transactionData)
+        if (txError) console.error('Failed to create recurring transaction:', txError)
+
+        cursor = addMonths(cursor, 1)
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['recurring-templates'] })

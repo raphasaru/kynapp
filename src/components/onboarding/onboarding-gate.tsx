@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { useOnboardingProgress } from '@/lib/queries/onboarding'
 
@@ -15,26 +15,27 @@ interface OnboardingGateProps {
 export function OnboardingGate({ children }: OnboardingGateProps) {
   const router = useRouter()
   const pathname = usePathname()
-  const { data: onboardingProgress, isLoading, isFetching, error } = useOnboardingProgress()
+  const { data: onboardingProgress, isLoading, error } = useOnboardingProgress()
+  const hasRedirected = useRef(false)
 
   useEffect(() => {
-    if (error) {
-      console.error('[OnboardingGate] Query error:', error)
-      return
-    }
-
-    // Skip redirect while loading or refetching (avoid stale-data redirect)
-    if (isLoading || isFetching) return
+    if (error || isLoading) return
 
     if (
       onboardingProgress &&
       !onboardingProgress.onboarding_completed &&
-      !pathname?.startsWith('/app/onboarding')
+      !pathname?.startsWith('/app/onboarding') &&
+      !hasRedirected.current
     ) {
-      router.push('/app/onboarding')
+      hasRedirected.current = true
+      router.replace('/app/onboarding')
     }
-  }, [onboardingProgress, pathname, router, isLoading, isFetching, error])
 
-  // Always render children (non-blocking redirect)
+    // Reset redirect flag when onboarding is completed
+    if (onboardingProgress?.onboarding_completed) {
+      hasRedirected.current = false
+    }
+  }, [onboardingProgress, pathname, router, isLoading, error])
+
   return <>{children}</>
 }

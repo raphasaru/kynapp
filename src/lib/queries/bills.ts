@@ -144,21 +144,22 @@ export async function getOrCreateBill(
 }
 
 /**
- * Compute the next bill amount for each card.
- * Single query for all cards — groups by card + filters by each card's next bill month.
+ * Compute bill amounts for each card:
+ * - nextBill: sum of transactions in the next billing cycle (for "Fatura atual")
+ * - totalOutstanding: sum of ALL planned (unpaid) transactions (for "Disponível")
  */
-export function useNextBillAmounts(cards: CreditCard[] | undefined) {
+export function useCardBillSummary(cards: CreditCard[] | undefined) {
   const supabase = createClient()
   const cardIds = cards?.map(c => c.id)
 
   return useQuery({
-    queryKey: ['next-bill-amounts', cardIds],
+    queryKey: ['card-bill-summary', cardIds],
     enabled: !!cards && cards.length > 0,
     queryFn: async () => {
-      // Fetch all planned credit card transactions
+      // Fetch all credit card transactions
       const { data, error } = await supabase
         .from('transactions')
-        .select('credit_card_id, amount, due_date')
+        .select('credit_card_id, amount, due_date, status')
         .in('credit_card_id', cards!.map(c => c.id))
         .order('due_date')
 
@@ -177,19 +178,37 @@ export function useNextBillAmounts(cards: CreditCard[] | undefined) {
         })
       )
 
-      // For each card, compute next bill month and sum matching transactions
-      const result = new Map<string, number>()
+      // For each card, compute next bill + total outstanding
+      const nextBill = new Map<string, number>()
+      const totalOutstanding = new Map<string, number>()
+
       for (const card of cards!) {
         const billMonth = getNextBillMonth(card.due_day)
-        const cardTxs = rows.filter(
-          (tx) => tx.credit_card_id === card.id && tx.due_date.startsWith(billMonth)
-        )
-        result.set(card.id, cardTxs.reduce((sum, tx) => sum + tx.amount, 0))
+        const cardTxs = rows.filter((tx) => tx.credit_card_id === card.id)
+
+        // Next bill: transactions in the next billing cycle
+        const nextBillAmount = cardTxs
+          .filter((tx) => tx.due_date.startsWith(billMonth))
+          .reduce((sum, tx) => sum + tx.amount, 0)
+
+        // Total outstanding: ALL planned (unpaid) transactions across all months
+        const outstandingAmount = cardTxs
+          .filter((tx) => tx.status === 'planned')
+          .reduce((sum, tx) => sum + tx.amount, 0)
+
+        nextBill.set(card.id, nextBillAmount)
+        totalOutstanding.set(card.id, outstandingAmount)
       }
 
-      return result
+      return { nextBill, totalOutstanding }
     },
   })
+}
+
+/** @deprecated Use useCardBillSummary instead */
+export function useNextBillAmounts(cards: CreditCard[] | undefined) {
+  const { data, ...rest } = useCardBillSummary(cards)
+  return { data: data?.nextBill, ...rest }
 }
 
 /**

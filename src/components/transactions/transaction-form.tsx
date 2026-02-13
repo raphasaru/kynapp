@@ -22,9 +22,10 @@ interface TransactionFormProps {
   transaction?: DecryptedTransaction
   onSuccess?: () => void
   defaultMonth?: string
+  defaultAccountId?: string | null
 }
 
-export function TransactionForm({ transaction, onSuccess, defaultMonth }: TransactionFormProps) {
+export function TransactionForm({ transaction, onSuccess, defaultMonth, defaultAccountId }: TransactionFormProps) {
   const [type, setType] = useState<'income' | 'expense'>(transaction?.type || 'expense')
   const [paymentMethod, setPaymentMethod] = useState<string | null>(transaction?.payment_method || null)
   const [installmentCount, setInstallmentCount] = useState(1)
@@ -64,10 +65,11 @@ export function TransactionForm({ transaction, onSuccess, defaultMonth }: Transa
           type: 'expense' as const,
           status: 'completed' as const,
           due_date: defaultMonth
-            ? `${defaultMonth}-${format(new Date(), 'dd')}`
-            : format(new Date(), 'yyyy-MM-dd'),
+            ? `${defaultMonth}-${String(new Date().getDate()).padStart(2, '0')}`
+            : `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new Date().getDate()).padStart(2, '0')}`,
           amount: 0,
           description: '',
+          bank_account_id: defaultAccountId || null,
         },
   })
 

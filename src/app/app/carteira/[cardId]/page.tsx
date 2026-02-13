@@ -41,6 +41,14 @@ export default function CardDetailPage({
       .reduce((sum, tx) => sum + tx.amount, 0)
   })()
 
+  // Total outstanding = ALL planned transactions (for available limit calc)
+  const totalOutstanding = (() => {
+    if (!transactions) return 0
+    return transactions
+      .filter((tx) => tx.status === 'planned')
+      .reduce((sum, tx) => sum + tx.amount, 0)
+  })()
+
   const backgroundColor = card?.color || '#8b5cf6'
 
   const isLoading = cardsLoading || txLoading || billsLoading
@@ -71,18 +79,18 @@ export default function CardDetailPage({
             background: `linear-gradient(135deg, ${backgroundColor} 0%, ${backgroundColor}dd 100%)`,
           }}
         >
-          <div className="flex items-end justify-between">
-            <div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            <div className="col-span-2 sm:col-span-1">
               <p className="text-xs opacity-80">Fatura atual</p>
               <p className="text-2xl font-bold">{formatCurrency(nextBillAmount)}</p>
             </div>
-            <div className="text-right">
+            <div>
               <p className="text-xs opacity-80">Limite</p>
               <p className="text-lg font-semibold">{formatCurrency(creditLimit)}</p>
             </div>
-            <div className="text-right">
+            <div>
               <p className="text-xs opacity-80">Disponível</p>
-              <p className="text-lg font-semibold">{formatCurrency(creditLimit - nextBillAmount)}</p>
+              <p className="text-lg font-semibold">{formatCurrency(Math.max(0, creditLimit - totalOutstanding))}</p>
             </div>
           </div>
           <div className="flex items-center justify-between text-xs opacity-90 mt-3">

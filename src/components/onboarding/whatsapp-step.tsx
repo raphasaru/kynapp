@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { PhoneInput } from '@/components/whatsapp/phone-input'
 import { VerificationQR } from '@/components/whatsapp/verification-qr'
 import { VerificationStatus } from '@/components/whatsapp/verification-status'
@@ -9,6 +10,7 @@ import { CheckCircle2 } from 'lucide-react'
 
 export function WhatsAppStep() {
   const { data: profile } = useProfile()
+  const queryClient = useQueryClient()
   const [verificationData, setVerificationData] = useState<{
     code: string
     deepLink: string
@@ -16,6 +18,15 @@ export function WhatsAppStep() {
   } | null>(null)
 
   const isLinked = profile?.whatsapp_verified && profile?.whatsapp_phone
+
+  // Poll profile every 3s while waiting for verification
+  useEffect(() => {
+    if (!verificationData || isLinked) return
+    const interval = setInterval(() => {
+      queryClient.invalidateQueries({ queryKey: ['profile'] })
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [verificationData, isLinked, queryClient])
 
   return (
     <div className="space-y-6">
